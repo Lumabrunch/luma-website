@@ -20,7 +20,7 @@
 .strip span{padding:0 25px;color:#899273}
 .welcome{max-width:780px;margin:80px auto;text-align:center;padding:0 24px}h2{font:normal clamp(32px,4vw,50px)/1.18 Georgia,serif;letter-spacing:-1px;margin:17px 0 23px}
 .welcome p{max-width:530px;margin:auto;color:#6c7161}
-.gallery{max-width:1200px;margin:auto;padding:0 4% 75px}
+.gallery{max-width:1200px;margin:auto;padding:0 4% 28px}
 .sectionhead{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px}
 .sectionhead h2{margin-bottom:0}
 .photos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px}
@@ -28,7 +28,7 @@
 .photos a:nth-child(2){padding-top:42px}
 .photos h3{font:24px Georgia;margin:15px 0 5px}
 .photos p{font-size:12px;color:#6c7161;margin:0}
-.menu{background:#e7e9da;padding:64px 6%;text-align:center}
+.menu{background:#e7e9da;padding:26px 6% 34px;text-align:center}
 .menu p{color:#666e59;margin:0 auto 25px;max-width:480px}
 .visit{max-width:1100px;margin:75px auto;display:grid;grid-template-columns:1fr 1fr;gap:10%;padding:0 5%;align-items:center}
 .visit img{height:350px;width:100%;object-fit:cover;border-radius:4px}
@@ -74,6 +74,7 @@ body { font-size: 16px; }
 .visit img { object-position: center; }
 .menu { text-align: left; }
 .menu-inner { max-width: 1040px; margin: auto; }
+.menu-inner h2 { margin: 0 0 14px; }
 .menu p { max-width: none; margin: 0 0 24px; }
 .menu-groups { margin: 28px 0; border-top: 1px solid #aeb39d; }
 .menu details { border-bottom: 1px solid #aeb39d; }
