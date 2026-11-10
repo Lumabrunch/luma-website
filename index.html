@@ -3,11 +3,11 @@
 </head>
 <body><a class="skip" href="#contenido">Saltar al contenido</a><div class="note">Vista previa · Carta y datos por confirmar</div>
 <header><a class="brand" href="#"><img src="3a61ebc2e5134f5b.jpg" alt=""><span>LUMA<small>BRUNCH &amp; COFFEE</small></span></a>
-<nav aria-label="Navegación principal"><a href="#nosotros" class="optional">Nuestro rincón</a><a href="https://www.instagram.com/stories/highlights/17845898859287997/" target="_blank" rel="noopener">La carta ↗</a><a href="#visitanos" class="pill">Visítanos ↗</a>
+<nav aria-label="Navegación principal"><a href="#nosotros" class="optional">Nuestro rincón</a><a href="https://drive.google.com/file/d/1IF5ptdhiVZLpmklAaCE2BE8_jmhZV77u/view" data-menu-link target="_blank" rel="noopener">La carta ↗</a><a href="#visitanos" class="pill">Visítanos ↗</a>
 </nav>
 </header>
 <main id="contenido">
-<section class="hero"><div><div class="eyebrow">Benijófar · Brunch &amp; Coffee</div><h1>Tu momento<br><em>Luma.</em></h1><p class="intro">Un café, algo rico y tiempo para disfrutar. Te esperamos en Luma.</p><div class="actions"><a class="button" href="https://www.instagram.com/stories/highlights/17845898859287997/" target="_blank" rel="noopener">Descubre la carta ↗</a><a class="textlink" href="#visitanos">Ven a conocernos</a></div></div>
+<section class="hero"><div><div class="eyebrow">Benijófar · Brunch &amp; Coffee</div><h1>Tu momento<br><em>Luma.</em></h1><p class="intro">Un café, algo rico y tiempo para disfrutar. Te esperamos en Luma.</p><div class="actions"><a class="button" href="https://drive.google.com/file/d/1IF5ptdhiVZLpmklAaCE2BE8_jmhZV77u/view" data-menu-link target="_blank" rel="noopener">Descubre la carta ↗</a><a class="textlink" href="#visitanos">Ven a conocernos</a></div></div>
 <figure><img src="b6e8c2edc65cb678.jpg" alt="Tortitas con manzana, canela y nueces" fetchpriority="high"><div class="seal" aria-hidden="true">Un ratito<br>para ti.</div><figcaption class="caption"><span>Tortitas de Luma</span><span>@lumabrunch</span></figcaption>
 </figure>
 </section><div class="strip">DESAYUNOS <span>✳</span> BRUNCH <span>✳</span> CAFÉ <span>✳</span> SMOOTHIES</div>
@@ -18,7 +18,12 @@
 <section class="menu" id="carta" aria-labelledby="carta-titulo" style="text-align:center">
   <div class="menu-inner">
     <h2 id="carta-titulo">La carta de Luma</h2>
-    <a class="button" href="https://www.instagram.com/stories/highlights/17845898859287997/" target="_blank" rel="noopener">Ver la carta en Instagram ↗</a>
+    <a class="button" href="https://drive.google.com/file/d/1IF5ptdhiVZLpmklAaCE2BE8_jmhZV77u/view" data-menu-link target="_blank" rel="noopener">Ver la carta ↗</a>
+    <nav aria-label="Idioma de la carta" style="justify-content:center;flex-wrap:wrap;margin-top:16px">
+      <a class="textlink" lang="es" href="https://drive.google.com/file/d/1IF5ptdhiVZLpmklAaCE2BE8_jmhZV77u/view" target="_blank" rel="noopener">Español</a>
+      <a class="textlink" lang="en" href="https://drive.google.com/file/d/1gcKMhcdtt3tWugC0yTJZmtJjhevgsCPg/view" target="_blank" rel="noopener">English</a>
+      <a class="textlink" lang="nl" href="https://drive.google.com/file/d/1foYVAHyxKutJrQhk7bZ4wp5DQarCorNm/view" target="_blank" rel="noopener">Nederlands</a>
+    </nav>
   </div>
 </section>
 <section class="visit" id="visitanos"><img src="5860bf6c79df1f75.jpg" alt="Un momento de café en Luma" loading="lazy"><div><div class="eyebrow">Nos vemos en Benijófar</div><h2>Tu próxima pausa<br>empieza aquí.</h2><p>C. Aneto, Local 13<br>03178 Benijófar, Alicante</p><a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Luma+Brunch+Calle+Aneto+13+Benijofar" target="_blank" rel="noopener">Cómo llegar ↗</a><p style="font-size:12px">Consulta el horario actual en <a class="textlink" href="https://www.instagram.com/stories/highlights/18097013110652915/" target="_blank" rel="noopener">Instagram</a>.</p></div>
@@ -26,4 +31,16 @@
 </main>
 <footer><span>LUMA · BRUNCH &amp; COFFEE</span><a href="https://www.instagram.com/lumabrunch/" target="_blank" rel="noopener">@lumabrunch ↗</a><span>Español</span>
 </footer>
+<script>
+  const menuLinks = new Map(
+    Array.from(document.querySelectorAll('#carta nav a[lang]'), link => [link.lang, link.href])
+  );
+  const menuLanguage = (navigator.languages?.length ? navigator.languages : [navigator.language])
+    .map(language => language?.toLowerCase().split('-')[0])
+    .find(language => menuLinks.has(language)) ?? 'es';
+
+  document.querySelectorAll('[data-menu-link]').forEach(link => {
+    link.href = menuLinks.get(menuLanguage);
+  });
+</script>
 </body></html>
