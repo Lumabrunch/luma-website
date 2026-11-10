@@ -95,8 +95,10 @@ body { font-size: 16px; }
 }
 @media (max-width: 370px) {
   header { gap: 9px; }
-  .brand { gap: 7px; }
+  .brand { gap: 6px; }
+  .brand small { letter-spacing: 1px; }
+  header nav { gap: 6px; }
   nav { gap: 8px; }
-  .pill { padding: 8px 11px; }
+  .pill { padding: 8px 8px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
