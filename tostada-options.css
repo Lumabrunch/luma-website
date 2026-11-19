@@ -1,0 +1,37 @@
+.tostada-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.tostada-option-group {
+  background: #fffcf5;
+  border: 1px solid #d9d9c9;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.tostada-option-group h4 {
+  font-size: 1rem;
+  margin: 0 0 6px;
+}
+.tostada-option-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tostada-option-group li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  padding: 6px 0;
+}
+.tostada-option-group li + li {
+  border-top: 1px solid #ebe7da;
+}
+.tostada-option-group strong {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .tostada-options { grid-template-columns: 1fr; }
+}

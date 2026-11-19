@@ -92,6 +92,7 @@ dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:v
 .visit-directions .button{max-width:100%}
 .visit-map{height:clamp(225px,34vw,280px)}
 </style>
+<link rel="stylesheet" href="tostada-options.css">
 </head>
 <body id="inicio">
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -426,18 +427,15 @@ dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:v
         <article class="menu-item"><div class="menu-item-heading"><h4>Mermelada y mantequilla</h4><strong>€ 2,50</strong></div>
         </article>
       </div>
-      <aside class="menu-notes">
-        <p>Bacon + €1,50</p>
-        <p>Aguacate + €1,25</p>
-        <p>Huevo cocido + €1,00</p>
-        <p>Huevo poché + €1,25</p>
-        <p>Elige tu pan:</p>
-        <p>Pan blanco</p>
-        <p>Pan integral</p>
-        <p>Pan de molde blanco</p>
-        <p>Pan de molde integral</p>
-        <p>Panecillo blanco + €0,25</p>
-        <p>Pan brioche + €0,25</p>
+      <aside class="menu-notes tostada-options" aria-label="Extras · Elige tu pan">
+        <div class="tostada-option-group">
+          <h4>Extras</h4>
+          <ul><li><span>Bacon</span><strong>+ €1,50</strong></li><li><span>Aguacate</span><strong>+ €1,25</strong></li><li><span>Huevo cocido</span><strong>+ €1,00</strong></li><li><span>Huevo poché</span><strong>+ €1,25</strong></li></ul>
+        </div>
+        <div class="tostada-option-group">
+          <h4>Elige tu pan</h4>
+          <ul><li><span>Pan blanco</span></li><li><span>Pan integral</span></li><li><span>Pan de molde blanco</span></li><li><span>Pan de molde integral</span></li><li><span>Panecillo blanco</span><strong>+ €0,25</strong></li><li><span>Pan brioche</span><strong>+ €0,25</strong></li></ul>
+        </div>
       </aside>
     </section>
     <section class="menu-category" id="menu-es-10">
@@ -875,18 +873,15 @@ dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:v
         <article class="menu-item"><div class="menu-item-heading"><h4>Jam and butter</h4><strong>€ 2,50</strong></div>
         </article>
       </div>
-      <aside class="menu-notes">
-        <p>Bacon + €1,50</p>
-        <p>Avocado + €1,25</p>
-        <p>Boiled egg + €1,00</p>
-        <p>Poached egg + €1,25</p>
-        <p>Choose your bread:</p>
-        <p>White bread</p>
-        <p>Wholemeal bread</p>
-        <p>White sliced bread</p>
-        <p>Wholemeal sliced bread</p>
-        <p>White roll + €0,25</p>
-        <p>Brioche bread + €0,25</p>
+      <aside class="menu-notes tostada-options" aria-label="Extras · Choose your bread">
+        <div class="tostada-option-group">
+          <h4>Extras</h4>
+          <ul><li><span>Bacon</span><strong>+ €1,50</strong></li><li><span>Avocado</span><strong>+ €1,25</strong></li><li><span>Boiled egg</span><strong>+ €1,00</strong></li><li><span>Poached egg</span><strong>+ €1,25</strong></li></ul>
+        </div>
+        <div class="tostada-option-group">
+          <h4>Choose your bread</h4>
+          <ul><li><span>White bread</span></li><li><span>Wholemeal bread</span></li><li><span>White sliced bread</span></li><li><span>Wholemeal sliced bread</span></li><li><span>White roll</span><strong>+ €0,25</strong></li><li><span>Brioche bread</span><strong>+ €0,25</strong></li></ul>
+        </div>
       </aside>
     </section>
     <section class="menu-category" id="menu-en-10">
@@ -1324,18 +1319,15 @@ dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:v
         <article class="menu-item"><div class="menu-item-heading"><h4>Jam en boter</h4><strong>€ 2,50</strong></div>
         </article>
       </div>
-      <aside class="menu-notes">
-        <p>Bacon + €1,50</p>
-        <p>Avocado + €1,25</p>
-        <p>Gekookt ei + €1,00</p>
-        <p>Gepocheerd ei + €1,25</p>
-        <p>Keuze uit brood:</p>
-        <p>Witte tostada</p>
-        <p>Volkoren tostada</p>
-        <p>Wit geroosterd brood</p>
-        <p>Bruin geroosterd brood</p>
-        <p>Wit bolletje + €0,25</p>
-        <p>Briochebrood + €0,25</p>
+      <aside class="menu-notes tostada-options" aria-label="Extra’s · Keuze uit brood">
+        <div class="tostada-option-group">
+          <h4>Extra’s</h4>
+          <ul><li><span>Bacon</span><strong>+ €1,50</strong></li><li><span>Avocado</span><strong>+ €1,25</strong></li><li><span>Gekookt ei</span><strong>+ €1,00</strong></li><li><span>Gepocheerd ei</span><strong>+ €1,25</strong></li></ul>
+        </div>
+        <div class="tostada-option-group">
+          <h4>Keuze uit brood</h4>
+          <ul><li><span>Witte tostada</span></li><li><span>Volkoren tostada</span></li><li><span>Wit geroosterd brood</span></li><li><span>Bruin geroosterd brood</span></li><li><span>Wit bolletje</span><strong>+ €0,25</strong></li><li><span>Briochebrood</span><strong>+ €0,25</strong></li></ul>
+        </div>
       </aside>
     </section>
     <section class="menu-category" id="menu-nl-10">

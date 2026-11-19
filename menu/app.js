@@ -26,5 +26,36 @@ function dishPhoto(item) {
 function setActive(index){selected=index;document.querySelectorAll('#tabs button').forEach((b,i)=>{b.classList.toggle('active',i===index);if(i===index)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});let active=$('#tabs button.active'),nav=$('#tabs');if(active){let x=active.offsetLeft-nav.offsetLeft;if(x<nav.scrollLeft||x+active.offsetWidth>nav.scrollLeft+nav.clientWidth)nav.scrollTo({left:Math.max(0,x-20),behavior:'smooth'})}}
 function jumpTo(index){let section=document.getElementById('category-'+index);if(!section)return;setActive(index);window.scrollTo({top:window.scrollY+section.getBoundingClientRect().top-$('.menu-tools').offsetHeight-15,behavior:'smooth'})}
 let scrollQueued=false;window.addEventListener('scroll',()=>{if(scrollQueued)return;scrollQueued=true;requestAnimationFrame(()=>{scrollQueued=false;if(!data||$('#search').value.trim())return;let boundary=$('.menu-tools').getBoundingClientRect().bottom+35,sections=[...document.querySelectorAll('.category-section')],current=0;for(let section of sections){if(section.getBoundingClientRect().top<=boundary)current=Number(section.dataset.index);else break}if(current!==selected)setActive(current)})},{passive:true});
-function render(){const t=ui[lang],q=$('#search').value.toLocaleLowerCase().trim();document.documentElement.lang=lang;$('#headline').innerHTML=t.headline;$('#intro').innerHTML=t.intro;$('#discover').innerHTML=t.discover+' <span>↓</span>';$('#search').placeholder=t.search;$('#search').setAttribute('aria-label',t.search);$('#menu-eyebrow').textContent=t.menu;$('#footer-text').textContent=t.footer;$('#footer-text').style.whiteSpace='pre-line';$('#top-label').textContent=t.top;$('#fresh-stamp').textContent={es:'HECHO AL MOMENTO\nCON CARIÑO',en:'MADE FRESH\nWITH LOVE',nl:'VERS BEREID\nMET LIEFDE'}[lang];$('#fresh-title').textContent=data.story[lang][0];$('#fresh-text').textContent=data.story[lang][1];$('#story').replaceChildren(...data.story[lang].slice(2).map(x=>el('p','',x)));$('#story-button').textContent=$('#story').hidden?t.story:t.close;document.querySelectorAll('[data-lang]').forEach(b=>{b.classList.toggle('selected',b.dataset.lang===lang);b.setAttribute('aria-pressed',b.dataset.lang===lang)});$('#tabs').replaceChildren(...data.categories.map((c,i)=>{let b=el('button',i===selected&&!q?'active':'',c.title[lang]);b.onclick=()=>{if($('#search').value){$('#search').value='';render()}jumpTo(i)};return b}));let content=$('#content');content.replaceChildren();let total=0;data.categories.forEach((c,i)=>{let items=c.items.filter(x=>!q||(x.name[lang]+' '+x.description[lang]).toLocaleLowerCase().includes(q));if(!items.length)return;let section=el('section','category-section');section.id='category-'+i;section.dataset.index=i;let heading=el('h2','section-title',c.title[lang]);section.setAttribute('aria-labelledby','category-heading-'+i);heading.id='category-heading-'+i;section.append(heading);let grid=el('div','items');items.forEach(item=>grid.append(itemCard(item)));section.append(grid);total+=items.length;if(!q&&c.notes.length){let notes=el('aside','notes');c.notes.forEach(n=>notes.append(el('p','',n[lang])));section.append(notes)}content.append(section)});if(!total)content.append(el('p','empty',t.none));$('#category-title').textContent=q?t.results:{es:'La carta',en:'The menu',nl:'De menukaart'}[lang];$('#count').textContent=total;if(!q)setActive(selected);}
+function categoryNotes(category) {
+  if (category.title.es !== 'Tostadas') {
+    const notes = el('aside', 'notes');
+    notes.append(...category.notes.map(note => el('p', '', note[lang])));
+    return notes;
+  }
+
+  const extrasTitle = {es: 'Extras', en: 'Extras', nl: 'Extra’s'}[lang];
+  const breadHeading = category.notes.findIndex(note => note.es === 'Elige tu pan:');
+  const breadTitle = category.notes[breadHeading][lang].replace(/:$/, '');
+  const groups = [
+    [extrasTitle, category.notes.slice(0, breadHeading)],
+    [breadTitle, category.notes.slice(breadHeading + 1)]
+  ];
+  const options = el('aside', 'notes tostada-options');
+  options.setAttribute('aria-label', extrasTitle + ' · ' + breadTitle);
+  for (const [title, notes] of groups) {
+    const group = el('div', 'tostada-option-group');
+    const list = el('ul', '');
+    for (const note of notes) {
+      const [label, surcharge] = note[lang].split(' + ');
+      const row = el('li', '');
+      row.append(el('span', '', label));
+      if (surcharge) row.append(el('strong', '', '+ ' + surcharge));
+      list.append(row);
+    }
+    group.append(el('h4', '', title), list);
+    options.append(group);
+  }
+  return options;
+}
+function render(){const t=ui[lang],q=$('#search').value.toLocaleLowerCase().trim();document.documentElement.lang=lang;$('#headline').innerHTML=t.headline;$('#intro').innerHTML=t.intro;$('#discover').innerHTML=t.discover+' <span>↓</span>';$('#search').placeholder=t.search;$('#search').setAttribute('aria-label',t.search);$('#menu-eyebrow').textContent=t.menu;$('#footer-text').textContent=t.footer;$('#footer-text').style.whiteSpace='pre-line';$('#top-label').textContent=t.top;$('#fresh-stamp').textContent={es:'HECHO AL MOMENTO\nCON CARIÑO',en:'MADE FRESH\nWITH LOVE',nl:'VERS BEREID\nMET LIEFDE'}[lang];$('#fresh-title').textContent=data.story[lang][0];$('#fresh-text').textContent=data.story[lang][1];$('#story').replaceChildren(...data.story[lang].slice(2).map(x=>el('p','',x)));$('#story-button').textContent=$('#story').hidden?t.story:t.close;document.querySelectorAll('[data-lang]').forEach(b=>{b.classList.toggle('selected',b.dataset.lang===lang);b.setAttribute('aria-pressed',b.dataset.lang===lang)});$('#tabs').replaceChildren(...data.categories.map((c,i)=>{let b=el('button',i===selected&&!q?'active':'',c.title[lang]);b.onclick=()=>{if($('#search').value){$('#search').value='';render()}jumpTo(i)};return b}));let content=$('#content');content.replaceChildren();let total=0;data.categories.forEach((c,i)=>{let items=c.items.filter(x=>!q||(x.name[lang]+' '+x.description[lang]).toLocaleLowerCase().includes(q));if(!items.length)return;let section=el('section','category-section');section.id='category-'+i;section.dataset.index=i;let heading=el('h2','section-title',c.title[lang]);section.setAttribute('aria-labelledby','category-heading-'+i);heading.id='category-heading-'+i;section.append(heading);let grid=el('div','items');items.forEach(item=>grid.append(itemCard(item)));section.append(grid);total+=items.length;if(!q&&c.notes.length)section.append(categoryNotes(c));content.append(section)});if(!total)content.append(el('p','empty',t.none));$('#category-title').textContent=q?t.results:{es:'La carta',en:'The menu',nl:'De menukaart'}[lang];$('#count').textContent=total;if(!q)setActive(selected);}
 document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;localStorage.setItem('luma-language',lang);render()});$('#search').addEventListener('input',render);$('#story-button').onclick=()=>{$('#story').hidden=!$('#story').hidden;$('#story-button').setAttribute('aria-expanded',!$('#story').hidden);render()};$('#top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});fetch('menu.json?v=2').then(r=>r.json()).then(d=>{data=d;const requested=new URLSearchParams(location.search).get('lang');const saved=localStorage.getItem('luma-language');if(Object.hasOwn(ui,requested))lang=requested;else if(Object.hasOwn(ui,saved))lang=saved;render()}).catch(()=>{$('#content').textContent='No se ha podido cargar la carta. Vuelve a intentarlo.'});
