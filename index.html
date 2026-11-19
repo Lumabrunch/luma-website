@@ -1,60 +1,1655 @@
-<!doctype html><html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Luma Brunch · Tu momento Luma</title><meta name="description" content="Descubre Luma Brunch en Benijófar, su carta de desayunos y brunch y cómo llegar."><link rel="icon" type="image/jpeg" href="3a61ebc2e5134f5b.jpg"><link rel="stylesheet" href="styles.css">
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Café, desayunos y brunch preparados al momento en Luma Brunch, Benijófar. Consulta la carta, los horarios y cómo llegar.">
+<link rel="canonical" href="https://luma-brunch.es/">
+<link rel="icon" type="image/webp" href="home-assets/luma-flower.webp">
+<title>Luma Brunch · Benijófar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
+:root{--cream:#f7f3e8;--green:#394a32;--olive:#77815a;--line:#d9d9c9;--soft:#e7e9da;--paper:#fffcf5;--headline:Fredoka,"Arial Rounded MT Bold",system-ui,sans-serif;--body:Figtree,system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--green);font:1rem/1.55 var(--body)}
+a{color:inherit;text-decoration:none}img{display:block;width:100%;height:auto}button{font:inherit;color:inherit}a:focus-visible,button:focus-visible{outline:3px solid #96613b;outline-offset:4px}figure,p,h1,h2{margin:0}
+.wrap{width:min(1140px,calc(100% - 72px));margin-inline:auto}
+.skip{position:absolute;top:-100px}.skip:focus{top:8px;left:8px;background:var(--paper);z-index:12;padding:.75rem}
+header{border-bottom:1px solid var(--line)}.top{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:91px}.brand{display:flex;align-items:center;gap:10px}.brand .flower{width:37px;height:37px;object-fit:contain}.brand .wordmark{width:113px;height:52px;object-fit:contain}
+nav,.actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}nav a{font-size:.925rem;font-weight:600}
+.button{display:inline-flex;align-items:center;justify-content:center;padding:.78rem 1.28rem;border-radius:100px;color:var(--paper);background:var(--green);border:1px solid var(--green);font-weight:700;min-height:44px}.outline{color:var(--green);background:transparent}.button:hover{background:#4d5d42;color:var(--paper)}.text-link{text-decoration:underline;text-underline-offset:5px;font-weight:600}
+.eyebrow{font-weight:700;font-size:.83rem;letter-spacing:.15em;text-transform:uppercase;color:#586548}
+.hero{padding-block:55px 59px;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center}.hero h1{font:600 clamp(4.2rem,8.5vw,8.15rem)/.89 var(--headline);letter-spacing:-.027em;margin:16px 0 22px}.hero h1 span{display:block;color:#697650}.intro{max-width:22rem;font-size:1.12rem}
+.status{margin-top:24px;display:inline-flex;align-items:center;gap:9px;max-width:100%;padding:.48rem .85rem;border-radius:100px;background:var(--soft);font-weight:700;font-size:.91rem}.dot{width:9px;height:9px;border-radius:100%;background:#9b552e;flex:none}.status[data-state=open] .dot{background:#427345}.status .detail{font-weight:500;color:#46543d}
+.actions{gap:17px;margin-top:24px}.hero-photo img{border-radius:48% 48% 10px 10px / 43% 43% 10px 10px;aspect-ratio:1.02;object-fit:cover}.hero-photo figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:.81rem;font-weight:600}
+
+.welcome{text-align:center;padding:77px 0 72px}.welcome p:last-child{max-width:525px;margin:auto}.welcome h2{margin:12px 0 17px}
+h2{font:600 clamp(2.5rem,5.4vw,4.6rem)/1 var(--headline);letter-spacing:-.018em}
+.bar{background:var(--soft);padding:65px 0 62px;overflow:hidden}.bar h2{margin-top:9px}.bar-head{display:flex;align-items:end;justify-content:space-between;gap:20px}.bar-head .text-link{flex:none}
+.fan{position:relative;height:clamp(240px,30vw,380px);margin:12px auto 0;max-width:1050px;isolation:isolate}.photo-card{--spread:clamp(55px,9vw,112px);--lift:12px;position:absolute;top:30px;left:50%;width:clamp(116px,16.8vw,204px);padding:7px 7px 11px;border:1px solid #dddccf;border-radius:9px;background:var(--paper);box-shadow:0 8px 22px #394a3226;text-align:left;cursor:pointer;transform:translateX(calc(-50% + var(--offset) * var(--spread))) translateY(calc(var(--distance) * var(--lift))) rotate(calc(var(--offset) * 5deg));z-index:calc(7 - var(--distance));transition:transform .28s ease,box-shadow .28s ease}
+.photo-card img{aspect-ratio:.82;object-fit:cover;border-radius:4px}.photo-card span{display:block;padding:6px 3px 0;font-weight:700;font-size:.84rem}.photo-card:hover,.photo-card:focus-visible{z-index:10;transform:translateX(calc(-50% + var(--offset) * var(--spread))) translateY(calc(var(--distance) * var(--lift) - 13px)) rotate(0);box-shadow:0 13px 30px #394a3240}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center;padding-block:70px}.visit img{border-radius:12px;aspect-ratio:1.22;object-fit:cover}.visit h2{margin:10px 0 17px}.visit address{font-style:normal}.hours{margin:14px 0 18px}.note{margin:15px 0 0;font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:22px 0}.footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.92rem}
+dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--paper);color:var(--green);max-width:min(90vw,620px);max-height:92dvh;overflow:auto}dialog::backdrop{background:#242e22c7}dialog img{max-height:69dvh;object-fit:contain;width:auto;max-width:100%;margin:auto;border-radius:6px}dialog figcaption{text-align:center;font-weight:700;margin-top:8px}dialog form{text-align:right;margin-bottom:8px}dialog button{cursor:pointer}
+@media(max-width:850px){.bar{padding-bottom:44px}.bar-head{align-items:start;flex-direction:column}.fan{margin-top:10px}}
+@media(max-width:700px){.wrap{width:calc(100% - 36px)}.top{min-height:72px;gap:10px}.brand .flower{width:29px;height:29px}.brand .wordmark{width:82px;height:38px}nav{gap:11px}nav .hide-small{display:none}nav .button{padding-inline:.83rem}.hero,.visit{grid-template-columns:1fr;gap:30px;padding-block:36px}.hero h1{font-size:clamp(3.65rem,14vw,5.3rem)}.hero-photo img{aspect-ratio:1.12}.welcome{padding-block:49px}.bar{padding-block:48px 34px}.fan{height:auto;display:flex;gap:9px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 5px 16px;margin:17px -6px 0}.photo-card,.photo-card:hover,.photo-card:focus-visible{position:relative;inset:auto;flex:0 0 43%;max-width:175px;min-width:108px;transform:none;scroll-snap-align:start}.visit img{aspect-ratio:1.4}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo-card{transition:none}}
+
+.reviews{background:var(--soft);border-top:1px solid var(--line);padding-block:58px 65px}
+.reviews h2{margin:0 0 23px}
+.review-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:16px}
+.review-card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:clamp(18px,3vw,31px)}
+.review-rating{font:600 clamp(3rem,7vw,5rem)/.95 var(--headline);letter-spacing:-.03em;margin-bottom:6px}
+.review-rating small{font:600 1rem var(--body);letter-spacing:0}
+.review-stars{display:block;width:max-content;font-size:1.25rem;letter-spacing:.12em;line-height:1.1;color:#9a7537;margin-bottom:9px}
+.review-card .text-link{display:inline-block;margin-top:12px}
+.review-prompt{display:grid;grid-template-columns:minmax(0,1fr) clamp(110px,14vw,152px);gap:20px;align-items:center}
+.review-prompt h3{font:600 clamp(1.55rem,3vw,2.35rem)/1.03 var(--headline);margin:0 0 10px}
+.review-prompt .button{margin-top:15px}
+.review-qr{display:block;background:white;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.review-qr img{display:block;width:100%;height:auto;aspect-ratio:1}
+@media(max-width:700px){.reviews{padding-block:44px 48px}.review-grid{grid-template-columns:1fr}}
+@media(max-width:425px){.review-prompt{grid-template-columns:1fr}.review-qr{width:120px}}
+.visit-map{display:block;width:100%;height:245px;margin:13px 0 0;border:1px solid var(--line);border-radius:10px;background:var(--soft)}
+.menu-full{padding-block:60px;text-align:left}
+.menu-full>h2{margin-bottom:20px}
+.menu-language{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.menu-full button{cursor:pointer}
+
+.menu-controls{position:sticky;top:0;z-index:11;background:var(--cream);padding:10px 0;border-block:1px solid var(--line)}
+.menu-controls input{display:block;width:min(100%,380px);padding:10px 14px;border:1px solid #9ca288;border-radius:8px;background:var(--paper);color:var(--green);font:inherit}
+.menu-categories{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;padding:8px 4px 3px}
+.menu-categories a{white-space:nowrap;background:var(--paper);border:1px solid var(--line);padding:6px 12px;border-radius:99px;font-size:.9rem}
+.menu-categories a[aria-current=true]{background:var(--green);color:var(--paper)}
+.menu-category{padding-top:24px;scroll-margin-top:126px}
+.menu-category h3{font:600 clamp(1.8rem,4vw,2.7rem)/1.05 var(--headline);margin:0 0 12px}
+.menu-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+.menu-item{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper)}
+.menu-item-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.menu-item h4{margin:0;font-size:1rem}
+.menu-item strong{white-space:nowrap}
+.menu-item p,.menu-notes p{white-space:pre-line;margin:4px 0;font-size:.94rem}
+.menu-notes{margin:10px 0 0}.menu-item img{max-width:250px;margin-top:8px;border-radius:8px}.menu-item summary{cursor:pointer}
+.menu-empty{margin-top:18px}
+@media(max-width:700px){.menu-full{padding-block:42px}.menu-items{grid-template-columns:1fr}}
+
+.menu-lang-input{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip-path:inset(50%)}
+.menu-language label{cursor:pointer}
+.menu-panel{display:none}
+.menu-full [hidden]{display:none!important}
+#luma-lang-es:checked~#luma-menu-es,#luma-lang-en:checked~#luma-menu-en,#luma-lang-nl:checked~#luma-menu-nl{display:block}
+#luma-lang-es:checked~.menu-language [for=luma-lang-es],#luma-lang-en:checked~.menu-language [for=luma-lang-en],#luma-lang-nl:checked~.menu-language [for=luma-lang-nl]{background:var(--green);color:var(--paper)}
+#luma-lang-es:focus-visible~.menu-language [for=luma-lang-es],#luma-lang-en:focus-visible~.menu-language [for=luma-lang-en],#luma-lang-nl:focus-visible~.menu-language [for=luma-lang-nl]{outline:3px solid #96613b;outline-offset:4px}
+.menu-categories a[aria-current=true]{background:var(--green);color:var(--paper)}
+
 .newsletter-trigger{border:0;padding:8px 0;background:none;color:inherit;cursor:pointer;font:inherit;text-decoration:underline;text-underline-offset:4px}
 .newsletter-dialog{box-sizing:border-box;width:min(580px,calc(100% - 24px));max-height:calc(100% - 24px);overflow:auto;padding:18px;border:1px solid #d9d9c9;border-radius:16px;background:#f7f3e8;color:#394a32}
 .newsletter-dialog::backdrop{background:#232d22ad}
 .newsletter-close{display:block;margin-left:auto;min-width:44px;min-height:44px;border:0;border-radius:6px;background:transparent;color:inherit;font-size:24px;cursor:pointer}
 .newsletter-dialog iframe{display:block;width:100%;height:min(450px,62dvh);min-height:245px;border:0}
 .newsletter-dialog p{margin:8px 0;font-size:13px}
+
+.visit-directions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+.visit-directions .button{max-width:100%}
+.visit-map{height:clamp(225px,34vw,280px)}
 </style>
 </head>
-<body><a class="skip" href="#contenido">Saltar al contenido</a>
-<header><a class="brand" href="#"><img src="3a61ebc2e5134f5b.jpg" alt=""><span>LUMA<small>BRUNCH &amp; COFFEE</small></span></a>
-<nav aria-label="Navegación principal"><a href="#nosotros" class="optional">Nuestro rincón</a><a href="#visitanos" class="pill">Visítanos ↗</a>
-</nav>
-</header>
-<main id="contenido">
-<section class="hero"><div><div class="eyebrow">Benijófar · Brunch &amp; Coffee</div><h1>Tu momento<br><em>Luma.</em></h1><p class="intro">Un café, algo rico y tiempo para disfrutar. Te esperamos en Luma.</p><div class="actions"><a class="button" href="menu/?lang=es" data-menu-link>Descubre la carta ↗</a><a class="textlink" href="#visitanos">Ven a conocernos</a></div></div>
-<figure><img src="b6e8c2edc65cb678.jpg" alt="Tortitas con manzana, canela y nueces" fetchpriority="high"><div class="seal" aria-hidden="true">Un ratito<br>para ti.</div><figcaption class="caption"><span>Tortitas de Luma</span><span>@lumabrunch</span></figcaption>
-</figure>
-</section><div class="strip">DESAYUNOS <span>✳</span> BRUNCH <span>✳</span> CAFÉ <span>✳</span> SMOOTHIES</div>
-<section id="nosotros" class="welcome"><div class="eyebrow">Bienvenido a Luma</div><h2>Siéntate. Respira.<br>Disfruta de la pausa.</h2><p>En Luma, una tostada y un café pueden ser el comienzo de la mañana. Si vienes con ganas de quedarte un rato más, hay sitio para compartir un brunch o pedir algo dulce. Nos encuentras en Benijófar.</p>
-</section>
-<section class="gallery"><div class="sectionhead"><div><div class="eyebrow">Un poquito de Luma</div><h2>¿Dulce, salado o un café?</h2></div><a class="textlink" href="https://www.instagram.com/lumabrunch/" target="_blank" rel="noopener">Más en Instagram ↗</a></div><div class="photos"><a href="https://www.instagram.com/lumabrunch/p/DetirX6gclA/" target="_blank" rel="noopener"><img src="6de50c36fa0849dd.jpg" alt="Carrot cake fotografiada por Luma" loading="lazy"><h3>Algo dulce</h3><p>Para acompañar ese café.</p></a><a href="https://www.instagram.com/lumabrunch/p/DeLydmngIuK/" target="_blank" rel="noopener"><img src="aa3994e56c8c6c82.jpg" alt="Plato salado de Luma con huevos, salsa y pan" loading="lazy"><h3>Algo salado</h3><p>Un momento para saborear.</p></a><a href="https://www.instagram.com/p/DcncQE3tRl6/" target="_blank" rel="noopener"><img src="cafe-agosto.jpg" alt="Taza de café con arte latte" loading="lazy"><h3>Un café</h3><p>Y una buena conversación.</p></a></div>
-</section>
-<section class="menu" id="carta" aria-labelledby="carta-titulo" style="text-align:center">
-  <div class="menu-inner">
-    <h2 id="carta-titulo">La carta de Luma</h2>
-    <a class="button" href="menu/?lang=es" data-menu-link>Ver la carta ↗</a>
-    <nav aria-label="Idioma de la carta" style="justify-content:center;flex-wrap:wrap;margin-top:16px">
-      <a class="textlink" lang="es" href="menu/?lang=es">Español</a>
-      <a class="textlink" lang="en" href="menu/?lang=en">English</a>
-      <a class="textlink" lang="nl" href="menu/?lang=nl">Nederlands</a>
+<body id="inicio">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="wrap top">
+    <a class="brand" href="#inicio" aria-label="Luma Brunch"><img class="flower" src="home-assets/luma-flower.webp" alt=""><img class="wordmark" src="home-assets/luma-wordmark.webp" alt=""></a>
+    <nav aria-label="Navegación principal">
+      <a class="hide-small" href="#barra">Nuestra barra</a><a href="#carta">La carta</a><a class="button outline" href="#visitanos">Visítanos</a>
     </nav>
   </div>
-</section>
-<section class="visit" id="visitanos"><img src="bowl-acai.jpg" alt="Bol de açaí de Luma Brunch" loading="lazy"><div><div class="eyebrow">Nos vemos en Benijófar</div><h2>Tu próxima pausa<br>empieza aquí.</h2><p>C. Aneto, Local 13<br>03178 Benijófar, Alicante</p><table style="width:100%;max-width:280px;border-collapse:collapse;margin:16px 0 22px;font-size:14px">
-  <caption style="text-align:left;font-weight:bold;padding-bottom:8px">Horario</caption>
-  <tbody>
-    <tr style="border-bottom:1px solid #d9d9c9"><th scope="row" style="text-align:left;font-weight:normal;padding:4px 12px 4px 0">Lunes</th><td style="text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums">09:00–16:00</td></tr>
-    <tr style="border-bottom:1px solid #d9d9c9"><th scope="row" style="text-align:left;font-weight:normal;padding:4px 12px 4px 0">Martes</th><td style="text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums">09:00–16:00</td></tr>
-    <tr style="border-bottom:1px solid #d9d9c9"><th scope="row" style="text-align:left;font-weight:normal;padding:4px 12px 4px 0">Miércoles</th><td style="text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums">09:00–16:00</td></tr>
-    <tr style="border-bottom:1px solid #d9d9c9"><th scope="row" style="text-align:left;font-weight:normal;padding:4px 12px 4px 0">Jueves</th><td style="text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums">09:00–16:00</td></tr>
-    <tr style="border-bottom:1px solid #d9d9c9"><th scope="row" style="text-align:left;font-weight:normal;padding:4px 12px 4px 0">Viernes</th><td style="text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums">09:00–16:00</td></tr>
-    <tr style="border-bottom:1px solid #d9d9c9"><th scope="row" style="text-align:left;font-weight:normal;padding:4px 12px 4px 0">Sábado</th><td style="text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums">09:00–16:00</td></tr>
-  </tbody>
-</table><a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Luma+Brunch+Calle+Aneto+13+Benijofar" target="_blank" rel="noopener">Cómo llegar ↗</a><p style="font-size:12px">Consulta posibles cambios de horario en <a class="textlink" href="https://www.instagram.com/stories/highlights/18097013110652915/" target="_blank" rel="noopener">Instagram</a>.</p></div>
+</header>
+<main id="contenido">
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div>
+      <p class="eyebrow">Benijófar · Brunch &amp; Coffee</p>
+      <h1 id="hero-title">Tu momento <span>Luma.</span></h1>
+      <p class="intro">Un café, algo rico y tiempo para disfrutar. Te esperamos en Luma.</p>
+      <div class="status" id="opening-status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span><span id="opening-label">Horario</span><span class="detail" id="opening-detail"> · Lun–sáb 09:00–16:00</span></span></div>
+      <div class="actions"><a class="button" href="#carta">Descubre la carta</a><a class="text-link" href="#visitanos">Ven a conocernos</a></div>
+    </div>
+    <figure class="hero-photo"><img src="home-assets/luma-neon.webp" alt="Letrero luminoso de Luma Brunch en el interior del local" fetchpriority="high"><figcaption><span>Luma Brunch</span><span>@lumabrunch</span></figcaption></figure>
+  </section>
+
+  <section class="wrap welcome" aria-labelledby="welcome-title">
+    <p class="eyebrow">Bienvenido a Luma</p>
+    <h2 id="welcome-title">Siéntate. Respira.<br>Disfruta de la pausa.</h2>
+    <p>En Luma, una tostada y un café pueden ser el comienzo de la mañana. Si vienes con ganas de quedarte un rato más, hay sitio para compartir un brunch o pedir algo dulce. Nos encuentras en Benijófar.</p>
+  </section>
+  <section class="bar" id="barra" aria-labelledby="bar-title">
+    <div class="wrap">
+      <div class="bar-head"><div><p class="eyebrow">Recién hecho en Luma</p><h2 id="bar-title">Un vistazo a nuestra barra</h2></div><a class="text-link" href="https://www.instagram.com/lumabrunch/">Más en Instagram</a></div>
+      <div class="fan">
+        <button type="button" class="photo-card" style="--offset:-3.5;--distance:3" aria-haspopup="dialog"><img src="home-assets/matcha.webp" alt="" loading="lazy"><span>Matcha</span></button>
+        <button type="button" class="photo-card" style="--offset:-2.5;--distance:2" aria-haspopup="dialog"><img src="home-assets/acai.webp" alt="" loading="lazy"><span>Açaí bowl</span></button>
+        <button type="button" class="photo-card" style="--offset:-1.5;--distance:1" aria-haspopup="dialog"><img src="home-assets/carrot-cake.webp" alt="" loading="lazy"><span>Carrot cake</span></button>
+        <button type="button" class="photo-card" style="--offset:-0.5;--distance:0" aria-haspopup="dialog"><img src="home-assets/cinnamon-latte.webp" alt="" loading="lazy"><span>Cinnamon latte</span></button>
+        <button type="button" class="photo-card" style="--offset:0.5;--distance:0" aria-haspopup="dialog"><img src="home-assets/tortitas.webp" alt="" loading="lazy"><span>Tortitas de Luma</span></button>
+        <button type="button" class="photo-card" style="--offset:1.5;--distance:1" aria-haspopup="dialog"><img src="home-assets/shakshuka.webp" alt="" loading="lazy"><span>Shakshuka</span></button>
+        <button type="button" class="photo-card" style="--offset:2.5;--distance:2" aria-haspopup="dialog"><img src="home-assets/pink-dragon.webp" alt="" loading="lazy"><span>Pink Dragon</span></button>
+        <button type="button" class="photo-card" style="--offset:3.5;--distance:3" aria-haspopup="dialog"><img src="home-assets/croissants.webp" alt="" loading="lazy"><span>Croissants</span></button>
+      </div>
+    </div>
+  </section>
+  <section class="wrap visit" id="visitanos" aria-labelledby="visit-title">
+    <img src="home-assets/interior.webp" alt="Interior de Luma Brunch" loading="lazy">
+    <div><p class="eyebrow">Nos vemos en Benijófar</p><h2 id="visit-title">Tu próxima pausa empieza aquí.</h2>
+    <address>C. Aneto, Local 13<br>03178 Benijófar, Alicante</address>
+    <div class="visit-directions"><a class="button" href="https://maps.google.com/maps?cid=3795068254731016623" target="_blank" rel="noopener">Cómo llegar · Google Maps</a></div>
+    <iframe class="visit-map" src="https://www.google.com/maps?cid=3795068254731016623&amp;z=18&amp;hl=es&amp;output=embed" title="Luma Brunch · C. Aneto, Local 13, en Google Maps" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p class="hours"><strong>Lunes a Sábado</strong> · 09:00–16:00<br><strong>Domingo</strong> · Cerrado</p>
+    
+    <p class="note">Consulta posibles cambios de horario en <a class="text-link" href="https://www.instagram.com/stories/highlights/18097013110652915/">Instagram</a>.</p></div>
+  </section>
+
+  <section class="reviews" id="resenas" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <h2 id="reviews-title">Reseñas de Google</h2>
+      <div class="review-grid">
+        <div class="review-card">
+          <p class="review-rating">4,7<small> / 5</small></p>
+          <span class="review-stars" aria-hidden="true">★★★★★</span>
+          <p>150 reseñas en Google</p>
+          <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Luma+Brunch+Calle+Aneto+13+Benijofar&amp;query_place_id=ChIJ2-4PcumvYw0Rr5madXjKqjQ" target="_blank" rel="noopener">Leer las reseñas en Google Maps</a>
+        </div>
+        <div class="review-card review-prompt">
+          <div>
+            <h3>¿Cómo fue tu visita a Luma?</h3>
+            <p>Cuéntanos tu experiencia. Escanea el código o abre el formulario de Google.</p>
+            <a class="button" href="https://search.google.com/local/writereview?placeid=ChIJ2-4PcumvYw0Rr5madXjKqjQ" target="_blank" rel="noopener">Escribir una reseña</a>
+          </div>
+          <a class="review-qr" href="https://search.google.com/local/writereview?placeid=ChIJ2-4PcumvYw0Rr5madXjKqjQ" target="_blank" rel="noopener" aria-label="Abrir el formulario de reseñas de Google">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NSA0NSIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTAgMGg0NXY0NUgweiIvPjxwYXRoIGZpbGw9IiMyNTM1MjMiIGQ9Ik00IDRoMXYxaC0xek01IDRoMXYxaC0xek02IDRoMXYxaC0xek03IDRoMXYxaC0xek04IDRoMXYxaC0xek05IDRoMXYxaC0xek0xMCA0aDF2MWgtMXpNMTMgNGgxdjFoLTF6TTE2IDRoMXYxaC0xek0xNyA0aDF2MWgtMXpNMTggNGgxdjFoLTF6TTIwIDRoMXYxaC0xek0yMyA0aDF2MWgtMXpNMjQgNGgxdjFoLTF6TTI2IDRoMXYxaC0xek0zMCA0aDF2MWgtMXpNMzQgNGgxdjFoLTF6TTM1IDRoMXYxaC0xek0zNiA0aDF2MWgtMXpNMzcgNGgxdjFoLTF6TTM4IDRoMXYxaC0xek0zOSA0aDF2MWgtMXpNNDAgNGgxdjFoLTF6TTQgNWgxdjFoLTF6TTEwIDVoMXYxaC0xek0xMyA1aDF2MWgtMXpNMTQgNWgxdjFoLTF6TTE1IDVoMXYxaC0xek0xNyA1aDF2MWgtMXpNMTggNWgxdjFoLTF6TTE5IDVoMXYxaC0xek0yMSA1aDF2MWgtMXpNMjIgNWgxdjFoLTF6TTI0IDVoMXYxaC0xek0yNSA1aDF2MWgtMXpNMjYgNWgxdjFoLTF6TTI4IDVoMXYxaC0xek0yOSA1aDF2MWgtMXpNMzAgNWgxdjFoLTF6TTMxIDVoMXYxaC0xek0zMiA1aDF2MWgtMXpNMzQgNWgxdjFoLTF6TTQwIDVoMXYxaC0xek00IDZoMXYxaC0xek02IDZoMXYxaC0xek03IDZoMXYxaC0xek04IDZoMXYxaC0xek0xMCA2aDF2MWgtMXpNMTIgNmgxdjFoLTF6TTE0IDZoMXYxaC0xek0xNiA2aDF2MWgtMXpNMTcgNmgxdjFoLTF6TTE4IDZoMXYxaC0xek0yMiA2aDF2MWgtMXpNMjMgNmgxdjFoLTF6TTI1IDZoMXYxaC0xek0yNiA2aDF2MWgtMXpNMjggNmgxdjFoLTF6TTMwIDZoMXYxaC0xek0zMSA2aDF2MWgtMXpNMzIgNmgxdjFoLTF6TTM0IDZoMXYxaC0xek0zNiA2aDF2MWgtMXpNMzcgNmgxdjFoLTF6TTM4IDZoMXYxaC0xek00MCA2aDF2MWgtMXpNNCA3aDF2MWgtMXpNNiA3aDF2MWgtMXpNNyA3aDF2MWgtMXpNOCA3aDF2MWgtMXpNMTAgN2gxdjFoLTF6TTEyIDdoMXYxaC0xek0xMyA3aDF2MWgtMXpNMTQgN2gxdjFoLTF6TTE1IDdoMXYxaC0xek0xNyA3aDF2MWgtMXpNMTkgN2gxdjFoLTF6TTIwIDdoMXYxaC0xek0yMSA3aDF2MWgtMXpNMjMgN2gxdjFoLTF6TTI0IDdoMXYxaC0xek0yOCA3aDF2MWgtMXpNMjkgN2gxdjFoLTF6TTMwIDdoMXYxaC0xek0zNCA3aDF2MWgtMXpNMzYgN2gxdjFoLTF6TTM3IDdoMXYxaC0xek0zOCA3aDF2MWgtMXpNNDAgN2gxdjFoLTF6TTQgOGgxdjFoLTF6TTYgOGgxdjFoLTF6TTcgOGgxdjFoLTF6TTggOGgxdjFoLTF6TTEwIDhoMXYxaC0xek0xMiA4aDF2MWgtMXpNMTQgOGgxdjFoLTF6TTE1IDhoMXYxaC0xek0yMiA4aDF2MWgtMXpNMjMgOGgxdjFoLTF6TTI0IDhoMXYxaC0xek0yNSA4aDF2MWgtMXpNMjcgOGgxdjFoLTF6TTMyIDhoMXYxaC0xek0zNCA4aDF2MWgtMXpNMzYgOGgxdjFoLTF6TTM3IDhoMXYxaC0xek0zOCA4aDF2MWgtMXpNNDAgOGgxdjFoLTF6TTQgOWgxdjFoLTF6TTEwIDloMXYxaC0xek0xMiA5aDF2MWgtMXpNMTQgOWgxdjFoLTF6TTE1IDloMXYxaC0xek0xNyA5aDF2MWgtMXpNMTkgOWgxdjFoLTF6TTIyIDloMXYxaC0xek0yNCA5aDF2MWgtMXpNMzAgOWgxdjFoLTF6TTMxIDloMXYxaC0xek0zNCA5aDF2MWgtMXpNNDAgOWgxdjFoLTF6TTQgMTBoMXYxaC0xek01IDEwaDF2MWgtMXpNNiAxMGgxdjFoLTF6TTcgMTBoMXYxaC0xek04IDEwaDF2MWgtMXpNOSAxMGgxdjFoLTF6TTEwIDEwaDF2MWgtMXpNMTIgMTBoMXYxaC0xek0xNCAxMGgxdjFoLTF6TTE2IDEwaDF2MWgtMXpNMTggMTBoMXYxaC0xek0yMCAxMGgxdjFoLTF6TTIyIDEwaDF2MWgtMXpNMjQgMTBoMXYxaC0xek0yNiAxMGgxdjFoLTF6TTI4IDEwaDF2MWgtMXpNMzAgMTBoMXYxaC0xek0zMiAxMGgxdjFoLTF6TTM0IDEwaDF2MWgtMXpNMzUgMTBoMXYxaC0xek0zNiAxMGgxdjFoLTF6TTM3IDEwaDF2MWgtMXpNMzggMTBoMXYxaC0xek0zOSAxMGgxdjFoLTF6TTQwIDEwaDF2MWgtMXpNMTIgMTFoMXYxaC0xek0xNSAxMWgxdjFoLTF6TTE2IDExaDF2MWgtMXpNMTcgMTFoMXYxaC0xek0xOCAxMWgxdjFoLTF6TTE5IDExaDF2MWgtMXpNMjMgMTFoMXYxaC0xek0yNCAxMWgxdjFoLTF6TTI1IDExaDF2MWgtMXpNMjcgMTFoMXYxaC0xek0zMiAxMWgxdjFoLTF6TTQgMTJoMXYxaC0xek02IDEyaDF2MWgtMXpNNyAxMmgxdjFoLTF6TTggMTJoMXYxaC0xek05IDEyaDF2MWgtMXpNMTAgMTJoMXYxaC0xek0xMyAxMmgxdjFoLTF6TTE0IDEyaDF2MWgtMXpNMTYgMTJoMXYxaC0xek0xNyAxMmgxdjFoLTF6TTE5IDEyaDF2MWgtMXpNMjEgMTJoMXYxaC0xek0yNiAxMmgxdjFoLTF6TTI3IDEyaDF2MWgtMXpNMzAgMTJoMXYxaC0xek0zNCAxMmgxdjFoLTF6TTM1IDEyaDF2MWgtMXpNMzYgMTJoMXYxaC0xek0zNyAxMmgxdjFoLTF6TTM4IDEyaDF2MWgtMXpNNCAxM2gxdjFoLTF6TTcgMTNoMXYxaC0xek05IDEzaDF2MWgtMXpNMTEgMTNoMXYxaC0xek0xMiAxM2gxdjFoLTF6TTE0IDEzaDF2MWgtMXpNMTUgMTNoMXYxaC0xek0xNyAxM2gxdjFoLTF6TTE4IDEzaDF2MWgtMXpNMTkgMTNoMXYxaC0xek0yMCAxM2gxdjFoLTF6TTIxIDEzaDF2MWgtMXpNMjIgMTNoMXYxaC0xek0yNCAxM2gxdjFoLTF6TTI2IDEzaDF2MWgtMXpNMjcgMTNoMXYxaC0xek0yOCAxM2gxdjFoLTF6TTI5IDEzaDF2MWgtMXpNMzAgMTNoMXYxaC0xek0zMyAxM2gxdjFoLTF6TTM3IDEzaDF2MWgtMXpNMzkgMTNoMXYxaC0xek00IDE0aDF2MWgtMXpNNSAxNGgxdjFoLTF6TTEwIDE0aDF2MWgtMXpNMTUgMTRoMXYxaC0xek0xNyAxNGgxdjFoLTF6TTIyIDE0aDF2MWgtMXpNMjYgMTRoMXYxaC0xek0yOSAxNGgxdjFoLTF6TTMwIDE0aDF2MWgtMXpNMzEgMTRoMXYxaC0xek0zNCAxNGgxdjFoLTF6TTM3IDE0aDF2MWgtMXpNMzkgMTRoMXYxaC0xek00MCAxNGgxdjFoLTF6TTcgMTVoMXYxaC0xek05IDE1aDF2MWgtMXpNMTEgMTVoMXYxaC0xek0xMiAxNWgxdjFoLTF6TTEzIDE1aDF2MWgtMXpNMTQgMTVoMXYxaC0xek0xNSAxNWgxdjFoLTF6TTIwIDE1aDF2MWgtMXpNMjMgMTVoMXYxaC0xek0yNSAxNWgxdjFoLTF6TTI2IDE1aDF2MWgtMXpNMjcgMTVoMXYxaC0xek0zMCAxNWgxdjFoLTF6TTMzIDE1aDF2MWgtMXpNMzUgMTVoMXYxaC0xek00MCAxNWgxdjFoLTF6TTUgMTZoMXYxaC0xek03IDE2aDF2MWgtMXpNOSAxNmgxdjFoLTF6TTEwIDE2aDF2MWgtMXpNMTEgMTZoMXYxaC0xek0xMiAxNmgxdjFoLTF6TTE0IDE2aDF2MWgtMXpNMTUgMTZoMXYxaC0xek0yMSAxNmgxdjFoLTF6TTIzIDE2aDF2MWgtMXpNMjQgMTZoMXYxaC0xek0yNiAxNmgxdjFoLTF6TTI4IDE2aDF2MWgtMXpNMjkgMTZoMXYxaC0xek0zMCAxNmgxdjFoLTF6TTMxIDE2aDF2MWgtMXpNMzMgMTZoMXYxaC0xek0zNCAxNmgxdjFoLTF6TTM1IDE2aDF2MWgtMXpNMzYgMTZoMXYxaC0xek0zNyAxNmgxdjFoLTF6TTM4IDE2aDF2MWgtMXpNMzkgMTZoMXYxaC0xek00MCAxNmgxdjFoLTF6TTggMTdoMXYxaC0xek05IDE3aDF2MWgtMXpNMTMgMTdoMXYxaC0xek0xNyAxN2gxdjFoLTF6TTIwIDE3aDF2MWgtMXpNMjEgMTdoMXYxaC0xek0yMyAxN2gxdjFoLTF6TTI0IDE3aDF2MWgtMXpNMjUgMTdoMXYxaC0xek0yNyAxN2gxdjFoLTF6TTM1IDE3aDF2MWgtMXpNMzkgMTdoMXYxaC0xek00IDE4aDF2MWgtMXpNNSAxOGgxdjFoLTF6TTYgMThoMXYxaC0xek03IDE4aDF2MWgtMXpNMTAgMThoMXYxaC0xek0xMSAxOGgxdjFoLTF6TTEyIDE4aDF2MWgtMXpNMTUgMThoMXYxaC0xek0xOSAxOGgxdjFoLTF6TTIwIDE4aDF2MWgtMXpNMjEgMThoMXYxaC0xek0yMiAxOGgxdjFoLTF6TTI0IDE4aDF2MWgtMXpNMzEgMThoMXYxaC0xek0zMyAxOGgxdjFoLTF6TTM1IDE4aDF2MWgtMXpNMzYgMThoMXYxaC0xek0zNyAxOGgxdjFoLTF6TTM5IDE4aDF2MWgtMXpNNDAgMThoMXYxaC0xek00IDE5aDF2MWgtMXpNNSAxOWgxdjFoLTF6TTYgMTloMXYxaC0xek05IDE5aDF2MWgtMXpNMTIgMTloMXYxaC0xek0xMyAxOWgxdjFoLTF6TTE0IDE5aDF2MWgtMXpNMTUgMTloMXYxaC0xek0xNyAxOWgxdjFoLTF6TTE5IDE5aDF2MWgtMXpNMjIgMTloMXYxaC0xek0yMyAxOWgxdjFoLTF6TTI0IDE5aDF2MWgtMXpNMjUgMTloMXYxaC0xek0yNyAxOWgxdjFoLTF6TTI4IDE5aDF2MWgtMXpNMzEgMTloMXYxaC0xek0zMyAxOWgxdjFoLTF6TTM0IDE5aDF2MWgtMXpNMzUgMTloMXYxaC0xek0zNiAxOWgxdjFoLTF6TTM5IDE5aDF2MWgtMXpNNSAyMGgxdjFoLTF6TTcgMjBoMXYxaC0xek0xMCAyMGgxdjFoLTF6TTEyIDIwaDF2MWgtMXpNMTQgMjBoMXYxaC0xek0xNSAyMGgxdjFoLTF6TTE2IDIwaDF2MWgtMXpNMTcgMjBoMXYxaC0xek0xOCAyMGgxdjFoLTF6TTIwIDIwaDF2MWgtMXpNMjMgMjBoMXYxaC0xek0yOSAyMGgxdjFoLTF6TTMwIDIwaDF2MWgtMXpNMzIgMjBoMXYxaC0xek0zMyAyMGgxdjFoLTF6TTM0IDIwaDF2MWgtMXpNMzYgMjBoMXYxaC0xek0zOCAyMGgxdjFoLTF6TTM5IDIwaDF2MWgtMXpNNCAyMWgxdjFoLTF6TTUgMjFoMXYxaC0xek05IDIxaDF2MWgtMXpNMTIgMjFoMXYxaC0xek0xMyAyMWgxdjFoLTF6TTE1IDIxaDF2MWgtMXpNMTcgMjFoMXYxaC0xek0xOSAyMWgxdjFoLTF6TTIzIDIxaDF2MWgtMXpNMjQgMjFoMXYxaC0xek0yNiAyMWgxdjFoLTF6TTI3IDIxaDF2MWgtMXpNMjkgMjFoMXYxaC0xek0zNCAyMWgxdjFoLTF6TTM1IDIxaDF2MWgtMXpNMzggMjFoMXYxaC0xek0zOSAyMWgxdjFoLTF6TTQgMjJoMXYxaC0xek02IDIyaDF2MWgtMXpNNyAyMmgxdjFoLTF6TTkgMjJoMXYxaC0xek0xMCAyMmgxdjFoLTF6TTExIDIyaDF2MWgtMXpNMTMgMjJoMXYxaC0xek0xNCAyMmgxdjFoLTF6TTE2IDIyaDF2MWgtMXpNMTkgMjJoMXYxaC0xek0yMCAyMmgxdjFoLTF6TTI1IDIyaDF2MWgtMXpNMjYgMjJoMXYxaC0xek0yOSAyMmgxdjFoLTF6TTMwIDIyaDF2MWgtMXpNMzEgMjJoMXYxaC0xek0zMyAyMmgxdjFoLTF6TTM0IDIyaDF2MWgtMXpNMzUgMjJoMXYxaC0xek0zNyAyMmgxdjFoLTF6TTM5IDIyaDF2MWgtMXpNNDAgMjJoMXYxaC0xek02IDIzaDF2MWgtMXpNNyAyM2gxdjFoLTF6TTggMjNoMXYxaC0xek05IDIzaDF2MWgtMXpNMTMgMjNoMXYxaC0xek0xNSAyM2gxdjFoLTF6TTE2IDIzaDF2MWgtMXpNMTggMjNoMXYxaC0xek0xOSAyM2gxdjFoLTF6TTIyIDIzaDF2MWgtMXpNMjUgMjNoMXYxaC0xek0yOCAyM2gxdjFoLTF6TTMwIDIzaDF2MWgtMXpNMzMgMjNoMXYxaC0xek0zNCAyM2gxdjFoLTF6TTM2IDIzaDF2MWgtMXpNNDAgMjNoMXYxaC0xek00IDI0aDF2MWgtMXpNNSAyNGgxdjFoLTF6TTYgMjRoMXYxaC0xek0xMCAyNGgxdjFoLTF6TTExIDI0aDF2MWgtMXpNMTIgMjRoMXYxaC0xek0xNCAyNGgxdjFoLTF6TTE2IDI0aDF2MWgtMXpNMTcgMjRoMXYxaC0xek0xOCAyNGgxdjFoLTF6TTE5IDI0aDF2MWgtMXpNMjEgMjRoMXYxaC0xek0yMyAyNGgxdjFoLTF6TTI2IDI0aDF2MWgtMXpNMjcgMjRoMXYxaC0xek0yOCAyNGgxdjFoLTF6TTI5IDI0aDF2MWgtMXpNMzAgMjRoMXYxaC0xek0zMyAyNGgxdjFoLTF6TTM0IDI0aDF2MWgtMXpNMzYgMjRoMXYxaC0xek0zNyAyNGgxdjFoLTF6TTM4IDI0aDF2MWgtMXpNNCAyNWgxdjFoLTF6TTYgMjVoMXYxaC0xek03IDI1aDF2MWgtMXpNOCAyNWgxdjFoLTF6TTEyIDI1aDF2MWgtMXpNMTMgMjVoMXYxaC0xek0xNCAyNWgxdjFoLTF6TTE3IDI1aDF2MWgtMXpNMTggMjVoMXYxaC0xek0yMCAyNWgxdjFoLTF6TTIyIDI1aDF2MWgtMXpNMjMgMjVoMXYxaC0xek0yNSAyNWgxdjFoLTF6TTI3IDI1aDF2MWgtMXpNMzIgMjVoMXYxaC0xek0zNyAyNWgxdjFoLTF6TTM5IDI1aDF2MWgtMXpNNiAyNmgxdjFoLTF6TTcgMjZoMXYxaC0xek04IDI2aDF2MWgtMXpNOSAyNmgxdjFoLTF6TTEwIDI2aDF2MWgtMXpNMTEgMjZoMXYxaC0xek0xMiAyNmgxdjFoLTF6TTEzIDI2aDF2MWgtMXpNMTkgMjZoMXYxaC0xek0yMiAyNmgxdjFoLTF6TTI1IDI2aDF2MWgtMXpNMjYgMjZoMXYxaC0xek0yOCAyNmgxdjFoLTF6TTI5IDI2aDF2MWgtMXpNMzEgMjZoMXYxaC0xek0zMiAyNmgxdjFoLTF6TTM0IDI2aDF2MWgtMXpNMzUgMjZoMXYxaC0xek0zNiAyNmgxdjFoLTF6TTM3IDI2aDF2MWgtMXpNNDAgMjZoMXYxaC0xek02IDI3aDF2MWgtMXpNOCAyN2gxdjFoLTF6TTE0IDI3aDF2MWgtMXpNMTggMjdoMXYxaC0xek0yMCAyN2gxdjFoLTF6TTI0IDI3aDF2MWgtMXpNMjUgMjdoMXYxaC0xek0yNiAyN2gxdjFoLTF6TTI3IDI3aDF2MWgtMXpNMzAgMjdoMXYxaC0xek0zMyAyN2gxdjFoLTF6TTM1IDI3aDF2MWgtMXpNMzYgMjdoMXYxaC0xek0zOSAyN2gxdjFoLTF6TTYgMjhoMXYxaC0xek04IDI4aDF2MWgtMXpNMTAgMjhoMXYxaC0xek0xMSAyOGgxdjFoLTF6TTEzIDI4aDF2MWgtMXpNMTkgMjhoMXYxaC0xek0yMiAyOGgxdjFoLTF6TTIzIDI4aDF2MWgtMXpNMjQgMjhoMXYxaC0xek0yNiAyOGgxdjFoLTF6TTI3IDI4aDF2MWgtMXpNMjkgMjhoMXYxaC0xek0zMCAyOGgxdjFoLTF6TTMxIDI4aDF2MWgtMXpNMzMgMjhoMXYxaC0xek0zNCAyOGgxdjFoLTF6TTM2IDI4aDF2MWgtMXpNMzggMjhoMXYxaC0xek0zOSAyOGgxdjFoLTF6TTQwIDI4aDF2MWgtMXpNNCAyOWgxdjFoLTF6TTYgMjloMXYxaC0xek03IDI5aDF2MWgtMXpNOCAyOWgxdjFoLTF6TTExIDI5aDF2MWgtMXpNMTMgMjloMXYxaC0xek0xNCAyOWgxdjFoLTF6TTE1IDI5aDF2MWgtMXpNMTYgMjloMXYxaC0xek0xOCAyOWgxdjFoLTF6TTE5IDI5aDF2MWgtMXpNMjAgMjloMXYxaC0xek0yMiAyOWgxdjFoLTF6TTI0IDI5aDF2MWgtMXpNMzAgMjloMXYxaC0xek0zMSAyOWgxdjFoLTF6TTMyIDI5aDF2MWgtMXpNMzUgMjloMXYxaC0xek0zNyAyOWgxdjFoLTF6TTQgMzBoMXYxaC0xek03IDMwaDF2MWgtMXpNOSAzMGgxdjFoLTF6TTEwIDMwaDF2MWgtMXpNMTEgMzBoMXYxaC0xek0xNSAzMGgxdjFoLTF6TTI2IDMwaDF2MWgtMXpNMjggMzBoMXYxaC0xek0yOSAzMGgxdjFoLTF6TTMwIDMwaDF2MWgtMXpNMzEgMzBoMXYxaC0xek0zMiAzMGgxdjFoLTF6TTM0IDMwaDF2MWgtMXpNMzUgMzBoMXYxaC0xek0zOSAzMGgxdjFoLTF6TTQwIDMwaDF2MWgtMXpNNCAzMWgxdjFoLTF6TTcgMzFoMXYxaC0xek04IDMxaDF2MWgtMXpNMTMgMzFoMXYxaC0xek0xNCAzMWgxdjFoLTF6TTE2IDMxaDF2MWgtMXpNMTggMzFoMXYxaC0xek0yMCAzMWgxdjFoLTF6TTI0IDMxaDF2MWgtMXpNMjUgMzFoMXYxaC0xek0yNiAzMWgxdjFoLTF6TTI3IDMxaDF2MWgtMXpNMzAgMzFoMXYxaC0xek0zMSAzMWgxdjFoLTF6TTMzIDMxaDF2MWgtMXpNMzQgMzFoMXYxaC0xek0zNSAzMWgxdjFoLTF6TTM5IDMxaDF2MWgtMXpNNCAzMmgxdjFoLTF6TTYgMzJoMXYxaC0xek03IDMyaDF2MWgtMXpNOCAzMmgxdjFoLTF6TTEwIDMyaDF2MWgtMXpNMTEgMzJoMXYxaC0xek0xMiAzMmgxdjFoLTF6TTEzIDMyaDF2MWgtMXpNMTUgMzJoMXYxaC0xek0xNiAzMmgxdjFoLTF6TTIwIDMyaDF2MWgtMXpNMjEgMzJoMXYxaC0xek0yNiAzMmgxdjFoLTF6TTI4IDMyaDF2MWgtMXpNMjkgMzJoMXYxaC0xek0zMCAzMmgxdjFoLTF6TTMyIDMyaDF2MWgtMXpNMzMgMzJoMXYxaC0xek0zNCAzMmgxdjFoLTF6TTM1IDMyaDF2MWgtMXpNMzYgMzJoMXYxaC0xek0zNyAzMmgxdjFoLTF6TTM4IDMyaDF2MWgtMXpNMzkgMzJoMXYxaC0xek0xMiAzM2gxdjFoLTF6TTE0IDMzaDF2MWgtMXpNMTUgMzNoMXYxaC0xek0xNiAzM2gxdjFoLTF6TTE3IDMzaDF2MWgtMXpNMTggMzNoMXYxaC0xek0yMCAzM2gxdjFoLTF6TTIxIDMzaDF2MWgtMXpNMjMgMzNoMXYxaC0xek0yNCAzM2gxdjFoLTF6TTI3IDMzaDF2MWgtMXpNMjggMzNoMXYxaC0xek0zMSAzM2gxdjFoLTF6TTMyIDMzaDF2MWgtMXpNMzYgMzNoMXYxaC0xek0zNyAzM2gxdjFoLTF6TTM5IDMzaDF2MWgtMXpNNCAzNGgxdjFoLTF6TTUgMzRoMXYxaC0xek02IDM0aDF2MWgtMXpNNyAzNGgxdjFoLTF6TTggMzRoMXYxaC0xek05IDM0aDF2MWgtMXpNMTAgMzRoMXYxaC0xek0xNiAzNGgxdjFoLTF6TTE4IDM0aDF2MWgtMXpNMTkgMzRoMXYxaC0xek0yMCAzNGgxdjFoLTF6TTIxIDM0aDF2MWgtMXpNMjQgMzRoMXYxaC0xek0yNSAzNGgxdjFoLTF6TTI2IDM0aDF2MWgtMXpNMzAgMzRoMXYxaC0xek0zMiAzNGgxdjFoLTF6TTM0IDM0aDF2MWgtMXpNMzYgMzRoMXYxaC0xek0zOCAzNGgxdjFoLTF6TTM5IDM0aDF2MWgtMXpNNDAgMzRoMXYxaC0xek00IDM1aDF2MWgtMXpNMTAgMzVoMXYxaC0xek0xMiAzNWgxdjFoLTF6TTE0IDM1aDF2MWgtMXpNMTUgMzVoMXYxaC0xek0xNiAzNWgxdjFoLTF6TTE3IDM1aDF2MWgtMXpNMTkgMzVoMXYxaC0xek0yMCAzNWgxdjFoLTF6TTIxIDM1aDF2MWgtMXpNMjIgMzVoMXYxaC0xek0yNSAzNWgxdjFoLTF6TTI2IDM1aDF2MWgtMXpNMzAgMzVoMXYxaC0xek0zMiAzNWgxdjFoLTF6TTM2IDM1aDF2MWgtMXpNMzcgMzVoMXYxaC0xek0zOSAzNWgxdjFoLTF6TTQwIDM1aDF2MWgtMXpNNCAzNmgxdjFoLTF6TTYgMzZoMXYxaC0xek03IDM2aDF2MWgtMXpNOCAzNmgxdjFoLTF6TTEwIDM2aDF2MWgtMXpNMTIgMzZoMXYxaC0xek0xNSAzNmgxdjFoLTF6TTE4IDM2aDF2MWgtMXpNMTkgMzZoMXYxaC0xek0yMCAzNmgxdjFoLTF6TTI2IDM2aDF2MWgtMXpNMjkgMzZoMXYxaC0xek0zMCAzNmgxdjFoLTF6TTMxIDM2aDF2MWgtMXpNMzIgMzZoMXYxaC0xek0zMyAzNmgxdjFoLTF6TTM0IDM2aDF2MWgtMXpNMzUgMzZoMXYxaC0xek0zNiAzNmgxdjFoLTF6TTM4IDM2aDF2MWgtMXpNMzkgMzZoMXYxaC0xek00MCAzNmgxdjFoLTF6TTQgMzdoMXYxaC0xek02IDM3aDF2MWgtMXpNNyAzN2gxdjFoLTF6TTggMzdoMXYxaC0xek0xMCAzN2gxdjFoLTF6TTEyIDM3aDF2MWgtMXpNMTMgMzdoMXYxaC0xek0xNiAzN2gxdjFoLTF6TTE3IDM3aDF2MWgtMXpNMTkgMzdoMXYxaC0xek0yMiAzN2gxdjFoLTF6TTIzIDM3aDF2MWgtMXpNMjQgMzdoMXYxaC0xek0yNSAzN2gxdjFoLTF6TTI3IDM3aDF2MWgtMXpNMjkgMzdoMXYxaC0xek0zMSAzN2gxdjFoLTF6TTMyIDM3aDF2MWgtMXpNMzMgMzdoMXYxaC0xek0zNCAzN2gxdjFoLTF6TTM2IDM3aDF2MWgtMXpNMzcgMzdoMXYxaC0xek00MCAzN2gxdjFoLTF6TTQgMzhoMXYxaC0xek02IDM4aDF2MWgtMXpNNyAzOGgxdjFoLTF6TTggMzhoMXYxaC0xek0xMCAzOGgxdjFoLTF6TTEyIDM4aDF2MWgtMXpNMTMgMzhoMXYxaC0xek0xNCAzOGgxdjFoLTF6TTE1IDM4aDF2MWgtMXpNMTcgMzhoMXYxaC0xek0xOCAzOGgxdjFoLTF6TTE5IDM4aDF2MWgtMXpNMjAgMzhoMXYxaC0xek0yMSAzOGgxdjFoLTF6TTIyIDM4aDF2MWgtMXpNMjQgMzhoMXYxaC0xek0zMCAzOGgxdjFoLTF6TTMxIDM4aDF2MWgtMXpNMzMgMzhoMXYxaC0xek0zOCAzOGgxdjFoLTF6TTM5IDM4aDF2MWgtMXpNNDAgMzhoMXYxaC0xek00IDM5aDF2MWgtMXpNMTAgMzloMXYxaC0xek0xNyAzOWgxdjFoLTF6TTE4IDM5aDF2MWgtMXpNMTkgMzloMXYxaC0xek0yMiAzOWgxdjFoLTF6TTI1IDM5aDF2MWgtMXpNMjYgMzloMXYxaC0xek0zMSAzOWgxdjFoLTF6TTM2IDM5aDF2MWgtMXpNNDAgMzloMXYxaC0xek00IDQwaDF2MWgtMXpNNSA0MGgxdjFoLTF6TTYgNDBoMXYxaC0xek03IDQwaDF2MWgtMXpNOCA0MGgxdjFoLTF6TTkgNDBoMXYxaC0xek0xMCA0MGgxdjFoLTF6TTEyIDQwaDF2MWgtMXpNMTQgNDBoMXYxaC0xek0xNyA0MGgxdjFoLTF6TTE4IDQwaDF2MWgtMXpNMTkgNDBoMXYxaC0xek0yMSA0MGgxdjFoLTF6TTI2IDQwaDF2MWgtMXpNMjcgNDBoMXYxaC0xek0yOCA0MGgxdjFoLTF6TTI5IDQwaDF2MWgtMXpNMzAgNDBoMXYxaC0xek0zNCA0MGgxdjFoLTF6TTM2IDQwaDF2MWgtMXpNMzcgNDBoMXYxaC0xek0zOCA0MGgxdjFoLTF6TTM5IDQwaDF2MWgtMXpNNDAgNDBoMXYxaC0xeiIvPjwvc3ZnPg==" alt="Código QR para escribir una reseña de Luma Brunch en Google" width="152" height="152" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="wrap menu-full" id="carta" aria-labelledby="menu-title">
+  <h2 id="menu-title">La carta de Luma</h2>
+  <input class="menu-lang-input" type="radio" name="luma-menu-language" id="luma-lang-es" lang="es" checked>
+  <input class="menu-lang-input" type="radio" name="luma-menu-language" id="luma-lang-en" lang="en">
+  <input class="menu-lang-input" type="radio" name="luma-menu-language" id="luma-lang-nl" lang="nl">
+  <div class="menu-language">
+    <label class="button outline" for="luma-lang-es" lang="es">Español</label>
+    <label class="button outline" for="luma-lang-en" lang="en">English</label>
+    <label class="button outline" for="luma-lang-nl" lang="nl">Nederlands</label>
+  </div>
+  <div class="menu-panel" lang="es" id="luma-menu-es">
+    <div class="menu-controls">
+      <input type="search" placeholder="¿Qué te apetece?" aria-label="¿Qué te apetece?" autocomplete="off" hidden>
+      <nav class="menu-categories" aria-label="Categorías de la carta">
+        <a href="#menu-es-0">Cafés</a>
+        <a href="#menu-es-1">Iced latte</a>
+        <a href="#menu-es-2">Matcha</a>
+        <a href="#menu-es-3">Tés</a>
+        <a href="#menu-es-4">Smoothies</a>
+        <a href="#menu-es-5">Bowls</a>
+        <a href="#menu-es-6">Zumos naturales</a>
+        <a href="#menu-es-7">Desayuno</a>
+        <a href="#menu-es-8">Tostadas especiales</a>
+        <a href="#menu-es-9">Tostadas</a>
+        <a href="#menu-es-10">Sándwiches</a>
+        <a href="#menu-es-11">Croissants</a>
+        <a href="#menu-es-12">Bagels</a>
+        <a href="#menu-es-13">Sopas</a>
+        <a href="#menu-es-14">Ensaladas</a>
+        <a href="#menu-es-15">Brunch</a>
+        <a href="#menu-es-16">Un capricho dulce</a>
+        <a href="#menu-es-17">Para los peques</a>
+      </nav>
+    </div>
+    <section class="menu-category" id="menu-es-0">
+      <h3>Cafés</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Espresso</h4><strong>€ 1,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cortado</h4><strong>€ 1,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bombón</h4><strong>€ 1,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Americano</h4><strong>€ 1,75</strong></div>
+          <p>Grande €2,75</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Con leche</h4><strong>€ 1,95</strong></div>
+          <p>Grande €3,25</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cappuccino</h4><strong>€ 1,95</strong></div>
+          <p>Grande €3,25</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Latte</h4><strong>€ 2,25</strong></div>
+          <p>Espresso con abundante leche</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Flat white</h4><strong>€ 3,25</strong></div>
+          <p>Doble espresso y leche</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Chai latte</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Dirty chai</h4><strong>€ 4,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Chocolate caliente</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Caramel macchiato</h4><strong>€ 4,25</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Extras: espresso + €1,00 · nata montada + €0,50 · bebida de almendras, avena o leche sin lactosa + €0,30</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-es-1">
+      <h3>Iced latte</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced latte</h4><strong>€ 3,50</strong></div>
+          <p>Doble espresso, leche y hielo. Caramelo, vainilla o banana + €1,00</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced matcha latte</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced dirty chai</h4><strong>€ 4,95</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Nata montada + €1,00 · espresso + €0,50 · bebida de almendras, avena o leche sin lactosa + €0,30</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-es-2">
+      <h3>Matcha</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Matcha latte</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced matcha latte</h4><strong>€ 3,95</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Mango, fresa, banana o vainilla + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-es-3">
+      <h3>Tés</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Té</h4><strong>€ 1,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Té de menta fresca</h4><strong>€ 1,95</strong></div>
+          <p>Jengibre o limón + €0,25</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-4">
+      <h3>Smoothies</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Dreams</h4><strong>€ 5,95</strong></div>
+          <p>Espinacas, aguacate, kiwi, banana y bebida de coco.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Good Vibes</h4><strong>€ 5,95</strong></div>
+          <p>Mango, piña, papaya, banana y bebida de coco.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pink Dragon</h4><strong>€ 6,95</strong></div>
+          <p>Pitaya, mango, fresa, banana y bebida de coco.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Berry Licious</h4><strong>€ 6,95</strong></div>
+          <p>Mezcla de frutos rojos, banana y bebida de coco.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Choco Loco</h4><strong>€ 6,95</strong></div>
+          <p>Banana, crema de cacahuete, cacao, copos de avena,sirope de agave y bebida de almendras.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Antiox</h4><strong>€ 5,95</strong></div>
+          <p>Naranja, kiwi y fresa.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Stranana</h4><strong>€ 4,95</strong></div>
+          <p>Banana, fresa y bebida de coco.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Batido de proteínas</h4><strong>€ 7,95</strong></div>
+          <p>Banana, proteína de vainilla, bebida de almendras,copos de avena y canela.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Bebida de coco, de avena o de almendras.</p>
+        <p>Proteína extra + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-es-5">
+      <h3>Bowls</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Snicker Bowl</h4><strong>€ 7,95</strong></div>
+          <p>Banana, cacao, sirope de agave, crema de cacahuete y bebida de almendras. Toppings: granola, chía, nueces, banana y trocitos de chocolate.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pink Dragon</h4><strong>€ 8,95</strong></div>
+          <p>Pitaya, banana, mango, fresa y bebida de coco. Toppings: kiwi, chía, arándanos, frambuesas, banana, coco y granola.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sunshine Bowl</h4><strong>€ 7,95</strong></div>
+          <p>Banana, mango, bebida de almendras y piña. Toppings: granola, chía, frambuesas, banana y arándanos.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Açaí Bowl</h4><strong>€ 8,95</strong></div>
+          <p>Açaí, banana, fresa y bebida de almendras. Toppings: granola, arándanos, chía, banana y fresa.</p>
+          <details><summary>Ver foto</summary><img src="bowl-acai.jpg" alt="Açaí Bowl" loading="lazy"></details>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bowl de yogur</h4><strong>€ 6,95</strong></div>
+          <p>Yogur griego, fruta fresca, chía, granola y miel. (Yogur de coco + 1,00 €)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bowl de avena</h4><strong>€ 5,95</strong></div>
+          <p>Copos de avena calientes con canela, pasas y manzana caramelizada.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Proteína de vainilla + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-es-6">
+      <h3>Zumos naturales</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Zumo de naranja natural</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Heart Beet</h4><strong>€ 4,95</strong></div>
+          <p>manzana, remolacha, jengibre y limón.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Power</h4><strong>€ 4,95</strong></div>
+          <p>manzana, espinacas, pepino y lima.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Celery Juice</h4><strong>€ 4,95</strong></div>
+          <p>apio, manzana, limón y jengibre.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Orange Ginger</h4><strong>€ 4,95</strong></div>
+          <p>manzana, zanahoria, naranja, lima y jengibre.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ginger Boost</h4><strong>€ 4,95</strong></div>
+          <p>manzana, piña, jengibre, cúrcuma y pimienta negra.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tropical Feels</h4><strong>€ 4,95</strong></div>
+          <p>fresas, piña, naranja y manzana.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Shots</h4><strong>€ 2,50</strong></div>
+          <p>Manzana, jengibre y limón.(+ cúrcuma y pimienta negra €0,25)</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-7">
+      <h3>Desayuno</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Desayuno</h4><strong>€ 9,95</strong></div>
+          <p>Café o té (con leche, americano, cappuccino o latte) +Zumo de naranja natural +Croissant con huevos revueltos y un topping a elegir:Bacon, queso o aguacate</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-8">
+      <h3>Tostadas especiales</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Egg</h4><strong>€ 4,95</strong></div>
+          <p>Pan tostado con aguacate, rúcula, huevo cocido y chía.(+ salmón ahumado €3,95 o jamón ibérico €3,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Smashed Avocado</h4><strong>€ 4,95</strong></div>
+          <p>Pan tostado con aguacate machacado, rúcula, tomate, brotes de alfalfa y semillas. (+ huevo cocido €1,00)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Queso manchego</h4><strong>€ 7,25</strong></div>
+          <p>Pan tostado con tomate rallado, rúcula, manchego curado, nueces, tomate seco y un toque de vinagre balsámico.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Post Workout</h4><strong>€ 4,75</strong></div>
+          <p>Pan tostado con crema de cacahuete, banana, chía, arándanos y miel.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Hummus</h4><strong>€ 5,95</strong></div>
+          <p>Pan tostado con hummus, rúcula, tomate, aguacate, brotes de alfalfa y semillas. (Huevo poché + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Feta</h4><strong>€ 6,25</strong></div>
+          <p>Pan tostado con aguacate machacado, rúcula, queso feta, tomates cherry, brotes de alfalfa y semillas.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Burrata</h4><strong>€ 5,95</strong></div>
+          <p>Pan tostado con burrata cremosa, rúcula, tomates secos, nueces y un toque de vinagre balsámico.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Nordic Dream</h4><strong>€ 9,95</strong></div>
+          <p>Pan tostado con queso crema a las finas hierbas, salmón ahumado, rúcula, aguacate, huevo poché y copos de chile.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-9">
+      <h3>Tostadas</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomate</h4><strong>€ 2,00</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomate y queso</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Queso</h4><strong>€ 2,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Manchego curado</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Jamón ibérico</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Salmón ahumado</h4><strong>€ 4,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Huevos revueltos</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Atún</h4><strong>€ 2,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Mermelada</h4><strong>€ 2,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Mermelada y mantequilla</h4><strong>€ 2,50</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Bacon + €1,50</p>
+        <p>Aguacate + €1,25</p>
+        <p>Huevo cocido + €1,00</p>
+        <p>Huevo poché + €1,25</p>
+        <p>Elige tu pan:</p>
+        <p>Pan blanco</p>
+        <p>Pan integral</p>
+        <p>Pan de molde blanco</p>
+        <p>Pan de molde integral</p>
+        <p>Panecillo blanco + €0,25</p>
+        <p>Pan brioche + €0,25</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-es-10">
+      <h3>Sándwiches</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sándwich de queso</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sándwich de tomate y queso</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sándwich de queso y cebolla</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sándwich de tomate y pesto</h4><strong>€ 4,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sándwich de jamón y queso</h4><strong>€ 4,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sándwich de ensalada de atún</h4><strong>€ 5,95</strong></div>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-11">
+      <h3>Croissants</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Solo</h4><strong>€ 2,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Queso</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Jamón y queso</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Mantequilla</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Mantequilla y mermelada</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Nutella</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Huevos revueltos</h4><strong>€ 4,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Salmón ahumado, aguacate y huevo poché</h4><strong>€ 9,50</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Bacon + €1,50</p>
+        <p>Aguacate + €1,25</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-es-12">
+      <h3>Bagels</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel de huevo y bacon</h4><strong>€ 5,95</strong></div>
+          <p>huevos revueltos y bacon.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel BLT</h4><strong>€ 5,75</strong></div>
+          <p>bacon, lechuga, tomate y mayonesa.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel de hummus</h4><strong>€ 5,50</strong></div>
+          <p>hummus, tomate, pepino, rúcula, cebolla roja y brotes de alfalfa.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel de salmón y queso crema</h4><strong>€ 9,25</strong></div>
+          <p>salmón ahumado, queso crema a las finas hierbas, rúcula y cebolla roja.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel de salmón y huevo poché</h4><strong>€ 9,50</strong></div>
+          <p>salmón ahumado, rúcula, aguacate y huevo poché. (Salsa holandesa + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel de atún</h4><strong>€ 5,95</strong></div>
+          <p>rúcula, ensalada de atún y huevo cocido.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-13">
+      <h3>Sopas</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sopa de pollo</h4><strong>€ 5,95</strong></div>
+          <p>Sopa casera de pollo, servida con pan.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sopa de lentejas</h4><strong>€ 5,95</strong></div>
+          <p>Sopa casera de lentejas, servida con pan.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-14">
+      <h3>Ensaladas</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ensalada César</h4><strong>€ 9,95</strong></div>
+          <p>Lechuga iceberg, pepino, pollo, bacon, huevo cocido,parmesano, picatostes y salsa César.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ensalada Luma</h4><strong>€ 9,95</strong></div>
+          <p>Mezcla de lechugas, tomates cherry, pepino, piñones,parmesano, bacon crujiente, cebolla roja y aliño de pesto.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ensalada mixta</h4><strong>€ 8,95</strong></div>
+          <p>Quinoa, mezcla de lechugas, aguacate, cebolla roja, zanahoria, tomates cherry, aceitunas, pepino y salsa cremosa vegana.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ensalada de burrata</h4><strong>€ 9,95</strong></div>
+          <p>Burrata cremosa sobre rúcula con tomates cherry, piñones tostados, tomate seco, pesto y aceite de oliva.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-15">
+      <h3>Brunch</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Shakshuka</h4><strong>€ 7,95</strong></div>
+          <p>Salsa casera de tomate con pimiento, cebolla y especias, 2 huevos poché y pan. (Feta + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Luma’s Chicken</h4><strong>€ 6,95</strong></div>
+          <p>Bocadillo de pollo especiado, rúcula y mayonesa de ajo.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Spicy Tuna</h4><strong>€ 6,75</strong></div>
+          <p>Bocadillo de ensalada de atún, jalapeños, tomate, huevo cocido y pesto.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Carpaccio</h4><strong>€ 7,50</strong></div>
+          <p>Bocadillo de carpaccio, rúcula, parmesano, piñones y pesto o mayonesa de trufa.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Salmón ahumado</h4><strong>€ 9,50</strong></div>
+          <p>Bocadillo de salmón ahumado, queso crema a las finas hierbas, huevo cocido y rúcula.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Grillworst</h4><strong>€ 7,25</strong></div>
+          <p>Bocadillo de salchicha holandesa a la parrilla con salsa de miel y mostaza.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Albóndiga casera</h4><strong>€ 7,25</strong></div>
+          <p>Bocadillo de albóndiga casera.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Brie</h4><strong>€ 6,25</strong></div>
+          <p>Bocadillo de brie caliente, miel, nueces y rúcula.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Spicy Chicken</h4><strong>€ 6,95</strong></div>
+          <p>Bocadillo de pollo desmenuzado en salsa picante y lechuga.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Jamón y queso especial</h4><strong>€ 6,25</strong></div>
+          <p>Jamón y queso, lechuga iceberg, tomate, pepino y huevo cocido.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sándwich club</h4><strong>€ 8,95</strong></div>
+          <p>Pan tostado con ensalada de pollo con mayonesa, pepino, tomate, bacon, lechuga iceberg y huevo cocido.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Avocado “Croast”</h4><strong>€ 8,95</strong></div>
+          <p>Croissant tostado con aguacate machacado, rúcula, piñones, huevo poché y parmesano.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Huevos benedictinos</h4><strong>€ 8,95</strong></div>
+          <p>Brioche tostado con huevo poché, bacon, aguacate y salsa holandesa.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Huevos benedictinos con salmón</h4><strong>€ 9,95</strong></div>
+          <p>Brioche tostado con huevo poché, salmón ahumado, aguacate y salsa holandesa.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Flatbread Luma’s Chicken</h4><strong>€ 9,95</strong></div>
+          <p>Pan plano caliente con Luma’s Chicken, ensalada de pepino, rúcula, cebolla roja y salsa de ajo.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-16">
+      <h3>Un capricho dulce</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tortitas</h4><strong>€ 6,95</strong></div>
+          <p>Tortitas con un topping a elegir:
+•  Fresas con nata montada
+•  Lotus Biscoff
+•  Chocolate blanco
+•  Oreo y sirope de chocolate
+•  Nutella
+•  Pistacho y chocolate blanco + €1,00
+•  Bacon y sirope de arce + €1,50</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Rollo de canela</h4><strong>€ 4,75</strong></div>
+          <p>Rollo de canela casero con glaseado</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-es-17">
+      <h3>Para los peques</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Limonada de fresa</h4><strong>€ 2,50</strong></div>
+          <p>Vasito de limonada de fresa</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Platito de fruta fresca</h4><strong>€ 5,50</strong></div>
+          <p>Platito de fruta de temporada</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bowl de yogur</h4><strong>€ 4,95</strong></div>
+          <p>Fresa  
+•   Banana  
+•   Granola  
+•   Frambuesa  
+•   Arándanos  
+•   Miel</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tortitas para el pequeño chef</h4><strong>€ 6,50</strong></div>
+          <p>3 tortitas con cuencos de distintos toppings para crear tu combinación favorita.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>(Disponible exclusivamente para niños)</p>
+      </aside>
+    </section>
+    <p class="menu-empty" hidden>No encontramos ningún producto.</p>
+  </div>
+  <div class="menu-panel" lang="en" id="luma-menu-en">
+    <div class="menu-controls">
+      <input type="search" placeholder="What are you craving?" aria-label="What are you craving?" autocomplete="off" hidden>
+      <nav class="menu-categories" aria-label="Menu categories">
+        <a href="#menu-en-0">Coffee</a>
+        <a href="#menu-en-1">Iced latte</a>
+        <a href="#menu-en-2">Matcha</a>
+        <a href="#menu-en-3">Tea</a>
+        <a href="#menu-en-4">Smoothies</a>
+        <a href="#menu-en-5">Bowls</a>
+        <a href="#menu-en-6">Fresh juices</a>
+        <a href="#menu-en-7">Breakfast</a>
+        <a href="#menu-en-8">Speciality toast</a>
+        <a href="#menu-en-9">Toast</a>
+        <a href="#menu-en-10">Toasties</a>
+        <a href="#menu-en-11">Croissants</a>
+        <a href="#menu-en-12">Bagels</a>
+        <a href="#menu-en-13">Soups</a>
+        <a href="#menu-en-14">Salads</a>
+        <a href="#menu-en-15">Brunch</a>
+        <a href="#menu-en-16">Guilty Pleasures</a>
+        <a href="#menu-en-17">For the little ones</a>
+      </nav>
+    </div>
+    <section class="menu-category" id="menu-en-0">
+      <h3>Coffee</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Espresso</h4><strong>€ 1,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cortado</h4><strong>€ 1,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bombón</h4><strong>€ 1,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Americano</h4><strong>€ 1,75</strong></div>
+          <p>Large €2,75</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Café con leche</h4><strong>€ 1,95</strong></div>
+          <p>Large €3,25</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cappuccino</h4><strong>€ 1,95</strong></div>
+          <p>Large €3,25</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Latte</h4><strong>€ 2,25</strong></div>
+          <p>Espresso with plenty of milk</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Flat white</h4><strong>€ 3,25</strong></div>
+          <p>Double espresso with milk</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Chai latte</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Dirty chai</h4><strong>€ 4,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Hot chocolate</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Caramel macchiato</h4><strong>€ 4,25</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Extras: espresso + €1,00 · whipped cream + €0,50 · almond, oat or lactose-free milk + €0,30</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-en-1">
+      <h3>Iced latte</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced latte</h4><strong>€ 3,50</strong></div>
+          <p>Double espresso, milk and ice. Caramel, vanilla or banana + €1,00</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced matcha latte</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced dirty chai</h4><strong>€ 4,95</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Whipped cream + €1,00 · espresso + €0,50 · almond, oat or lactose-free milk + €0,30</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-en-2">
+      <h3>Matcha</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Matcha latte</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced matcha latte</h4><strong>€ 3,95</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Mango, strawberry, banana or vanilla + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-en-3">
+      <h3>Tea</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tea</h4><strong>€ 1,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Fresh mint tea</h4><strong>€ 1,95</strong></div>
+          <p>Ginger or lemon + €0,25</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-4">
+      <h3>Smoothies</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Dreams</h4><strong>€ 5,95</strong></div>
+          <p>Spinach, avocado, kiwi, banana and coconut milk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Good Vibes</h4><strong>€ 5,95</strong></div>
+          <p>Mango, pineapple, papaya, banana and coconut milk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pink Dragon</h4><strong>€ 6,95</strong></div>
+          <p>Dragon fruit, mango, strawberry, banana and coconut milk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Berry Licious</h4><strong>€ 6,95</strong></div>
+          <p>Mixed berries, banana and coconut milk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Choco Loco</h4><strong>€ 6,95</strong></div>
+          <p>Banana, peanut butter, cocoa, oats,agave syrup and almond milk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Antiox</h4><strong>€ 5,95</strong></div>
+          <p>Orange, kiwi and strawberry.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Stranana</h4><strong>€ 4,95</strong></div>
+          <p>Banana, strawberry and coconut milk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Protein shake</h4><strong>€ 7,95</strong></div>
+          <p>Banana, vanilla protein, almond milk,oats and cinnamon.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Coconut, oat or almond milk.</p>
+        <p>Extra protein + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-en-5">
+      <h3>Bowls</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Snicker Bowl</h4><strong>€ 7,95</strong></div>
+          <p>Banana, cocoa, agave syrup, peanut butter and almond milk. Toppings: granola, chia seeds, walnuts, banana and chocolate chips.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pink Dragon</h4><strong>€ 8,95</strong></div>
+          <p>Dragon fruit, banana, mango, strawberry and coconut milk. Toppings: kiwi, chia seeds, blueberries, raspberries, banana, coconut and granola.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sunshine Bowl</h4><strong>€ 7,95</strong></div>
+          <p>Banana, mango, almond milk and pineapple. Toppings: granola, chia seeds, raspberries, banana and blueberries.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Açaí Bowl</h4><strong>€ 8,95</strong></div>
+          <p>Açaí, banana, strawberry and almond milk. Toppings: granola, blueberries, chia seeds, banana and strawberry.</p>
+          <details><summary>View photo</summary><img src="bowl-acai.jpg" alt="Açaí Bowl" loading="lazy"></details>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Yoghurt bowl</h4><strong>€ 6,95</strong></div>
+          <p>Greek yoghurt, fruit, chia seeds, granola and honey. (Coconut yoghurt + 1,00 €)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Porridge bowl</h4><strong>€ 5,95</strong></div>
+          <p>Warm porridge with cinnamon, raisins and caramelised apple.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Vanilla protein + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-en-6">
+      <h3>Fresh juices</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Fresh orange juice</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Heart Beet</h4><strong>€ 4,95</strong></div>
+          <p>apple, beetroot, ginger and lemon.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Power</h4><strong>€ 4,95</strong></div>
+          <p>apple, spinach, cucumber and lime.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Celery Juice</h4><strong>€ 4,95</strong></div>
+          <p>celery, apple, lemon and ginger.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Orange Ginger</h4><strong>€ 4,95</strong></div>
+          <p>apple, carrot, orange, lime and ginger.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ginger Boost</h4><strong>€ 4,95</strong></div>
+          <p>apple, pineapple, ginger, turmeric and black pepper.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tropical Feels</h4><strong>€ 4,95</strong></div>
+          <p>strawberries, pineapple, orange and apple.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Shots</h4><strong>€ 2,50</strong></div>
+          <p>Apple, ginger and lemon.Add turmeric and black pepper + €0,25</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-7">
+      <h3>Breakfast</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Breakfast</h4><strong>€ 9,95</strong></div>
+          <p>Coffee or tea (café con leche, Americano, cappuccino or latte) +Fresh orange juice +Croissant with scrambled eggs and a topping of your choice:Bacon, cheese or avocado</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-8">
+      <h3>Speciality toast</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Egg</h4><strong>€ 4,95</strong></div>
+          <p>Toasted bread with avocado, rocket, boiled egg and chia seeds.Add smoked salmon + €3,95 or Iberian ham + €3,25</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Smashed Avocado</h4><strong>€ 4,95</strong></div>
+          <p>Toasted bread with smashed avocado, rocket, tomato, alfalfa sprouts and mixed seeds. (Boiled egg + €1,00)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Manchego cheese</h4><strong>€ 7,25</strong></div>
+          <p>Toasted bread with grated tomato, rocket, mature Manchego, walnuts, sun-dried tomato and a drizzle of balsamic vinegar.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Post Workout</h4><strong>€ 4,75</strong></div>
+          <p>Toasted bread with peanut butter, banana, chia seeds, blueberries and honey.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Hummus</h4><strong>€ 5,95</strong></div>
+          <p>Toasted bread with hummus, rocket, tomato, avocado, alfalfa sprouts and mixed seeds. (Poached egg + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Feta</h4><strong>€ 6,25</strong></div>
+          <p>Toasted bread with smashed avocado, rocket, feta, cherry tomatoes, alfalfa sprouts and mixed seeds.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Burrata</h4><strong>€ 5,95</strong></div>
+          <p>Toasted bread with creamy burrata, rocket, sun-dried tomatoes, walnuts and a drizzle of balsamic vinegar.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Nordic Dream</h4><strong>€ 9,95</strong></div>
+          <p>Toasted bread with herb cream cheese, smoked salmon, rocket, avocado, poached egg and a sprinkle of chilli flakes.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-9">
+      <h3>Toast</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomato</h4><strong>€ 2,00</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomato and cheese</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cheese</h4><strong>€ 2,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Mature Manchego</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iberian ham</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Smoked salmon</h4><strong>€ 4,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Scrambled eggs</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tuna</h4><strong>€ 2,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Jam</h4><strong>€ 2,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Jam and butter</h4><strong>€ 2,50</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Bacon + €1,50</p>
+        <p>Avocado + €1,25</p>
+        <p>Boiled egg + €1,00</p>
+        <p>Poached egg + €1,25</p>
+        <p>Choose your bread:</p>
+        <p>White bread</p>
+        <p>Wholemeal bread</p>
+        <p>White sliced bread</p>
+        <p>Wholemeal sliced bread</p>
+        <p>White roll + €0,25</p>
+        <p>Brioche bread + €0,25</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-en-10">
+      <h3>Toasties</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cheese toastie</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomato and cheese toastie</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cheese and onion toastie</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomato and pesto toastie</h4><strong>€ 4,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ham and cheese toastie</h4><strong>€ 4,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tuna salad toastie</h4><strong>€ 5,95</strong></div>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-11">
+      <h3>Croissants</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Plain</h4><strong>€ 2,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cheese</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ham and cheese</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Butter</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Butter and jam</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Nutella</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Scrambled eggs</h4><strong>€ 4,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Smoked salmon, avocado and poached egg</h4><strong>€ 9,50</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Bacon + €1,50</p>
+        <p>Avocado + €1,25</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-en-12">
+      <h3>Bagels</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Egg and bacon bagel</h4><strong>€ 5,95</strong></div>
+          <p>scrambled eggs and bacon.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel BLT</h4><strong>€ 5,75</strong></div>
+          <p>bacon, lettuce, tomato and mayonnaise.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Hummus bagel</h4><strong>€ 5,50</strong></div>
+          <p>hummus, tomato, cucumber, rocket, red onion and alfalfa sprouts.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Salmon and cream cheese bagel</h4><strong>€ 9,25</strong></div>
+          <p>smoked salmon, herb cream cheese, rocket and red onion.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Salmon and poached egg bagel</h4><strong>€ 9,50</strong></div>
+          <p>smoked salmon, rocket, avocado and poached egg. (Hollandaise sauce + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tuna bagel</h4><strong>€ 5,95</strong></div>
+          <p>rocket, tuna salad and boiled egg.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-13">
+      <h3>Soups</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Chicken soup</h4><strong>€ 5,95</strong></div>
+          <p>Homemade chicken soup, served with bread.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Lentil soup</h4><strong>€ 5,95</strong></div>
+          <p>Homemade lentil soup, served with bread.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-14">
+      <h3>Salads</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Caesar salad</h4><strong>€ 9,95</strong></div>
+          <p>Iceberg lettuce, cucumber, chicken, bacon, boiled egg,Parmesan, croutons and Caesar dressing.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Luma salad</h4><strong>€ 9,95</strong></div>
+          <p>Mixed leaves, cherry tomatoes, cucumber, pine nuts,Parmesan, crispy bacon, red onion and pesto dressing.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Mixed salad</h4><strong>€ 8,95</strong></div>
+          <p>Quinoa, mixed leaves, avocado, red onion, carrot, cherry tomatoes, olives, cucumber and a creamy vegan dressing.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Burrata salad</h4><strong>€ 9,95</strong></div>
+          <p>Creamy burrata on rocket with cherry tomatoes, toasted pine nuts, sun-dried tomato, pesto and olive oil.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-15">
+      <h3>Brunch</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Shakshuka</h4><strong>€ 7,95</strong></div>
+          <p>Homemade tomato sauce with peppers, onion and spices, 2 poached eggs and bread. (Feta + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Luma’s Chicken</h4><strong>€ 6,95</strong></div>
+          <p>Baguette with seasoned chicken, rocket and garlic mayonnaise.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Spicy Tuna</h4><strong>€ 6,75</strong></div>
+          <p>Baguette with tuna salad, jalapeños, tomato, boiled egg and pesto.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Carpaccio</h4><strong>€ 7,50</strong></div>
+          <p>Baguette with carpaccio, rocket, Parmesan, pine nuts and pesto or truffle mayonnaise.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Smoked salmon</h4><strong>€ 9,50</strong></div>
+          <p>Baguette with smoked salmon, herb cream cheese, boiled egg and rocket.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Grillworst</h4><strong>€ 7,25</strong></div>
+          <p>Baguette with grilled Dutch sausage and honey-mustard sauce.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Homemade meatball</h4><strong>€ 7,25</strong></div>
+          <p>Baguette with a homemade meatball.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Brie</h4><strong>€ 6,25</strong></div>
+          <p>Baguette with warm brie, honey, walnuts and rocket.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Spicy Chicken</h4><strong>€ 6,95</strong></div>
+          <p>Baguette with pulled chicken in a spicy sauce and lettuce.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ham and cheese special</h4><strong>€ 6,25</strong></div>
+          <p>Ham and cheese, iceberg lettuce, tomato, cucumber and boiled egg.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Club sandwich</h4><strong>€ 8,95</strong></div>
+          <p>Toasted bread with chicken mayonnaise, cucumber, tomato, bacon, iceberg lettuce and boiled egg.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Avocado “Croast”</h4><strong>€ 8,95</strong></div>
+          <p>Toasted croissant with smashed avocado, rocket, pine nuts, poached egg and Parmesan.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Eggs Benedict</h4><strong>€ 8,95</strong></div>
+          <p>Toasted brioche with poached egg, bacon, avocado and hollandaise sauce.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Eggs Benedict with salmon</h4><strong>€ 9,95</strong></div>
+          <p>Toasted brioche with poached egg, smoked salmon, avocado and hollandaise sauce.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Flatbread Luma’s Chicken</h4><strong>€ 9,95</strong></div>
+          <p>Warm flatbread with Luma’s Chicken, fresh cucumber salad, rocket, red onion and garlic sauce.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-16">
+      <h3>Guilty Pleasures</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pancakes</h4><strong>€ 6,95</strong></div>
+          <p>Pancakes with a topping of your choice:
+•  Strawberries and whipped cream
+•  Lotus Biscoff
+•  White chocolate
+•  Oreo and chocolate syrup
+•  Nutella
+•  Pistachio and white chocolate + €1,00
+•  Bacon and maple syrup + €1,50</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cinnamon roll</h4><strong>€ 4,75</strong></div>
+          <p>Homemade cinnamon roll with icing</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-en-17">
+      <h3>For the little ones</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Strawberry lemonade</h4><strong>€ 2,50</strong></div>
+          <p>Small glass of strawberry lemonade</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Fresh fruit plate</h4><strong>€ 5,50</strong></div>
+          <p>A small plate of seasonal fruit</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Yoghurt bowl</h4><strong>€ 4,95</strong></div>
+          <p>Strawberry  
+•   Banana  
+•   Granola  
+•   Raspberry  
+•   Blueberry  
+•   Honey</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pancakes for the little chef</h4><strong>€ 6,50</strong></div>
+          <p>3 pancakes with little bowls of toppings to create your favourite combination.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>(Available for children only)</p>
+      </aside>
+    </section>
+    <p class="menu-empty" hidden>No products found.</p>
+  </div>
+  <div class="menu-panel" lang="nl" id="luma-menu-nl">
+    <div class="menu-controls">
+      <input type="search" placeholder="Waar heb je zin in?" aria-label="Waar heb je zin in?" autocomplete="off" hidden>
+      <nav class="menu-categories" aria-label="Menucategorieën">
+        <a href="#menu-nl-0">Koffie</a>
+        <a href="#menu-nl-1">Iced latte</a>
+        <a href="#menu-nl-2">Matcha</a>
+        <a href="#menu-nl-3">Thee</a>
+        <a href="#menu-nl-4">Smoothies</a>
+        <a href="#menu-nl-5">Bowls</a>
+        <a href="#menu-nl-6">Verse sappen</a>
+        <a href="#menu-nl-7">Ontbijt</a>
+        <a href="#menu-nl-8">Speciale toasts</a>
+        <a href="#menu-nl-9">Tostada’s</a>
+        <a href="#menu-nl-10">Tosti’s</a>
+        <a href="#menu-nl-11">Croissants</a>
+        <a href="#menu-nl-12">Bagels</a>
+        <a href="#menu-nl-13">Soepen</a>
+        <a href="#menu-nl-14">Salades</a>
+        <a href="#menu-nl-15">Brunch</a>
+        <a href="#menu-nl-16">Guilty Pleasure</a>
+        <a href="#menu-nl-17">Voor de kleintjes</a>
+      </nav>
+    </div>
+    <section class="menu-category" id="menu-nl-0">
+      <h3>Koffie</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Espresso</h4><strong>€ 1,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cortado</h4><strong>€ 1,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bombon</h4><strong>€ 1,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Americano</h4><strong>€ 1,75</strong></div>
+          <p>Groot €2,75</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Con leche</h4><strong>€ 1,95</strong></div>
+          <p>Groot €3,25</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Cappuccino</h4><strong>€ 1,95</strong></div>
+          <p>Groot €3,25</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Latte</h4><strong>€ 2,25</strong></div>
+          <p>Espresso met veel melk</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Flat white</h4><strong>€ 3,25</strong></div>
+          <p>Dubbele espresso en melk</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Chai latte</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Dirty chai</h4><strong>€ 4,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Warme chocolademelk</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Caramel macchiato</h4><strong>€ 4,25</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Extra’s: espresso + €1,00 · slagroom + €0,50 · amandel-, haver- of lactosevrije melk + €0,30</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-nl-1">
+      <h3>Iced latte</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced latte</h4><strong>€ 3,50</strong></div>
+          <p>Dubbele espresso, melk en ijs. Karamel, vanille of banaan + €1,00</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced matcha latte</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced dirty chai</h4><strong>€ 4,95</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Slagroom + €1,00 · espresso + €0,50 · amandel-, haver- of lactosevrije melk + €0,30</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-nl-2">
+      <h3>Matcha</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Matcha latte</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iced matcha latte</h4><strong>€ 3,95</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Mango, aardbei, banaan of vanille + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-nl-3">
+      <h3>Thee</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Thee</h4><strong>€ 1,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Verse muntthee</h4><strong>€ 1,95</strong></div>
+          <p>Gember of citroen + €0,25</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-4">
+      <h3>Smoothies</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Dreams</h4><strong>€ 5,95</strong></div>
+          <p>Spinazie, avocado, kiwi, banaan, kokosmelk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Good Vibes</h4><strong>€ 5,95</strong></div>
+          <p>Mango, ananas, papaya, banaan en kokosmelk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pink Dragon</h4><strong>€ 6,95</strong></div>
+          <p>Dragonfruit, mango, aardbei, banaan en kokosmelk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Berry Licious</h4><strong>€ 6,95</strong></div>
+          <p>Mix van rood fruit, banaan en kokosmelk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Choco Loco</h4><strong>€ 6,95</strong></div>
+          <p>Banaan, pindakaas, cacao, havermout, agavesiroop en amandelmelk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Antiox</h4><strong>€ 5,95</strong></div>
+          <p>Sinaasappel, kiwi en aardbei.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Stranana</h4><strong>€ 4,95</strong></div>
+          <p>Banaan, aardbei en kokosmelk.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Proteïneshake</h4><strong>€ 7,95</strong></div>
+          <p>Banaan, vanilleproteïne, amandelmelk, havermout en kaneel.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Kokosmelk, havermelk en amandelmelk.</p>
+        <p>Extra proteïne + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-nl-5">
+      <h3>Bowls</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Snicker Bowl</h4><strong>€ 7,95</strong></div>
+          <p>Banaan, cacao, agavesiroop, pindakaas en amandelmelk. Topping: granola, chiazaad, walnoten, banaan en chocoladestukjes.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pink Dragon</h4><strong>€ 8,95</strong></div>
+          <p>Dragonfruit, banaan, mango, aardbei en kokosmelk. Topping: kiwi, chiazaad, blauwe bessen, framboos, banaan, kokos en granola.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Sunshine Bowl</h4><strong>€ 7,95</strong></div>
+          <p>Banaan, mango, amandelmelk en ananas. Topping: granola, chiazaad, framboos, banaan en blauwe bessen.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Açaí Bowl</h4><strong>€ 8,95</strong></div>
+          <p>Açaibessen, banaan, aardbei en amandelmelk. Topping: granola, blauwe bessen, chiazaad, banaan en aardbei.</p>
+          <details><summary>Bekijk foto</summary><img src="bowl-acai.jpg" alt="Açaí Bowl" loading="lazy"></details>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Yoghurtbowl</h4><strong>€ 6,95</strong></div>
+          <p>Griekse yoghurt, vers fruit, chiazaad, granola en honing. (Kokosyoghurt + €1,00)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Havermoutbowl</h4><strong>€ 5,95</strong></div>
+          <p>Warme havermout met zachte tonen van kaneel, rozijnen en gekaramelliseerde appel.</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Proteïne (vanille) + €1,00</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-nl-6">
+      <h3>Verse sappen</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Vers sinaasappelsap</h4><strong>€ 3,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Heart Beet</h4><strong>€ 4,95</strong></div>
+          <p>appel, rode biet, gember en citroen.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Power</h4><strong>€ 4,95</strong></div>
+          <p>appel, spinazie, komkommer en limoen.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Celery Juice</h4><strong>€ 4,95</strong></div>
+          <p>selderij, appel, citroen en gember.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Orange Ginger</h4><strong>€ 4,95</strong></div>
+          <p>appel, wortel, sinaasappel, limoen en gember.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ginger Boost</h4><strong>€ 4,95</strong></div>
+          <p>appel, ananas, gember, kurkuma en zwarte peper.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tropical Feels</h4><strong>€ 4,95</strong></div>
+          <p>aardbeien, ananas, sinaasappel en appel.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Shots</h4><strong>€ 2,50</strong></div>
+          <p>Appel, gember en citroen.(+ kurkuma en zwarte peper €0,25)</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-7">
+      <h3>Ontbijt</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ontbijt</h4><strong>€ 9,95</strong></div>
+          <p>Koffie of thee + (koffie met melk, americano, cappuccino of latte)Vers sinaasappelsap +Croissant met roerei en een topping naar keuze:Bacon, kaas of avocado</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-8">
+      <h3>Speciale toasts</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Green Egg</h4><strong>€ 4,95</strong></div>
+          <p>Geroosterd brood met avocado, rucolasla, gekookt ei en chiazaadjes(+ gerookte zalm €3,95 of Iberische ham €3,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Smashed avocado</h4><strong>€ 4,95</strong></div>
+          <p>Geroosterd brood met geprakte avocado, rucola, tomaat, alfalfa en zadenmix. (+ gekookt ei €1,00)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Manchego kaas</h4><strong>€ 7,25</strong></div>
+          <p>Geroosterd brood met geraspte tomaat, rucolasla, gerijpte Manchego, walnoten, zongedroogde tomaat en een vleugje balsamicoazijn</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Post Workout</h4><strong>€ 4,75</strong></div>
+          <p>Geroosterd brood met pindakaas, banaan, chiazaad, blauwe bessen en honing</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Hummus</h4><strong>€ 5,95</strong></div>
+          <p>Geroosterd brood met hummus, rucolasla, tomaat, avocado, alfalfa en een zadenmix (optie gepocheerd ei + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Feta</h4><strong>€ 6,25</strong></div>
+          <p>Geroosterd brood met geprakte avocado, rucolasla, fetakaas, cherrytomaten, alfalfa en een zadenmix</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Burrata</h4><strong>€ 5,95</strong></div>
+          <p>Geroosterd brood met romige burrata, rucolasla, zongedroogde tomaten, walnoten en een vleugje balsamicoazijn</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Nordic Dream</h4><strong>€ 9,95</strong></div>
+          <p>Geroosterd brood met kruidenroomkaas, gerookte zalm, rucolasla, avocado, gepocheerd ei en een vleugje chilivlokken</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-9">
+      <h3>Tostada’s</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomaat</h4><strong>€ 2,00</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tomaat en kaas</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Kaas</h4><strong>€ 2,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Gerijpte Manchego-kaas</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Iberische ham</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Gerookte zalm</h4><strong>€ 4,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Roerei</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tonijn</h4><strong>€ 2,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Jam</h4><strong>€ 2,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Jam en boter</h4><strong>€ 2,50</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Bacon + €1,50</p>
+        <p>Avocado + €1,25</p>
+        <p>Gekookt ei + €1,00</p>
+        <p>Gepocheerd ei + €1,25</p>
+        <p>Keuze uit brood:</p>
+        <p>Witte tostada</p>
+        <p>Volkoren tostada</p>
+        <p>Wit geroosterd brood</p>
+        <p>Bruin geroosterd brood</p>
+        <p>Wit bolletje + €0,25</p>
+        <p>Briochebrood + €0,25</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-nl-10">
+      <h3>Tosti’s</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tosti met kaas</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tosti met tomaat en kaas</h4><strong>€ 4,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tosti met kaas en ui</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tosti met tomaat en pesto</h4><strong>€ 4,50</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tosti met ham en kaas</h4><strong>€ 4,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Tosti met tonijnsalade</h4><strong>€ 5,95</strong></div>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-11">
+      <h3>Croissants</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Naturel</h4><strong>€ 2,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Kaas</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ham en kaas</h4><strong>€ 3,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Boter</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Boter en jam</h4><strong>€ 3,25</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Nutella</h4><strong>€ 2,75</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Roerei</h4><strong>€ 4,95</strong></div>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Gerookte zalm, avocado en gepocheerd ei</h4><strong>€ 9,50</strong></div>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>Bacon + €1,50</p>
+        <p>Avocado + €1,25</p>
+      </aside>
+    </section>
+    <section class="menu-category" id="menu-nl-12">
+      <h3>Bagels</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel met ei en bacon</h4><strong>€ 5,95</strong></div>
+          <p>roerei en bacon</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel BLT</h4><strong>€ 5,75</strong></div>
+          <p>bacon, sla, tomaat en mayonaise</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel hummus</h4><strong>€ 5,50</strong></div>
+          <p>hummus, tomaat, komkommer, rucolasla, rode ui en alfalfa</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel met zalm en kruidenroomkaas</h4><strong>€ 9,25</strong></div>
+          <p>gerookte zalm, kruidenroomkaas, rucolasla en rode ui</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel met zalm en gepocheerd ei</h4><strong>€ 9,50</strong></div>
+          <p>gerookte zalm, rucolasla, avocado en gepocheerd ei (hollandaisesaus + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Bagel met tonijn</h4><strong>€ 5,95</strong></div>
+          <p>rucolasla, tonijnsalade en gekookt ei</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-13">
+      <h3>Soepen</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Kippensoep</h4><strong>€ 5,95</strong></div>
+          <p>Huisgemaakte kippensoep, geserveerd met brood</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Linzensoep</h4><strong>€ 5,95</strong></div>
+          <p>Huisgemaakte linzensoep, geserveerd met brood</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-14">
+      <h3>Salades</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Caesarsalade</h4><strong>€ 9,95</strong></div>
+          <p>IJsbergsla, komkommer, kip, bacon, gekookt ei, Parmezaanse kaas, croutons en caesardressing</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Luma-salade</h4><strong>€ 9,95</strong></div>
+          <p>Gemengde salade, cherrytomaten, komkommer, pijnboompitten, Parmezaanse kaas, krokante bacon, rode ui en pestodressing</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Gemengde salade</h4><strong>€ 8,95</strong></div>
+          <p>Quinoa, gemengde sla, avocado, rode ui, wortel, cherrytomaten, olijven, komkommer en romige vegan saus</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Burratasalade</h4><strong>€ 9,95</strong></div>
+          <p>Romige burrata op rucolasla met cherrytomaten, geroosterde pijnboompitten, zongedroogde tomaat, pesto en olijfolie</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-15">
+      <h3>Brunch</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Shakshuka</h4><strong>€ 7,95</strong></div>
+          <p>Huisgemaakte tomatensaus met paprika, ui en kruiden, 2 gepocheerde eieren, geserveerd met brood (optie feta + €1,25)</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Luma’s Chicken</h4><strong>€ 6,95</strong></div>
+          <p>Stokbrood met gekruide kip, rucolasla en knoflookmayonaise</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Spicy tuna</h4><strong>€ 6,75</strong></div>
+          <p>Stokbrood met tonijnsalade, jalapeño’s, tomaat, gekookt ei en pesto</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Carpaccio</h4><strong>€ 7,50</strong></div>
+          <p>Stokbrood met carpaccio, rucolasla, Parmezaanse kaas, pijnboompitten en pesto of truffelmayonaise</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Gerookte zalm</h4><strong>€ 9,50</strong></div>
+          <p>Stokbrood met gerookte zalm, kruidenroomkaas, gekookt ei en rucolasla</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Grillworst</h4><strong>€ 7,25</strong></div>
+          <p>Stokbrood met gegrilde worst, geserveerd met honing-mosterdsaus</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Huisgemaakte gehaktbal</h4><strong>€ 7,25</strong></div>
+          <p>Stokbrood met een huisgemaakte gehaktbal</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Brie</h4><strong>€ 6,25</strong></div>
+          <p>Stokbrood met warme brie, honing, walnoten en rucolasla</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Spicy chicken</h4><strong>€ 6,95</strong></div>
+          <p>Stokbrood met pulled chicken in pittige saus en sla</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Ham-kaas speciaal</h4><strong>€ 6,25</strong></div>
+          <p>Ham en kaas, ijsbergsla, tomaat, komkommer en een gekookt ei</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Club sandwich</h4><strong>€ 8,95</strong></div>
+          <p>Geroosterd brood met kip-mayonaisesalade, komkommer, tomaat, bacon, ijsbergsla en gekookt ei.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Avocado “Croast”</h4><strong>€ 8,95</strong></div>
+          <p>Geroosterde croissant met geprakte avocado, rucola, pijnboompitten, gepocheerd ei en Parmezaanse kaas.</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Eggs Benedict</h4><strong>€ 8,95</strong></div>
+          <p>Geroosterd briochebrood met een gepocheerd ei en bacon, avocado en hollandaisesaus</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Eggs Benedict met zalm</h4><strong>€ 9,95</strong></div>
+          <p>Geroosterd briochebrood met gepocheerd ei, gerookte zalm, avocado en hollandaisesaus</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Flatbread Luma’s Chicken</h4><strong>€ 9,95</strong></div>
+          <p>Warm flatbread met Luma’s Chicken, frisse komkommersalade, rucola, rode ui en knoflooksaus.</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-16">
+      <h3>Guilty Pleasure</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pannenkoeken</h4><strong>€ 6,95</strong></div>
+          <p>Pannenkoeken met topping naar keuze:
+•  Aardbeien met slagroom
+•  Lotus Biscoff
+•  Witte chocolade
+•  Oreo en chocoladesiroop
+•  Nutella
+•  Pistache en witte chocolade + €1,00
+•  Bacon en ahornsiroop + €1,50</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Kaneelrol</h4><strong>€ 4,75</strong></div>
+          <p>Huisgemaakte kaneelrol met glazuur</p>
+        </article>
+      </div>
+    </section>
+    <section class="menu-category" id="menu-nl-17">
+      <h3>Voor de kleintjes</h3>
+      <div class="menu-items">
+        <article class="menu-item"><div class="menu-item-heading"><h4>Aardbeienlimonade</h4><strong>€ 2,50</strong></div>
+          <p>Glaasje aardbeienlimonade</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Vers fruitbordje</h4><strong>€ 5,50</strong></div>
+          <p>Bordje met seizoensfruit</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Yoghurt bowl</h4><strong>€ 4,95</strong></div>
+          <p>Aardbei  
+•  Banaan  
+•  Granola  
+•  Framboos  
+•   Blauwe bessen  
+•  Honing</p>
+        </article>
+        <article class="menu-item"><div class="menu-item-heading"><h4>Pannenkoeken voor de kleine chef</h4><strong>€ 6,50</strong></div>
+          <p>3 pannenkoeken, geserveerd met kleine bakjes met verschillende toppings om zelf je favoriete combinatie te maken</p>
+        </article>
+      </div>
+      <aside class="menu-notes">
+        <p>(Uitsluitend verkrijgbaar voor kinderen)</p>
+      </aside>
+    </section>
+    <p class="menu-empty" hidden>Geen producten gevonden.</p>
+  </div>
 </section>
 </main>
-<footer><span>LUMA · BRUNCH &amp; COFFEE</span><a href="https://www.instagram.com/lumabrunch/" target="_blank" rel="noopener">@lumabrunch ↗</a><span>Español</span>
-  <button class="newsletter-trigger" id="newsletter-trigger" type="button" aria-haspopup="dialog">¿Quieres estar al día de todas las novedades?</button>
-</footer>
+<footer><div class="wrap footer"><strong>LUMA · BRUNCH &amp; COFFEE</strong><a class="text-link" href="https://www.instagram.com/lumabrunch/">@lumabrunch</a><button class="newsletter-trigger" id="newsletter-trigger" type="button" aria-haspopup="dialog">¿Quieres estar al día de todas las novedades?</button></div></footer>
 <dialog id="newsletter" class="newsletter-dialog" aria-label="Novedades de Luma Brunch">
   <form method="dialog"><button class="newsletter-close" aria-label="Cerrar" autofocus>×</button></form>
   <iframe title="Formulario de suscripción de Luma Brunch" data-src="newsletter.html"></iframe>
   <p>Al suscribirte, Luma Brunch utilizará tu nombre y correo electrónico para enviarte novedades mediante Brevo. Puedes darte de baja en cualquier momento desde el enlace incluido en nuestros correos.</p>
 </dialog>
+<dialog id="photo-dialog" aria-labelledby="photo-title">
+  <form method="dialog"><button class="button outline">Cerrar</button></form>
+  <figure><img id="full-photo" alt=""><figcaption id="photo-title"></figcaption></figure>
+</dialog>
+<script>
+const localClock = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Madrid", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+});
+
+function openingStatus(date) {
+  const parts = Object.fromEntries(localClock.formatToParts(date).map(({type, value}) => [type, value]));
+  const minutes = Number(parts.hour) * 60 + Number(parts.minute);
+  if (parts.weekday === "Sun") return ["closed", "Cerrado", "Abrimos mañana a las 09:00"];
+  if (minutes < 540) return ["closed", "Cerrado", "Abrimos hoy a las 09:00"];
+  if (minutes < 960) return ["open", "Abierto ahora", "Hasta las 16:00"];
+  return ["closed", "Cerrado", parts.weekday === "Sat" ? "Abrimos el lunes a las 09:00" : "Abrimos mañana a las 09:00"];
+}
+
+function updateHours() {
+  const [state, label, detail] = openingStatus(new Date());
+  document.getElementById("opening-status").dataset.state = state;
+  const labelNode = document.getElementById("opening-label");
+  const detailNode = document.getElementById("opening-detail");
+  if (labelNode.textContent !== label) labelNode.textContent = label;
+  if (detailNode.textContent !== " · " + detail) detailNode.textContent = " · " + detail;
+}
+
+updateHours();
+setInterval(updateHours, 15000);
+document.addEventListener("visibilitychange", updateHours);
+
+const dialog = document.getElementById("photo-dialog");
+const fullPhoto = document.getElementById("full-photo");
+const title = document.getElementById("photo-title");
+document.querySelectorAll(".photo-card").forEach(card => {
+  card.addEventListener("click", () => {
+    fullPhoto.src = card.querySelector("img").src;
+    title.textContent = card.querySelector("span").textContent;
+    dialog.showModal();
+  });
+});
+dialog.addEventListener("click", event => {
+  if (event.target === dialog) dialog.close();
+});
+</script>
+
+
+<script>
+document.querySelectorAll('.menu-panel').forEach(panel => {
+  const search = panel.querySelector('input[type=search]');
+  const categories = [...panel.querySelectorAll('.menu-category')];
+  const navigation = panel.querySelector('.menu-categories');
+  const links = [...navigation.querySelectorAll('a')];
+  const empty = panel.querySelector('.menu-empty');
+  search.hidden = false;
+
+  function filter() {
+    const query = search.value.trim().toLocaleLowerCase(panel.lang);
+    for (const category of categories) {
+      const items = [...category.querySelectorAll('.menu-item')];
+      for (const item of items) {
+        const name = item.querySelector('h4').textContent;
+        const description = item.querySelector('p')?.textContent ?? '';
+        item.hidden = !(name + ' ' + description).toLocaleLowerCase(panel.lang).includes(query);
+      }
+      const notes = category.querySelector('.menu-notes');
+      if (notes) notes.hidden = Boolean(query);
+      category.hidden = items.every(item => item.hidden);
+    }
+    empty.hidden = categories.some(category => !category.hidden);
+  }
+
+  search.addEventListener('input', filter);
+  navigation.addEventListener('click', event => {
+    if (event.target.closest('a') && search.value) {
+      search.value = '';
+      filter();
+    }
+  });
+
+  const controls = panel.querySelector('.menu-controls');
+  let current;
+  function highlight() {
+    if (!panel.getClientRects().length) return;
+    const threshold = controls.getBoundingClientRect().bottom + 30;
+    let next;
+    if (!search.value.trim()) {
+      for (const category of categories) {
+        if (category.getBoundingClientRect().top > threshold) break;
+        next = category.id;
+      }
+    }
+    if (next === current) return;
+    current = next;
+    for (const link of links) {
+      if (link.hash === '#' + current) {
+        link.setAttribute('aria-current','true');
+        const offset = link.getBoundingClientRect().left - navigation.getBoundingClientRect().left;
+        if (offset < 0 || offset + link.offsetWidth > navigation.clientWidth) navigation.scrollLeft += offset - 5;
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    }
+  }
+  let queued = false;
+  window.addEventListener('scroll', () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      highlight();
+    });
+  }, {passive:true});
+  search.addEventListener('input', highlight);
+});
+</script>
 <script>
   const newsletter = document.getElementById('newsletter');
   document.getElementById('newsletter-trigger').addEventListener('click', () => {
@@ -62,15 +1657,6 @@
     if (!formFrame.hasAttribute('src')) formFrame.src = formFrame.dataset.src;
     newsletter.showModal();
   });
-  const menuLinks = new Map(
-    Array.from(document.querySelectorAll('#carta nav a[lang]'), link => [link.lang, link.href])
-  );
-  const menuLanguage = (navigator.languages?.length ? navigator.languages : [navigator.language])
-    .map(language => language?.toLowerCase().split('-')[0])
-    .find(language => menuLinks.has(language)) ?? 'es';
-
-  document.querySelectorAll('[data-menu-link]').forEach(link => {
-    link.href = menuLinks.get(menuLanguage);
-  });
 </script>
-</body></html>
+</body>
+</html>
