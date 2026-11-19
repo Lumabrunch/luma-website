@@ -30,12 +30,18 @@ function categoryNotes(category) {
   const extrasTitle = {es: 'Extras:', en: 'Extras:', nl: 'Extra’s:'}[lang];
   if (category.title.es !== 'Tostadas') {
     const notes = el('aside', 'notes');
-    if (category.title.es === 'Croissants') {
-      const heading = el('h4', '');
-      heading.append(el('strong', '', extrasTitle));
-      notes.append(heading);
+    let hasExtrasHeading = false;
+    for (const note of category.notes) {
+      const text = note[lang];
+      const value = text.startsWith(extrasTitle) ? text.slice(extrasTitle.length).trimStart() : text;
+      if (!hasExtrasHeading && value.includes(' + €')) {
+        const heading = el('h4', '');
+        heading.append(el('strong', '', extrasTitle));
+        notes.append(heading);
+        hasExtrasHeading = true;
+      }
+      notes.append(el('p', '', value));
     }
-    notes.append(...category.notes.map(note => el('p', '', note[lang])));
     return notes;
   }
 
