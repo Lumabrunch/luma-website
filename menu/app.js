@@ -27,15 +27,20 @@ function setActive(index){selected=index;document.querySelectorAll('#tabs button
 function jumpTo(index){let section=document.getElementById('category-'+index);if(!section)return;setActive(index);window.scrollTo({top:window.scrollY+section.getBoundingClientRect().top-$('.menu-tools').offsetHeight-15,behavior:'smooth'})}
 let scrollQueued=false;window.addEventListener('scroll',()=>{if(scrollQueued)return;scrollQueued=true;requestAnimationFrame(()=>{scrollQueued=false;if(!data||$('#search').value.trim())return;let boundary=$('.menu-tools').getBoundingClientRect().bottom+35,sections=[...document.querySelectorAll('.category-section')],current=0;for(let section of sections){if(section.getBoundingClientRect().top<=boundary)current=Number(section.dataset.index);else break}if(current!==selected)setActive(current)})},{passive:true});
 function categoryNotes(category) {
+  const extrasTitle = {es: 'Extras:', en: 'Extras:', nl: 'Extra’s:'}[lang];
   if (category.title.es !== 'Tostadas') {
     const notes = el('aside', 'notes');
+    if (category.title.es === 'Croissants') {
+      const heading = el('h4', '');
+      heading.append(el('strong', '', extrasTitle));
+      notes.append(heading);
+    }
     notes.append(...category.notes.map(note => el('p', '', note[lang])));
     return notes;
   }
 
-  const extrasTitle = {es: 'Extras', en: 'Extras', nl: 'Extra’s'}[lang];
   const breadHeading = category.notes.findIndex(note => note.es === 'Elige tu pan:');
-  const breadTitle = category.notes[breadHeading][lang].replace(/:$/, '');
+  const breadTitle = category.notes[breadHeading][lang];
   const groups = [
     [extrasTitle, category.notes.slice(0, breadHeading)],
     [breadTitle, category.notes.slice(breadHeading + 1)]
@@ -52,7 +57,9 @@ function categoryNotes(category) {
       if (surcharge) row.append(el('strong', '', '+ ' + surcharge));
       list.append(row);
     }
-    group.append(el('h4', '', title), list);
+    const heading = el('h4', '');
+    heading.append(el('strong', '', title));
+    group.append(heading, list);
     options.append(group);
   }
   return options;
