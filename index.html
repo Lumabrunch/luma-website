@@ -85,7 +85,18 @@ dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:v
 .newsletter-dialog{box-sizing:border-box;width:min(580px,calc(100% - 24px));max-height:calc(100% - 24px);overflow:auto;padding:18px;border:1px solid #d9d9c9;border-radius:16px;background:#f7f3e8;color:#394a32}
 .newsletter-dialog::backdrop{background:#232d22ad}
 .newsletter-close{display:block;margin-left:auto;min-width:44px;min-height:44px;border:0;border-radius:6px;background:transparent;color:inherit;font-size:24px;cursor:pointer}
-.newsletter-dialog iframe{display:block;width:100%;height:min(450px,62dvh);min-height:245px;border:0}
+.newsletter-dialog .nl-top{display:flex;align-items:flex-start;justify-content:space-between;text-align:left;padding:4px 6px 14px;margin:0}.newsletter-dialog .nl-logo{width:64px;height:auto;display:block;margin:0}.newsletter-dialog .nl-top .newsletter-close{margin:0}
+.newsletter-dialog .nl-form,.newsletter-dialog .nl-done{padding:0 6px 4px;margin:0;text-align:left}
+.newsletter-dialog h2{font:600 clamp(2rem,6vw,2.7rem)/1 var(--headline);letter-spacing:-.018em;margin:0 0 12px}.newsletter-dialog h2 span{color:#697650}
+.newsletter-dialog .nl-lead{font-size:1rem;margin:0 0 18px;color:#46543d}
+.nl-field{display:block;margin-bottom:14px}.nl-field span{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px}
+.nl-field input{box-sizing:border-box;width:100%;min-height:46px;padding:.65rem .9rem;border:1px solid #c9ccb8;border-radius:10px;background:var(--paper);color:var(--green);font:inherit;font-size:1rem}
+.nl-field input:focus-visible{outline:3px solid #96613b;outline-offset:2px;border-color:var(--green)}
+.nl-check{display:flex;gap:10px;align-items:flex-start;margin:4px 0 18px;font-size:.88rem;line-height:1.45;cursor:pointer}.nl-check input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--green)}
+.nl-hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.nl-submit{width:100%;cursor:pointer;font-size:1rem}.nl-submit[disabled]{opacity:.6;cursor:wait}
+.newsletter-dialog .nl-msg{min-height:1.2em;margin:10px 0 0;font-weight:600;color:#9b552e}
+.newsletter-dialog .nl-legal{margin:14px 6px 2px;font-size:.78rem;color:#6c7161}
 .newsletter-dialog p{margin:8px 0;font-size:13px}
 
 .visit-directions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
@@ -1539,10 +1550,23 @@ dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:v
 </section>
 </main>
 <footer><div class="wrap footer"><strong>LUMA · BRUNCH &amp; COFFEE</strong><a class="text-link" href="https://www.instagram.com/lumabrunch/">@lumabrunch</a><button class="newsletter-trigger" id="newsletter-trigger" type="button" aria-haspopup="dialog">¿Quieres estar al día de todas las novedades?</button></div></footer>
-<dialog id="newsletter" class="newsletter-dialog" aria-label="Novedades de Luma Brunch">
-  <form method="dialog"><button class="newsletter-close" aria-label="Cerrar" autofocus>×</button></form>
-  <iframe title="Formulario de suscripción de Luma Brunch" data-src="newsletter.html"></iframe>
-  <p>Al suscribirte, Luma Brunch utilizará tu nombre y correo electrónico para enviarte novedades mediante Brevo. Puedes darte de baja en cualquier momento desde el enlace incluido en nuestros correos.</p>
+<dialog id="newsletter" class="newsletter-dialog" aria-labelledby="nl-title">
+  <form method="dialog" class="nl-top"><img class="nl-logo" src="home-assets/luma-badge.webp" alt="Luma Brunch" width="84" height="111"><button class="newsletter-close" aria-label="Cerrar" autofocus>×</button></form>
+  <form class="nl-form" id="nl-form" novalidate>
+    <h2 id="nl-title">Un momento Luma<br><span>en tu correo.</span></h2>
+    <p class="nl-lead">Recibe las novedades de Luma, los especiales de brunch y las bebidas de temporada.</p>
+    <label class="nl-field"><span>Nombre</span><input name="naam" type="text" autocomplete="given-name" maxlength="100"></label>
+    <label class="nl-field"><span>Correo electrónico</span><input name="email" type="email" autocomplete="email" placeholder="nombre@ejemplo.com" required maxlength="254"></label>
+    <label class="nl-hp" aria-hidden="true">Web<input name="web" type="text" tabindex="-1" autocomplete="off"></label>
+    <label class="nl-check"><input name="toestemming" type="checkbox" required><span>Acepto recibir correos de Luma Brunch con novedades y ofertas. Puedo darme de baja en cualquier momento.</span></label>
+    <button class="button nl-submit" type="submit">Suscribirme</button>
+    <p class="nl-msg" role="status" aria-live="polite"></p>
+  </form>
+  <div class="nl-done" hidden>
+    <h2>¡Gracias! <span>💚</span></h2>
+    <p>Ya estás en la lista. Muy pronto recibirás nuestras novedades.</p>
+  </div>
+  <p class="nl-legal">Luma Brunch usará tu nombre y correo solo para enviarte novedades. Puedes darte de baja en cualquier momento desde el enlace de nuestros correos.</p>
 </dialog>
 <dialog id="photo-dialog" aria-labelledby="photo-title">
   <form method="dialog"><button class="button outline">Cerrar</button></form>
@@ -1661,12 +1685,47 @@ document.querySelectorAll('.menu-panel').forEach(panel => {
 });
 </script>
 <script>
-  const newsletter = document.getElementById('newsletter');
-  document.getElementById('newsletter-trigger').addEventListener('click', () => {
-    const formFrame = newsletter.querySelector('iframe');
-    if (!formFrame.hasAttribute('src')) formFrame.src = formFrame.dataset.src;
-    newsletter.showModal();
+(() => {
+  const SUPABASE_URL = 'https://gkrdhidgaimvnjbrkpqh.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_pi4sOvXDpl67TLaq5E_BWQ_-N1vnGEa';
+  const dialog = document.getElementById('newsletter');
+  const form = document.getElementById('nl-form');
+  const done = dialog.querySelector('.nl-done');
+  const msg = form.querySelector('.nl-msg');
+  const btn = form.querySelector('.nl-submit');
+  const params = new URLSearchParams(location.search);
+  const bron = ['qr','instagram','tiktok'].includes(params.get('suscribir')) ? params.get('suscribir') : 'website';
+  const taal = () => {
+    const picked = document.querySelector('.menu-lang-input:checked');
+    const v = (picked && picked.lang) || (navigator.language || 'es').slice(0,2);
+    return ['es','en','nl'].includes(v) ? v : 'es';
+  };
+  const open = () => dialog.showModal();
+  document.getElementById('newsletter-trigger').addEventListener('click', open);
+  if (params.has('suscribir')) addEventListener('load', open);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = '';
+    if (form.web.value) return;
+    const email = form.email.value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Revisa tu correo electrónico.'; form.email.focus(); return; }
+    if (!form.toestemming.checked) { msg.textContent = 'Marca la casilla para poder suscribirte.'; return; }
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    try {
+      const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/aanmelden', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY },
+        body: JSON.stringify({ p_email: email, p_naam: form.naam.value.trim(), p_taal: taal(), p_bron: bron, p_toestemming: true })
+      });
+      if (!r.ok) throw new Error(r.status);
+      form.hidden = true; done.hidden = false;
+    } catch (err) {
+      msg.textContent = 'Algo ha fallado. Inténtalo de nuevo en un momento.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Suscribirme';
+    }
   });
+})();
 </script>
 </body>
 </html>
