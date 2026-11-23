@@ -343,10 +343,11 @@
   function saveCode() {
     var c = $('code').value.trim().toUpperCase();
     if (!c) return;
-    rpc('fichar_comprobar', { p_token: c }).then(function (modo) {
-      if (!modo) { $('setup-err').textContent = 'Código no válido'; return; }
-      token = c; try { localStorage.setItem(LS, c); } catch (e) {}
-      $('banner').classList.toggle('on', modo === 'prueba');
+    rpc('fichar_emparejar', { p_codigo: c }).then(function (r) {
+      if (!r || !r.modo) { $('setup-err').textContent = 'Código no válido o ya usado'; return; }
+      token = r.token; try { localStorage.setItem(LS, token); } catch (e) {}
+      $('code').value = '';
+      $('banner').classList.toggle('on', r.modo === 'prueba');
       home();
     }).catch(function (e) { $('setup-err').textContent = e.message; });
   }
