@@ -19,7 +19,8 @@
   .screen{display:none;min-height:100%;padding:clamp(20px,4vw,44px);flex-direction:column;gap:clamp(16px,2.5vw,28px)}
   .screen.on{display:flex}
   .top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-  .brand{font-size:clamp(20px,2.6vw,28px);letter-spacing:.04em}
+  .logo-row{display:flex;align-items:center;gap:18px}
+  .logo{height:clamp(64px,9vw,92px);width:auto;display:block}
   .sub{font-size:clamp(15px,1.7vw,18px);color:var(--texto)}
   .clock{font-size:clamp(40px,6vw,64px);line-height:1;text-align:right}
   h1{margin:0;font-size:clamp(26px,3.2vw,40px)}
@@ -76,7 +77,7 @@
 
 <!-- Configurar tableta (una vez) -->
 <section class="screen" id="s-setup">
-  <div class="brand f">LUMA BRUNCH</div>
+  <img class="logo" src="../home-assets/luma-badge.webp" alt="Luma Brunch">
   <div class="center">
     <h1 class="f">Configurar esta tableta</h1>
     <p class="muted">Introduce el código de la tableta. Solo hay que hacerlo una vez.</p>
@@ -89,8 +90,8 @@
 <!-- 1. Inicio -->
 <section class="screen" id="s-home">
   <div class="top">
-    <div>
-      <div class="brand f">LUMA BRUNCH</div>
+    <div class="logo-row">
+      <img class="logo" src="../home-assets/luma-badge.webp" alt="Luma Brunch">
       <div class="sub">Registro de jornada</div>
     </div>
     <div>
