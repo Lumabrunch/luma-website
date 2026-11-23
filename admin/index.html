@@ -105,7 +105,8 @@
   <nav aria-label="Menú">
     <img src="../home-assets/luma-badge.webp" alt="Luma Brunch">
     <button data-tab="hoy" class="on">Hoy</button>
-    <button data-tab="semana">Semana</button>
+    <button data-tab="semana">Horas</button>
+    <button data-tab="vacaciones">Vacaciones</button>
     <button data-tab="personal">Personal</button>
     <button data-tab="tabletas">Tableta</button>
     <div class="bottom">
@@ -129,18 +130,39 @@
       </div>
     </section>
 
-    <!-- SEMANA -->
+    <!-- HORAS -->
     <section id="t-semana" class="hidden">
       <div class="row between">
-        <div><h1 class="f" id="sem-t">Semana</h1><div class="muted">Horas trabajadas = entrada → salida fichadas. Rooster sin hora de fin cuenta hasta las 16:00.</div></div>
-        <div class="row"><button class="btn o s" id="sem-prev" type="button">← Anterior</button><button class="btn o s" id="sem-next" type="button">Siguiente →</button><button class="btn s" id="sem-csv" type="button">Exportar CSV</button></div>
+        <div><h1 class="f" id="sem-t">Horas</h1></div>
+        <div class="row">
+          <div class="pills"><button class="pill on" data-modo="semana" type="button">Semana</button><button class="pill" data-modo="mes" type="button">Mes</button></div>
+          <button class="btn o s" id="sem-prev" type="button">← Anterior</button><button class="btn o s" id="sem-next" type="button">Siguiente →</button><button class="btn s" id="sem-csv" type="button">Exportar CSV</button>
+        </div>
       </div>
       <div class="card tbl" style="margin-top:16px">
-        <table><thead><tr><th>Nombre</th><th class="num">Contrato</th><th class="num">Rooster</th><th class="num">Trabajado</th><th class="num">Dif. contrato</th><th>Avisos</th></tr></thead><tbody id="sem-b"></tbody></table>
+        <table><thead><tr><th>Nombre</th><th class="num" id="th-contrato">Horas contrato</th><th class="num">Horas según horario</th><th class="num">Horas trabajadas</th><th class="num">Diferencia con contrato</th><th class="num">Días</th><th>Avisos</th></tr></thead><tbody id="sem-b"></tbody></table>
+        <p class="muted" style="margin:12px 0 0"><b>Horas contrato</b>: lo que pone el contrato (en un mes: horas por semana × días del mes ÷ 7). <b>Horas según horario</b>: lo planificado en el horario de 2 semanas (sin hora de fin cuenta hasta las 16:00). <b>Horas trabajadas</b>: de la entrada a la salida fichadas. <b>Diferencia</b>: trabajadas menos contrato (+ = más horas, − = menos). Toca un nombre para ver cada día.</p>
       </div>
       <div class="card tbl hidden" id="sem-det" style="margin-top:16px">
         <h2 class="f" id="sem-det-t"></h2>
-        <table><thead><tr><th>Día</th><th>Turno</th><th>Entrada</th><th>Salida</th><th class="num">Trabajado</th><th>Nota</th></tr></thead><tbody id="sem-det-b"></tbody></table>
+        <table><thead><tr><th>Día</th><th>Horario</th><th>Entrada</th><th>Salida</th><th class="num">Horas</th><th>Nota</th></tr></thead><tbody id="sem-det-b"></tbody></table>
+      </div>
+    </section>
+
+    <!-- VACACIONES -->
+    <section id="t-vacaciones" class="hidden">
+      <div class="row between">
+        <h1 class="f" id="vac-t">Vacaciones</h1>
+        <div class="row"><button class="btn o s" id="vac-prev-a" type="button">← Año anterior</button><button class="btn o s" id="vac-next-a" type="button">Año siguiente →</button></div>
+      </div>
+      <div class="card tbl" style="margin-top:16px">
+        <table><thead><tr><th>Nombre</th><th class="num">Días por año</th><th class="num">Tomados</th><th class="num">Planificados</th><th class="num">Quedan</th></tr></thead><tbody id="vac-b"></tbody></table>
+        <p class="muted" style="margin:12px 0 0">Toca un nombre para ver las fechas, apuntar vacaciones o ajustar el saldo.</p>
+      </div>
+      <div class="card hidden" id="vac-det" style="margin-top:16px">
+        <div class="row between"><h2 class="f" id="vac-det-t" style="margin:0"></h2><button class="btn s" id="vac-add" type="button">Apuntar vacaciones</button></div>
+        <ul class="lst" id="vac-det-l" style="margin-top:10px"></ul>
+        <div class="form" style="margin-top:14px"><label>Días de vacaciones este año<input type="number" id="vac-der" min="0" step="0.5"></label><label>Ya tomados antes del sistema<input type="number" id="vac-prev" min="0" step="0.5"></label><button class="btn o" id="vac-save" type="button">Guardar saldo</button></div>
       </div>
     </section>
 
@@ -210,7 +232,7 @@
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var DIAS = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
   var MES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  var emp = [], empById = {}, tol = 5, weekStart = null, semRows = [], selEmp = null;
+  var emp = [], empById = {}, tol = 5, semRows = [], selEmp = null;
 
   // ---------- fechas ----------
   function hoyISO() { return new Date().toLocaleDateString('en-CA', { timeZone: TZ }); }
@@ -225,9 +247,10 @@
   function view(id) { ['v-login', 'v-pass', 'v-app'].forEach(function (v) { $(v).classList.toggle('hidden', v !== id); }); }
   function tab(t) {
     Array.prototype.forEach.call(document.querySelectorAll('nav [data-tab]'), function (b) { b.classList.toggle('on', b.dataset.tab === t); });
-    ['hoy', 'semana', 'personal', 'tabletas'].forEach(function (x) { $('t-' + x).classList.toggle('hidden', x !== t); });
+    ['hoy', 'semana', 'vacaciones', 'personal', 'tabletas'].forEach(function (x) { $('t-' + x).classList.toggle('hidden', x !== t); });
     if (t === 'hoy') loadHoy();
     if (t === 'semana') loadSemana();
+    if (t === 'vacaciones') loadVacaciones();
     if (t === 'personal') renderPersonal();
     if (t === 'tabletas') loadTabletas();
   }
@@ -318,29 +341,45 @@
   }
   $('hoy-ref').addEventListener('click', loadHoy);
 
-  // ---------- SEMANA ----------
+  // ---------- HORAS (semana / mes) ----------
+  var per = { modo: 'semana', desde: null, hasta: null };
+  function h1(min) { if (min == null) return '—'; var v = Math.round(min / 6) / 10; return String(v).replace('.', ','); }
+  function hdif(min) { if (min == null) return '—'; var v = Math.round(min / 6) / 10; return (v > 0 ? '+' : v < 0 ? '−' : '') + String(Math.abs(v)).replace('.', ','); }
+  function setPeriodo(modo, ref) {
+    per.modo = modo;
+    if (modo === 'semana') { per.desde = lunes(ref); per.hasta = isoAdd(per.desde, 6); }
+    else { per.desde = ref.slice(0, 8) + '01'; var d = new Date(per.desde + 'T12:00:00Z'); d.setUTCMonth(d.getUTCMonth() + 1); d.setUTCDate(0); per.hasta = d.toISOString().slice(0, 10); }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-modo]'), function (b) { b.classList.toggle('on', b.dataset.modo === modo); });
+  }
+  var MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  function tituloPeriodo() {
+    if (per.modo === 'semana') return 'Semana ' + fmtD(per.desde) + ' – ' + fmtD(isoAdd(per.desde, 5));
+    var d = new Date(per.desde + 'T12:00:00Z'); return 'Mes de ' + MESES_L[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+  }
   async function loadSemana() {
     try {
-      if (!weekStart) weekStart = lunes(hoyISO());
-      var fin = isoAdd(weekStart, 6);
-      $('sem-t').textContent = 'Semana ' + fmtD(weekStart) + ' – ' + fmtD(isoAdd(weekStart, 5));
+      if (!per.desde) setPeriodo('semana', hoyISO());
+      $('sem-t').textContent = tituloPeriodo();
       $('sem-det').classList.add('hidden');
+      var dias = Math.round((new Date(per.hasta) - new Date(per.desde)) / 86400000) + 1;
+      $('th-contrato').textContent = per.modo === 'semana' ? 'Horas contrato' : 'Horas contrato (mes)';
       var res = await Promise.all([
-        q(sb.from('jornadas').select('*').gte('fecha', weekStart).lte('fecha', fin)),
-        ausenciasEn(weekStart, fin)
+        q(sb.from('jornadas').select('*').gte('fecha', per.desde).lte('fecha', per.hasta)),
+        ausenciasEn(per.desde, per.hasta)
       ]);
       var jor = res[0], aus = res[1];
       semRows = emp.filter(function (e) { return e.activo; }).map(function (e) {
-        var js = jor.filter(function (j) { return j.empleado_id === e.id; });
-        var trab = 0, prev = 0, sinSalida = 0, tarde = 0;
+        var js = jor.filter(function (j) { return j.empleado_id === e.id; }).sort(function (a, b) { return a.fecha < b.fecha ? -1 : 1; });
+        var trab = 0, prev = 0, sinSalida = 0, tarde = 0, diasTrab = 0;
         js.forEach(function (j) {
           trab += j.minutos_trabajados || 0; prev += j.minutos_previstos || 0;
+          if (j.entrada) diasTrab++;
           if (j.entrada && !j.salida && j.fecha < hoyISO()) sinSalida++;
           if (j.minutos_tarde > tol) tarde++;
         });
-        var contrato = e.horas_semana != null ? Math.round(e.horas_semana * 60) : null;
+        var contrato = e.horas_semana != null ? Math.round(e.horas_semana * 60 * (per.modo === 'semana' ? 1 : dias / 7)) : null;
         var a = aus.filter(function (x) { return x.empleado_id === e.id; });
-        return { e: e, js: js, trab: trab, prev: prev, contrato: contrato, sinSalida: sinSalida, tarde: tarde, aus: a };
+        return { e: e, js: js, trab: trab, prev: prev, contrato: contrato, sinSalida: sinSalida, tarde: tarde, aus: a, diasTrab: diasTrab };
       });
       $('sem-b').innerHTML = semRows.map(function (r, i) {
         var avisos = [];
@@ -348,42 +387,132 @@
         if (r.tarde) avisos.push('<span class="tag warn">' + r.tarde + '× tarde</span>');
         r.aus.forEach(function (a) { avisos.push('<span class="tag off">' + esc(TIPO_AUS[a.tipo] || a.tipo) + '</span>'); });
         var dif = r.contrato != null ? r.trab - r.contrato : null;
-        return '<tr class="click" data-i="' + i + '"><td><b>' + esc(r.e.nombre_corto) + '</b></td><td class="num">' + horas(r.contrato) + '</td><td class="num">' + horas(r.prev || null) +
-          '</td><td class="num"><b>' + horas(r.trab) + '</b></td><td class="num">' + horas(dif) + '</td><td>' + avisos.join(' ') + '</td></tr>';
+        return '<tr class="click" data-i="' + i + '"><td><b>' + esc(r.e.nombre_corto) + '</b></td><td class="num">' + h1(r.contrato) + '</td><td class="num">' + (r.prev ? h1(r.prev) : '—') +
+          '</td><td class="num"><b>' + h1(r.trab) + '</b></td><td class="num">' + hdif(dif) + '</td><td class="num">' + r.diasTrab + '</td><td>' + avisos.join(' ') + '</td></tr>';
       }).join('');
       Array.prototype.forEach.call($('sem-b').querySelectorAll('tr'), function (tr) { tr.addEventListener('click', function () { semDetalle(semRows[+tr.dataset.i]); }); });
     } catch (e) { fail(e); }
   }
   function semDetalle(r) {
-    $('sem-det-t').textContent = r.e.nombre_corto + ' · detalle de la semana';
-    var html = '';
-    for (var i = 0; i < 6; i++) {
-      var f = isoAdd(weekStart, i);
+    $('sem-det-t').textContent = r.e.nombre_corto + ' · día por día';
+    var html = '', f = per.desde;
+    while (f <= per.hasta) {
+      var dow = new Date(f + 'T12:00:00Z').getUTCDay();
       var j = r.js.filter(function (x) { return x.fecha === f; })[0] || {};
-      var nota = [];
-      if (j.entrada && !j.salida && f < hoyISO()) nota.push('Sin salida');
-      if (j.minutos_tarde > tol) nota.push(j.minutos_tarde + ' min tarde');
-      if (j.turno_inicio && !j.entrada && f <= hoyISO()) nota.push('Sin fichaje');
-      html += '<tr><td>' + fmtD(f) + '</td><td>' + (j.turno_inicio ? hhmm(j.turno_inicio) + '–' + (hhmm(j.turno_fin) || 'fin') : '—') + '</td><td>' + hm(j.entrada) + '</td><td>' + hm(j.salida) +
-        '</td><td class="num">' + horas(j.minutos_trabajados) + '</td><td>' + esc(nota.join(' · ')) + '</td></tr>';
+      if (dow !== 0 || j.entrada) {
+        var nota = [];
+        if (j.entrada && !j.salida && f < hoyISO()) nota.push('Sin salida');
+        if (j.minutos_tarde > tol) nota.push(j.minutos_tarde + ' min tarde');
+        if (j.turno_inicio && !j.entrada && f <= hoyISO()) nota.push('Sin fichaje');
+        r.aus.forEach(function (a) { if (a.desde <= f && (!a.hasta || a.hasta >= f)) nota.push(TIPO_AUS[a.tipo] || a.tipo); });
+        html += '<tr><td>' + fmtD(f) + '</td><td>' + (j.turno_inicio ? hhmm(j.turno_inicio) + '–' + (hhmm(j.turno_fin) || 'fin') : '—') + '</td><td>' + hm(j.entrada) + '</td><td>' + hm(j.salida) +
+          '</td><td class="num">' + (j.minutos_trabajados != null ? h1(j.minutos_trabajados) : '—') + '</td><td>' + esc(nota.join(' · ')) + '</td></tr>';
+      }
+      f = isoAdd(f, 1);
     }
     $('sem-det-b').innerHTML = html;
     $('sem-det').classList.remove('hidden');
+    $('sem-det').scrollIntoView({ behavior: 'smooth' });
   }
-  $('sem-prev').addEventListener('click', function () { weekStart = isoAdd(weekStart, -7); loadSemana(); });
-  $('sem-next').addEventListener('click', function () { weekStart = isoAdd(weekStart, 7); loadSemana(); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-modo]'), function (b) { b.addEventListener('click', function () { setPeriodo(b.dataset.modo, per.desde || hoyISO()); loadSemana(); }); });
+  $('sem-prev').addEventListener('click', function () { setPeriodo(per.modo, per.modo === 'semana' ? isoAdd(per.desde, -7) : isoAdd(per.desde, -1)); loadSemana(); });
+  $('sem-next').addEventListener('click', function () { setPeriodo(per.modo, per.modo === 'semana' ? isoAdd(per.desde, 7) : isoAdd(per.hasta, 1)); loadSemana(); });
   $('sem-csv').addEventListener('click', function () {
-    var lines = [['Semana', 'Nombre', 'Contrato (h)', 'Rooster (h)', 'Trabajado (h)', 'Diferencia (h)', 'Dias sin salida', 'Veces tarde']];
-    var d = function (m) { return m == null ? '' : (m / 60).toFixed(2).replace('.', ','); };
-    semRows.forEach(function (r) { lines.push([weekStart, r.e.nombre_corto, d(r.contrato), d(r.prev), d(r.trab), d(r.contrato != null ? r.trab - r.contrato : null), r.sinSalida, r.tarde]); });
+    var lines = [[tituloPeriodo()], ['Nombre', 'Horas contrato', 'Horas según horario', 'Horas trabajadas', 'Diferencia con contrato', 'Días trabajados', 'Días sin salida', 'Veces tarde']];
+    semRows.forEach(function (r) { lines.push([r.e.nombre_corto, h1(r.contrato), r.prev ? h1(r.prev) : '', h1(r.trab), r.contrato != null ? hdif(r.trab - r.contrato) : '', r.diasTrab, r.sinSalida, r.tarde]); });
     lines.push([]);
-    lines.push(['Fecha', 'Nombre', 'Entrada', 'Salida', 'Trabajado (h)']);
-    semRows.forEach(function (r) { r.js.forEach(function (j) { if (j.entrada) lines.push([j.fecha, r.e.nombre_corto, hm(j.entrada), hm(j.salida), d(j.minutos_trabajados)]); }); });
+    lines.push(['Fecha', 'Nombre', 'Entrada', 'Salida', 'Horas trabajadas']);
+    semRows.forEach(function (r) { r.js.forEach(function (j) { if (j.entrada) lines.push([j.fecha.split('-').reverse().join('/'), r.e.nombre_corto, hm(j.entrada), hm(j.salida), j.minutos_trabajados != null ? h1(j.minutos_trabajados) : '']); }); });
     var csv = '﻿' + lines.map(function (l) { return l.map(function (c) { c = String(c); return /[;"\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(';'); }).join('\n');
     var a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-    a.download = 'luma-horas-' + weekStart + '.csv';
+    a.download = 'luma-horas-' + per.modo + '-' + per.desde + '.csv';
     document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  // ---------- VACACIONES ----------
+  var vacAnio = null, vacRows = [];
+  function diasEntre(d, h) { return Math.round((new Date(h + 'T12:00:00Z') - new Date(d + 'T12:00:00Z')) / 86400000) + 1; }
+  function diasVac(a, anio) {
+    // días dentro del año; usa 'dias' si está apuntado y la ausencia cae entera en el año
+    var ini = a.desde < anio + '-01-01' ? anio + '-01-01' : a.desde;
+    var fin = !a.hasta || a.hasta > anio + '-12-31' ? anio + '-12-31' : a.hasta;
+    if (fin < ini) return 0;
+    if (a.dias != null && ini === a.desde && fin === a.hasta) return Number(a.dias);
+    return diasEntre(ini, fin);
+  }
+  async function loadVacaciones() {
+    try {
+      if (!vacAnio) vacAnio = Number(hoyISO().slice(0, 4));
+      $('vac-t').textContent = 'Vacaciones ' + vacAnio;
+      $('vac-det').classList.add('hidden');
+      var res = await Promise.all([
+        q(sb.from('ausencias').select('*').eq('tipo', 'vacaciones').neq('estado', 'anulada').lte('desde', vacAnio + '-12-31').or('hasta.is.null,hasta.gte.' + vacAnio + '-01-01').order('desde')),
+        q(sb.from('saldos_vacaciones').select('*').eq('anio', vacAnio))
+      ]);
+      var sal = {}; res[1].forEach(function (s) { sal[s.empleado_id] = s; });
+      var hoy = hoyISO();
+      vacRows = emp.filter(function (e) { return e.activo; }).map(function (e) {
+        var s = sal[e.id];
+        var derecho = s ? Number(s.derecho_dias) : null;
+        var previos = s ? Number(s.disfrutados_inicial) : 0;
+        var lst = res[0].filter(function (a) { return a.empleado_id === e.id; });
+        var tomados = previos, plan = 0;
+        lst.forEach(function (a) { var n = diasVac(a, vacAnio); if (a.desde <= hoy) tomados += n; else plan += n; });
+        return { e: e, s: s, derecho: derecho, previos: previos, tomados: tomados, plan: plan, lst: lst };
+      });
+      $('vac-b').innerHTML = vacRows.map(function (r, i) {
+        var rest = r.derecho != null ? r.derecho - r.tomados - r.plan : null;
+        return '<tr class="click" data-i="' + i + '"><td><b>' + esc(r.e.nombre_corto) + '</b></td><td class="num">' + (r.derecho != null ? String(r.derecho).replace('.', ',') : '<span class="tag warn">falta</span>') +
+          '</td><td class="num">' + String(r.tomados).replace('.', ',') + '</td><td class="num">' + String(r.plan).replace('.', ',') + '</td><td class="num"><b>' + (rest != null ? String(rest).replace('.', ',') : '—') + '</b></td></tr>';
+      }).join('');
+      Array.prototype.forEach.call($('vac-b').querySelectorAll('tr'), function (tr) { tr.addEventListener('click', function () { vacDetalle(vacRows[+tr.dataset.i]); }); });
+    } catch (e) { fail(e); }
+  }
+  function vacDetalle(r) {
+    $('vac-det-t').textContent = r.e.nombre_corto + ' · vacaciones ' + vacAnio;
+    var f = function (iso) { return iso ? iso.split('-').reverse().join('/') : '…'; };
+    var html = r.previos ? '<li>Antes del sistema: <b>' + String(r.previos).replace('.', ',') + ' días</b></li>' : '';
+    html += r.lst.map(function (a) {
+      return '<li><b>' + f(a.desde) + ' – ' + f(a.hasta) + '</b> · ' + String(diasVac(a, vacAnio)).replace('.', ',') + ' días' + (a.desde > hoyISO() ? ' <span class="tag">planificado</span>' : '') +
+        (a.nota ? '<div class="muted">' + esc(a.nota) + '</div>' : '') + ' <button class="btn o s" data-del="' + a.id + '" type="button">Quitar</button></li>';
+    }).join('');
+    $('vac-det-l').innerHTML = html || '<li class="muted">Sin vacaciones apuntadas.</li>';
+    Array.prototype.forEach.call($('vac-det-l').querySelectorAll('[data-del]'), function (b) {
+      b.addEventListener('click', async function () { if (!confirm('¿Quitar estas vacaciones?')) return; try { await q(sb.from('ausencias').update({ estado: 'anulada' }).eq('id', b.dataset.del)); await loadVacaciones(); vacDetalle(vacRows.filter(function (x) { return x.e.id === r.e.id; })[0]); } catch (e) { fail(e); } });
+    });
+    $('vac-det').dataset.emp = r.e.id;
+    $('vac-der').value = r.derecho != null ? r.derecho : '';
+    $('vac-prev').value = r.previos || 0;
+    $('vac-det').classList.remove('hidden');
+    $('vac-det').scrollIntoView({ behavior: 'smooth' });
+  }
+  $('vac-prev-a').addEventListener('click', function () { vacAnio--; loadVacaciones(); });
+  $('vac-next-a').addEventListener('click', function () { vacAnio++; loadVacaciones(); });
+  $('vac-save').addEventListener('click', async function () {
+    var id = $('vac-det').dataset.emp;
+    try {
+      await q(sb.from('saldos_vacaciones').upsert({ empleado_id: id, anio: vacAnio, derecho_dias: Number($('vac-der').value || 0), disfrutados_inicial: Number($('vac-prev').value || 0) }));
+      await loadVacaciones(); vacDetalle(vacRows.filter(function (x) { return x.e.id === id; })[0]);
+    } catch (e) { fail(e); }
+  });
+  $('vac-add').addEventListener('click', function () {
+    var id = $('vac-det').dataset.emp, e = empById[id];
+    dlg('<h2 class="f">Vacaciones · ' + esc(e.nombre_corto) + '</h2>' +
+      '<div class="form"><label>Desde<input type="date" id="x-d"></label><label>Hasta<input type="date" id="x-h"></label></div>' +
+      '<label>Días que cuentan<input type="number" id="x-n" min="0" step="0.5"></label><p class="muted">Se rellena solo con los días entre las fechas; cámbialo si cuentas de otra forma.</p>' +
+      '<label>Nota<input id="x-t"></label><div class="msg err" id="x-e"></div>' +
+      '<div class="row"><button class="btn" id="x-ok" type="button">Guardar</button><button class="btn o" id="x-no" type="button">Cancelar</button></div>');
+    var upd = function () { if ($('x-d').value && $('x-h').value && $('x-h').value >= $('x-d').value) $('x-n').value = diasEntre($('x-d').value, $('x-h').value); };
+    $('x-d').addEventListener('change', upd); $('x-h').addEventListener('change', upd);
+    $('x-ok').addEventListener('click', async function () {
+      var d = $('x-d').value, h = $('x-h').value;
+      if (!d || !h || h < d) { $('x-e').textContent = 'Elige las fechas.'; return; }
+      try {
+        await q(sb.from('ausencias').insert({ empleado_id: id, tipo: 'vacaciones', desde: d, hasta: h, dias: Number($('x-n').value || diasEntre(d, h)), estado: h < hoyISO() ? 'disfrutada' : 'planificada', nota: $('x-t').value.trim() || null }));
+        closeDlg(); await loadVacaciones(); vacDetalle(vacRows.filter(function (x) { return x.e.id === id; })[0]);
+      } catch (err) { $('x-e').textContent = err.message; }
+    });
   });
 
   // ---------- PERSONAL ----------
