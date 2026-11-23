@@ -30,9 +30,9 @@ T = [
  # --- header ---
  ('Saltar al contenido', 'Skip to content', 'Naar de inhoud'),
  ('aria-label="Navegación principal"', 'aria-label="Main navigation"', 'aria-label="Hoofdnavigatie"'),
- ('<a href="carta/">La carta</a><a class="button outline" href="#visitanos">Visítanos</a>',
-  '<a href="carta/">Menu</a><a class="button outline" href="#visitanos">Visit us</a>',
-  '<a href="carta/">Menukaart</a><a class="button outline" href="#visitanos">Bezoek ons</a>'),
+ ('<a class="nav-carta" href="carta/">La carta</a><a class="button outline" href="#visitanos">Visítanos</a>',
+  '<a class="nav-carta" href="carta/">Menu</a><a class="button outline" href="#visitanos">Visit us</a>',
+  '<a class="nav-carta" href="carta/">Menukaart</a><a class="button outline" href="#visitanos">Bezoek ons</a>'),
  # --- hero ---
  ('<span class="eyebrow hero-kicker">Brunch &amp; café en Benijófar</span>Tu momento <span>Luma.</span>',
   '<span class="eyebrow hero-kicker">Brunch &amp; coffee in Benijófar</span>Your Luma <span>moment.</span>',
