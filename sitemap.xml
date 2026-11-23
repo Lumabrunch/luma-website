@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://luma-brunch.es/</loc><lastmod>2026-11-23</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://luma-brunch.es/</loc><lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://luma-brunch.es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luma-brunch.es/en/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://luma-brunch.es/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://luma-brunch.es/"/></url>
+  <url><loc>https://luma-brunch.es/en/</loc><lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://luma-brunch.es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luma-brunch.es/en/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://luma-brunch.es/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://luma-brunch.es/"/></url>
+  <url><loc>https://luma-brunch.es/nl/</loc><lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://luma-brunch.es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luma-brunch.es/en/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://luma-brunch.es/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://luma-brunch.es/"/></url>
   <url><loc>https://luma-brunch.es/carta/</loc><lastmod>2026-11-23</lastmod></url>
 </urlset>
