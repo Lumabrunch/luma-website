@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /fichar/
+Disallow: /admin/
+Disallow: /_tools/
+
+Sitemap: https://luma-brunch.es/sitemap.xml
