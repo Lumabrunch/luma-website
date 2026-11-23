@@ -30,9 +30,9 @@ T = [
  # --- header ---
  ('Saltar al contenido', 'Skip to content', 'Naar de inhoud'),
  ('aria-label="Navegación principal"', 'aria-label="Main navigation"', 'aria-label="Hoofdnavigatie"'),
- ('<a href="carta/">La carta</a><a class="button outline" href="#visitanos">Visítanos</a>',
-  '<a href="carta/">Menu</a><a class="button outline" href="#visitanos">Visit us</a>',
-  '<a href="carta/">Menukaart</a><a class="button outline" href="#visitanos">Bezoek ons</a>'),
+ ('<a class="nav-carta" href="carta/">La carta</a><a class="button outline" href="#visitanos">Visítanos</a>',
+  '<a class="nav-carta" href="carta/">Menu</a><a class="button outline" href="#visitanos">Visit us</a>',
+  '<a class="nav-carta" href="carta/">Menukaart</a><a class="button outline" href="#visitanos">Bezoek ons</a>'),
  # --- hero ---
  ('<span class="eyebrow hero-kicker">Brunch &amp; café en Benijófar</span>Tu momento <span>Luma.</span>',
   '<span class="eyebrow hero-kicker">Brunch &amp; coffee in Benijófar</span>Your Luma <span>moment.</span>',
@@ -88,9 +88,9 @@ T = [
   'Koffie, smoothies, bowls, toasts en brunch, alles vers bereid. In het Spaans, Engels en Nederlands.'),
  ('<a class="button" href="carta/">Ver la carta</a>', '<a class="button" href="carta/">View the menu</a>', '<a class="button" href="carta/">Bekijk de kaart</a>'),
  # --- footer + nieuwsbrief ---
- ('¿Quieres estar al día de todas las novedades?', 'Want to hear about everything new at Luma?', 'Op de hoogte blijven van alles wat nieuw is?'),
+ ('¿Quieres descuentos y todas las novedades de Luma?', 'Want discounts and all the latest from Luma?', 'Kortingen en al het nieuws van Luma ontvangen?'),
  ('Un momento Luma<br><span>en tu correo.</span>', 'A Luma moment<br><span>in your inbox.</span>', 'Een Luma-moment<br><span>in je mailbox.</span>'),
- ('Recibe las novedades de Luma, los especiales de brunch y las bebidas de temporada.', 'Get Luma news, brunch specials and seasonal drinks.', 'Ontvang nieuws van Luma, brunch-specials en seizoensdrankjes.'),
+ ('Recibe descuentos exclusivos, las novedades de Luma, los especiales de brunch y las bebidas de temporada.', 'Get exclusive discounts, Luma news, brunch specials and seasonal drinks.', 'Ontvang exclusieve kortingen, nieuws van Luma, brunch-specials en seizoensdrankjes.'),
  ('<span>Nombre</span>', '<span>Name</span>', '<span>Naam</span>'),
  ('<span>Correo electrónico</span>', '<span>Email</span>', '<span>E-mailadres</span>'),
  ('placeholder="nombre@ejemplo.com"', 'placeholder="name@example.com"', 'placeholder="naam@voorbeeld.nl"'),
@@ -100,9 +100,9 @@ T = [
  ('>Suscribirme<', '>Subscribe<', '>Aanmelden<'),
  ('¡Gracias!', 'Thank you!', 'Bedankt!'),
  ('Ya estás en la lista. Muy pronto recibirás nuestras novedades.', 'You are on the list. Our news will be with you soon.', 'Je staat op de lijst. Binnenkort ontvang je ons nieuws.'),
- ('Luma Brunch usará tu nombre y correo solo para enviarte novedades. Puedes darte de baja en cualquier momento desde el enlace de nuestros correos.',
-  'Luma Brunch will only use your name and email to send you news. You can unsubscribe at any time via the link in our emails.',
-  'Luma Brunch gebruikt je naam en e-mailadres alleen om je nieuws te sturen. Je kunt je altijd afmelden via de link in onze e-mails.'),
+ ('Luma Brunch usará tu nombre y correo solo para enviarte novedades y descuentos. Puedes darte de baja en cualquier momento desde el enlace de nuestros correos.',
+  'Luma Brunch will only use your name and email to send you news and discounts. You can unsubscribe at any time via the link in our emails.',
+  'Luma Brunch gebruikt je naam en e-mailadres alleen om je nieuws en kortingen te sturen. Je kunt je altijd afmelden via de link in onze e-mails.'),
  ('aria-label="Cerrar"', 'aria-label="Close"', 'aria-label="Sluiten"'),
  ('<button class="button outline">Cerrar</button>', '<button class="button outline">Close</button>', '<button class="button outline">Sluiten</button>'),
  # --- scripts ---
