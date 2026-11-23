@@ -238,6 +238,8 @@ function render(){
   document.querySelectorAll('.langs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
   ['eyebrow','lead','foot','home'].forEach(k => document.getElementById('t-'+k).textContent = t[k]);
   document.getElementById('t-title').innerHTML = t.title;
+  const home = {es:'../?lang=es', en:'../en/', nl:'../nl/'}[lang];
+  document.getElementById('t-home').href = home; document.querySelector('.brand').href = home;
   document.getElementById('cats').setAttribute('aria-label', t.cats);
   document.querySelector('.sheet .close').setAttribute('aria-label', t.close);
   document.getElementById('cats').innerHTML = cats.map((c,i) => `<a href="#cat-${i}">${esc(c.c)}</a>`).join('');
