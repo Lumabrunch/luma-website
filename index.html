@@ -10,7 +10,7 @@
 <link rel="alternate" hreflang="en" href="https://luma-brunch.es/en/">
 <link rel="alternate" hreflang="nl" href="https://luma-brunch.es/nl/">
 <link rel="alternate" hreflang="x-default" href="https://luma-brunch.es/">
-<script>/*taal-doorverwijzing*/(function(){try{if(/bot|crawl|spider|slurp|google|bing|lighthouse|facebookexternalhit|whatsapp|telegram|preview/i.test(navigator.userAgent))return;var s=null;try{s=localStorage.getItem('luma-lang')}catch(e){}var l=s||((navigator.languages&&navigator.languages[0])||navigator.language||'es').slice(0,2).toLowerCase();if(l==='en'||l==='nl')location.replace('/'+l+'/'+location.search+location.hash)}catch(e){}})();</script>
+<script>/*taal-doorverwijzing*/(function(){try{if(/bot|crawl|spider|slurp|google|bing|lighthouse|facebookexternalhit|whatsapp|telegram|preview/i.test(navigator.userAgent))return;var q=new URLSearchParams(location.search).get('lang');if(q==='es'||q==='en'||q==='nl'){try{localStorage.setItem('luma-lang',q)}catch(e){}if(q==='es')return}var s=null;try{s=localStorage.getItem('luma-lang')}catch(e){}var l=q||s||((navigator.languages&&navigator.languages[0])||navigator.language||'es').slice(0,2).toLowerCase();if(l==='en'||l==='nl')location.replace('/'+l+'/'+location.search+location.hash)}catch(e){}})();</script>
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="96x96" href="home-assets/icon-96.png">
 <link rel="icon" type="image/png" sizes="192x192" href="home-assets/icon-192.png">
@@ -137,7 +137,7 @@ dialog{border:1px solid var(--line);border-radius:12px;padding:14px;background:v
     <a class="brand" href="#inicio" aria-label="Luma Brunch"><img class="flower" src="home-assets/luma-flower.webp" alt=""><img class="wordmark" src="home-assets/luma-wordmark.webp" alt=""></a>
     <nav aria-label="Navegación principal">
       <a href="carta/">La carta</a><a class="button outline" href="#visitanos">Visítanos</a>
-      <span class="langs" role="group" aria-label="Idioma / Language / Taal"><a href="/" hreflang="es" lang="es" aria-current="true" data-lang="es">ES</a><a href="/en/" hreflang="en" lang="en" data-lang="en">EN</a><a href="/nl/" hreflang="nl" lang="nl" data-lang="nl">NL</a></span>
+      <span class="langs" role="group" aria-label="Idioma / Language / Taal"><a href="/?lang=es" hreflang="es" lang="es" aria-current="true" data-lang="es">ES</a><a href="/en/" hreflang="en" lang="en" data-lang="en">EN</a><a href="/nl/" hreflang="nl" lang="nl" data-lang="nl">NL</a></span>
     </nav>
   </div>
 </header>
