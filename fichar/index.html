@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#394A32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Luma · Fichar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--verde:#394A32;--crema:#F7F3E8;--suave:#E7E9DA;--terracota:#815437;--texto:#565B4C;--ok:#3F6B34}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;background:var(--crema);color:var(--verde);font-family:Figtree,system-ui,sans-serif;-webkit-user-select:none;user-select:none;overscroll-behavior:none}
+  button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-action:manipulation}
+  .f{font-family:Fredoka,system-ui,sans-serif;font-weight:600}
+  .screen{display:none;min-height:100%;padding:clamp(20px,4vw,44px);flex-direction:column;gap:clamp(16px,2.5vw,28px)}
+  .screen.on{display:flex}
+  .top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+  .brand{font-size:clamp(20px,2.6vw,28px);letter-spacing:.04em}
+  .sub{font-size:clamp(15px,1.7vw,18px);color:var(--texto)}
+  .clock{font-size:clamp(40px,6vw,64px);line-height:1;text-align:right}
+  h1{margin:0;font-size:clamp(26px,3.2vw,40px)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:clamp(12px,1.8vw,20px)}
+  .person{display:flex;align-items:center;gap:16px;padding:18px 20px;background:#fff;border:2px solid var(--suave);border-radius:20px;text-align:left;min-height:104px}
+  .person:active{transform:scale(.98);border-color:var(--verde)}
+  .ini{width:60px;height:60px;border-radius:50%;background:var(--verde);color:var(--crema);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+  .pname{font-size:24px;display:block}
+  .pstat{font-size:16px;font-weight:700;color:var(--texto);display:block;margin-top:4px}
+  .pstat.in{color:var(--ok)}
+  .btn-o{align-self:flex-start;font-size:20px;font-weight:700;padding:14px 24px;border-radius:14px;border:2px solid var(--verde)}
+  .pinwrap{display:flex;gap:clamp(24px,5vw,64px);align-items:center;flex-wrap:wrap;flex-grow:1}
+  .pinleft{flex:1 1 300px;display:flex;flex-direction:column;gap:18px}
+  .big-ini{width:96px;height:96px;font-size:40px}
+  .hello{font-size:clamp(40px,5vw,56px);line-height:1.05;margin:0}
+  .dots{display:flex;gap:20px}
+  .dot{width:28px;height:28px;border-radius:50%;border:3px solid var(--verde)}
+  .dot.full{background:var(--verde)}
+  .err{min-height:28px;font-size:20px;font-weight:700;color:var(--terracota)}
+  .pad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:min(460px,100%)}
+  .key{height:clamp(84px,11vh,116px);border-radius:22px;background:#fff;font-family:Fredoka,sans-serif;font-weight:600;font-size:42px}
+  .key:active{background:var(--suave)}
+  .key.alt{background:var(--suave);font-size:22px}
+  .key.okk{background:var(--verde);color:var(--crema);font-size:30px}
+  .shift{background:var(--suave);border-radius:20px;padding:20px 24px}
+  .shift .lbl{font-size:15px;font-weight:700;color:var(--texto);text-transform:uppercase;letter-spacing:.06em}
+  .shift .val{font-size:clamp(24px,3vw,32px);margin-top:6px}
+  .acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;flex-grow:1;min-height:260px}
+  .act{border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px}
+  .act .t{font-family:Fredoka,sans-serif;font-weight:600;font-size:clamp(44px,6vw,64px)}
+  .act .d{font-size:20px}
+  .act.in{background:var(--verde);color:var(--crema)}
+  .act.out{background:#fff;border:3px solid var(--verde)}
+  .act[disabled]{background:#EFEDE4;border-color:#EFEDE4;color:#6E7262}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .center{flex-grow:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px}
+  .check{width:120px;height:120px;border-radius:50%;background:var(--verde);display:flex;align-items:center;justify-content:center}
+  .weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+  .week{background:#fff;border-radius:20px;padding:22px 26px}
+  .week h2{margin:0 0 8px;font-size:22px}
+  .day{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--suave);font-size:21px}
+  .day .dd{font-weight:700;width:110px}
+  .day .tt{flex-grow:1}
+  .chip{font-size:16px;font-weight:700;padding:5px 12px;border-radius:999px}
+  .banner{background:var(--terracota);color:var(--crema);font-weight:700;text-align:center;padding:8px;font-size:15px;letter-spacing:.04em;display:none}
+  .banner.on{display:block}
+  input.code{font:inherit;font-size:28px;padding:16px 20px;border-radius:14px;border:2px solid var(--verde);background:#fff;width:min(420px,100%);text-transform:uppercase;letter-spacing:.08em;-webkit-user-select:text;user-select:text}
+  .btn-v{font-size:22px;font-weight:700;padding:16px 28px;border-radius:14px;background:var(--verde);color:var(--crema)}
+  .muted{color:var(--texto);font-size:16px}
+</style>
+</head>
+<body>
+<div class="banner" id="banner">MODO PRUEBA · estos fichajes no cuentan</div>
+
+<!-- Configurar tableta (una vez) -->
+<section class="screen" id="s-setup">
+  <div class="brand f">LUMA BRUNCH</div>
+  <div class="center">
+    <h1 class="f">Configurar esta tableta</h1>
+    <p class="muted">Introduce el código de la tableta. Solo hay que hacerlo una vez.</p>
+    <input class="code" id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Código de la tableta">
+    <div class="err" id="setup-err"></div>
+    <button class="btn-v" id="setup-ok">Guardar</button>
+  </div>
+</section>
+
+<!-- 1. Inicio -->
+<section class="screen" id="s-home">
+  <div class="top">
+    <div>
+      <div class="brand f">LUMA BRUNCH</div>
+      <div class="sub">Registro de jornada</div>
+    </div>
+    <div>
+      <div class="clock f" id="clock">--:--</div>
+      <div class="sub" id="date" style="text-align:right"></div>
+    </div>
+  </div>
+  <h1 class="f">Toca tu nombre para fichar</h1>
+  <div class="grid" id="people"></div>
+  <div class="err" id="home-err"></div>
+</section>
+
+<!-- 2. PIN -->
+<section class="screen" id="s-pin">
+  <button class="btn-o" data-back>← Volver</button>
+  <div class="pinwrap">
+    <div class="pinleft">
+      <div class="ini big-ini f" id="pin-ini"></div>
+      <p class="hello f" id="pin-hello"></p>
+      <div class="sub" style="font-size:22px">Introduce tu PIN</div>
+      <div class="dots" id="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="err" id="pin-err"></div>
+    </div>
+    <div class="pad" id="pad"></div>
+  </div>
+</section>
+
+<!-- 3. Entrada / salida -->
+<section class="screen" id="s-act">
+  <div class="row">
+    <h1 class="f" id="act-hello" style="font-size:clamp(32px,4vw,44px)"></h1>
+    <div class="clock f" id="clock2" style="font-size:44px">--:--</div>
+  </div>
+  <div class="shift">
+    <div class="lbl">Tu turno de hoy</div>
+    <div class="val f" id="act-turno"></div>
+  </div>
+  <div class="acts">
+    <button class="act in" id="btn-in"><span class="t">Entrada</span><span class="d">Empezar la jornada</span></button>
+    <button class="act out" id="btn-out"><span class="t">Salida</span><span class="d">Terminar la jornada</span></button>
+  </div>
+  <div class="err" id="act-err"></div>
+  <div class="row">
+    <button class="btn-o" id="btn-turnos">Mis turnos</button>
+    <button class="btn-o" data-back>Cerrar</button>
+  </div>
+</section>
+
+<!-- 4. Confirmación -->
+<section class="screen" id="s-done">
+  <div class="center">
+    <div class="check"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#F7F3E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h1 class="f" id="done-t" style="font-size:clamp(36px,5vw,52px)"></h1>
+    <div class="f" id="done-h" style="font-size:clamp(56px,8vw,88px)"></div>
+  </div>
+</section>
+
+<!-- 5. Mis turnos -->
+<section class="screen" id="s-turnos">
+  <div class="row">
+    <div>
+      <h1 class="f" id="tur-t"></h1>
+      <div class="sub" id="tur-sub"></div>
+    </div>
+    <button class="btn-o" data-back>Cerrar</button>
+  </div>
+  <div class="weeks" id="weeks"></div>
+</section>
+
+<script>
+(function () {
+  var URL_SB = 'https://gkrdhidgaimvnjbrkpqh.supabase.co/rest/v1/rpc/';
+  var KEY = 'sb_publishable_pi4sOvXDpl67TLaq5E_BWQ_-N1vnGEa';
+  var LS = 'luma_fichar_token';
+  var IDLE_MS = 20000;
+
+  var token = null;
+  try { token = localStorage.getItem(LS); } catch (e) {}
+  var people = [], sel = null, pin = '', idleT = null, doneT = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var DIAS_C = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  var MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var MES_C = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+  function rpc(fn, body) {
+    return fetch(URL_SB + fn, {
+      method: 'POST',
+      headers: { 'apikey': KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) {
+          var m = (j && j.message) || 'Error';
+          if (m.indexOf('tableta no autorizada') >= 0) { forget(); }
+          if (m.indexOf('bloqueado') >= 0) { m = 'Demasiados intentos. Espera 5 minutos.'; }
+          throw new Error(m);
+        }
+        return j;
+      });
+    });
+  }
+
+  function show(id) {
+    var s = document.querySelectorAll('.screen');
+    for (var i = 0; i < s.length; i++) s[i].classList.toggle('on', s[i].id === id);
+    clearTimeout(idleT);
+    if (id !== 's-home' && id !== 's-setup') idleT = setTimeout(home, IDLE_MS);
+  }
+
+  function forget() { try { localStorage.removeItem(LS); } catch (e) {} token = null; show('s-setup'); }
+
+  function tick() {
+    var d = new Date();
+    var hm = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    $('clock').textContent = hm; $('clock2').textContent = hm;
+    $('date').textContent = DIAS[d.getDay()] + ', ' + d.getDate() + ' de ' + MESES[d.getMonth()];
+  }
+
+  function initial(n) { return (n || '?').charAt(0).toUpperCase(); }
+
+  function loadPeople() {
+    if (!token) return;
+    rpc('fichar_lista', { p_token: token }).then(function (rows) {
+      people = rows; $('home-err').textContent = '';
+      var g = $('people'); g.innerHTML = '';
+      rows.forEach(function (p) {
+        var b = document.createElement('button');
+        b.className = 'person';
+        var i = document.createElement('span'); i.className = 'ini f'; i.textContent = initial(p.nombre);
+        var w = document.createElement('span');
+        var n = document.createElement('span'); n.className = 'pname f'; n.textContent = p.nombre;
+        var s = document.createElement('span'); s.className = 'pstat' + (p.estado.indexOf('Dentro') === 0 ? ' in' : ''); s.textContent = p.estado;
+        w.appendChild(n); w.appendChild(s); b.appendChild(i); b.appendChild(w);
+        b.addEventListener('click', function () { openPin(p); });
+        g.appendChild(b);
+      });
+    }).catch(function (e) { $('home-err').textContent = 'Sin conexión. ' + e.message; });
+  }
+
+  function home() { sel = null; pin = ''; show('s-home'); loadPeople(); }
+
+  function openPin(p) {
+    sel = p; pin = ''; drawDots(); $('pin-err').textContent = '';
+    $('pin-ini').textContent = initial(p.nombre);
+    $('pin-hello').textContent = 'Hola, ' + p.nombre;
+    show('s-pin');
+  }
+
+  function drawDots() {
+    var d = $('dots').children;
+    for (var i = 0; i < 4; i++) d[i].classList.toggle('full', i < pin.length);
+  }
+
+  function buildPad() {
+    var keys = ['1','2','3','4','5','6','7','8','9','del','0','ok'];
+    keys.forEach(function (k) {
+      var b = document.createElement('button');
+      b.className = 'key' + (k === 'del' ? ' alt' : k === 'ok' ? ' okk' : '');
+      b.textContent = k === 'del' ? 'Borrar' : k === 'ok' ? 'OK' : k;
+      if (k === 'ok') b.setAttribute('aria-label', 'Confirmar');
+      b.addEventListener('click', function () { press(k); });
+      $('pad').appendChild(b);
+    });
+  }
+
+  function press(k) {
+    show('s-pin');
+    $('pin-err').textContent = '';
+    if (k === 'del') { pin = pin.slice(0, -1); }
+    else if (k === 'ok') { if (pin.length === 4) identify(); }
+    else if (pin.length < 4) { pin += k; if (pin.length === 4) { drawDots(); identify(); return; } }
+    drawDots();
+  }
+
+  function identify() {
+    rpc('fichar_identificar', { p_token: token, p_empleado: sel.id, p_pin: pin }).then(function (r) {
+      if (!r.ok) { pin = ''; drawDots(); $('pin-err').textContent = r.error; return; }
+      $('banner').classList.toggle('on', !!r.prueba);
+      $('act-hello').textContent = 'Hola, ' + r.nombre;
+      $('act-turno').textContent = r.turno_hoy || 'Sin turno hoy';
+      $('btn-in').disabled = r.siguiente !== 'entrada';
+      $('btn-out').disabled = r.siguiente !== 'salida';
+      $('act-err').textContent = '';
+      show('s-act');
+    }).catch(function (e) { pin = ''; drawDots(); $('pin-err').textContent = e.message; });
+  }
+
+  function doFichar(tipo) {
+    $('btn-in').disabled = true; $('btn-out').disabled = true;
+    rpc('fichar', { p_token: token, p_empleado: sel.id, p_pin: pin, p_tipo: tipo }).then(function (r) {
+      if (!r.ok) { $('act-err').textContent = r.error; return; }
+      $('done-t').textContent = (tipo === 'entrada' ? '¡Buen turno, ' : '¡Hasta pronto, ') + r.nombre + '!';
+      $('done-h').textContent = (tipo === 'entrada' ? 'Entrada ' : 'Salida ') + r.hora;
+      show('s-done');
+      clearTimeout(doneT); doneT = setTimeout(home, 3500);
+    }).catch(function (e) { $('act-err').textContent = e.message; });
+  }
+
+  function openTurnos() {
+    rpc('mis_turnos', { p_token: token, p_empleado: sel.id, p_pin: pin }).then(function (r) {
+      if (!r.ok) { $('act-err').textContent = r.error; return; }
+      $('tur-t').textContent = r.nombre + ' · mis turnos';
+      var byDate = {};
+      r.turnos.forEach(function (t) { (byDate[t.fecha] = byDate[t.fecha] || []).push(t); });
+      var start = new Date(); start.setHours(12, 0, 0, 0);
+      var w = $('weeks'); w.innerHTML = '';
+      var end = new Date(start); end.setDate(end.getDate() + 13);
+      $('tur-sub').textContent = start.getDate() + ' ' + MES_C[start.getMonth()] + ' – ' + end.getDate() + ' ' + MES_C[end.getMonth()];
+      for (var wk = 0; wk < 2; wk++) {
+        var box = document.createElement('div'); box.className = 'week';
+        var h = document.createElement('h2'); h.className = 'f'; h.textContent = wk === 0 ? 'Próximos 7 días' : 'Semana siguiente';
+        box.appendChild(h);
+        for (var i = 0; i < 7; i++) {
+          var d = new Date(start); d.setDate(start.getDate() + wk * 7 + i);
+          if (d.getDay() === 0) continue;
+          var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+          var list = byDate[key] || [null];
+          list.forEach(function (t) {
+            var row = document.createElement('div'); row.className = 'day';
+            var a = document.createElement('span'); a.className = 'dd'; a.textContent = DIAS_C[d.getDay()] + ' ' + d.getDate();
+            var b = document.createElement('span'); b.className = 'tt'; b.textContent = t ? t.inicio + '–' + t.fin : 'Libre';
+            row.appendChild(a); row.appendChild(b);
+            if (t && t.puesto) { var c = document.createElement('span'); c.className = 'chip'; c.style.background = t.color || '#E7E9DA'; c.textContent = t.puesto; row.appendChild(c); }
+            box.appendChild(row);
+          });
+        }
+        w.appendChild(box);
+      }
+      show('s-turnos');
+    }).catch(function (e) { $('act-err').textContent = e.message; });
+  }
+
+  function saveCode() {
+    var c = $('code').value.trim().toUpperCase();
+    if (!c) return;
+    rpc('fichar_comprobar', { p_token: c }).then(function (modo) {
+      if (!modo) { $('setup-err').textContent = 'Código no válido'; return; }
+      token = c; try { localStorage.setItem(LS, c); } catch (e) {}
+      $('banner').classList.toggle('on', modo === 'prueba');
+      home();
+    }).catch(function (e) { $('setup-err').textContent = e.message; });
+  }
+
+  buildPad();
+  $('btn-in').addEventListener('click', function () { doFichar('entrada'); });
+  $('btn-out').addEventListener('click', function () { doFichar('salida'); });
+  $('btn-turnos').addEventListener('click', openTurnos);
+  $('setup-ok').addEventListener('click', saveCode);
+  $('code').addEventListener('keydown', function (e) { if (e.key === 'Enter') saveCode(); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function (b) { b.addEventListener('click', home); });
+
+  tick(); setInterval(tick, 5000);
+  setInterval(function () { if ($('s-home').classList.contains('on')) loadPeople(); }, 60000);
+
+  if (token) {
+    rpc('fichar_comprobar', { p_token: token }).then(function (modo) {
+      if (!modo) { forget(); return; }
+      $('banner').classList.toggle('on', modo === 'prueba');
+      home();
+    }).catch(function () { home(); });
+  } else {
+    show('s-setup');
+  }
+})();
+</script>
+</body>
+</html>
