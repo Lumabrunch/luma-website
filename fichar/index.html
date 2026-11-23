@@ -295,18 +295,32 @@
     rpc('mis_turnos', { p_token: token, p_empleado: sel.id, p_pin: pin }).then(function (r) {
       if (!r.ok) { $('act-err').textContent = r.error; return; }
       $('tur-t').textContent = r.nombre + ' · mis turnos';
+      var w = $('weeks'); w.innerHTML = '';
+      if (!r.desde) {
+        $('tur-sub').textContent = '';
+        var none = document.createElement('div'); none.className = 'week';
+        none.textContent = 'Todavía no hay horario publicado.';
+        w.appendChild(none);
+        show('s-turnos');
+        return;
+      }
       var byDate = {};
       r.turnos.forEach(function (t) { (byDate[t.fecha] = byDate[t.fecha] || []).push(t); });
-      var start = new Date(); start.setHours(12, 0, 0, 0);
-      var w = $('weeks'); w.innerHTML = '';
-      var end = new Date(start); end.setDate(end.getDate() + 13);
-      $('tur-sub').textContent = start.getDate() + ' ' + MES_C[start.getMonth()] + ' – ' + end.getDate() + ' ' + MES_C[end.getMonth()];
-      for (var wk = 0; wk < 2; wk++) {
+      var pd = function (s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2], 12); };
+      var fmt = function (d) { return d.getDate() + ' ' + MES_C[d.getMonth()]; };
+      var start = pd(r.desde), end = pd(r.hasta);
+      $('tur-sub').textContent = fmt(start) + ' – ' + fmt(end);
+      var nWeeks = Math.ceil((Math.round((end - start) / 86400000) + 1) / 7);
+      for (var wk = 0; wk < nWeeks; wk++) {
         var box = document.createElement('div'); box.className = 'week';
-        var h = document.createElement('h2'); h.className = 'f'; h.textContent = wk === 0 ? 'Próximos 7 días' : 'Semana siguiente';
+        var ws = new Date(start); ws.setDate(start.getDate() + wk * 7);
+        var we = new Date(ws); we.setDate(ws.getDate() + 6); if (we > end) we = new Date(end);
+        if (we.getDay() === 0) we.setDate(we.getDate() - 1);
+        var h = document.createElement('h2'); h.className = 'f'; h.textContent = 'Semana ' + fmt(ws) + ' – ' + fmt(we);
         box.appendChild(h);
         for (var i = 0; i < 7; i++) {
-          var d = new Date(start); d.setDate(start.getDate() + wk * 7 + i);
+          var d = new Date(ws); d.setDate(ws.getDate() + i);
+          if (d > end) break;
           if (d.getDay() === 0) continue;
           var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
           var list = byDate[key] || [null];
