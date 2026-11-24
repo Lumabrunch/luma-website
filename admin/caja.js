@@ -16,12 +16,17 @@
     '.grp-l li{display:flex;justify-content:space-between;gap:10px;align-items:center}' +
     'tr.off td{color:#8B8E80}' +
     '#t-carta td.num,#t-carta th.num{white-space:nowrap}' +
+    '.sw{border:0;border-radius:999px;padding:5px 12px 5px 30px;font-size:13px;font-weight:700;background:#EEEDE7;color:#5E6253;position:relative;white-space:nowrap}' +
+    '.sw:before{content:"";position:absolute;left:8px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:#B9BCA8}' +
+    '.sw.on{background:#DCE8D6;color:#2F4F26}.sw.on:before{background:#3F6B34}' +
+    '.opt-l{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0 2px}.opt-l label{flex-direction:row;align-items:center;gap:6px;font-weight:500}' +
+    '.grp-l li{flex-wrap:wrap}' +
     '.sub{font-size:13px;color:#6C7161}';
   document.head.appendChild(css);
 
-  var D = { cats: [], prods: [], grupos: [], opts: [], links: [], prns: [] };
+  var D = { cats: [], prods: [], grupos: [], opts: [], links: [], prns: [], excl: [] };
   var by = {};
-  var st = { vista: 'productos', cat: null, buscar: '', todo: false, grupo: null };
+  var st = { vista: 'productos', cat: null, buscar: '', ver: 'venta', grupo: null };
 
   // ---------- utilidades ----------
   function eur(c) { return c == null ? '—' : (c / 100).toFixed(2).replace('.', ',') + ' €'; }
@@ -56,9 +61,10 @@
       q(sb.from('caja_grupos_opciones').select('*').order('orden')),
       q(sb.from('caja_opciones').select('*').order('orden')),
       q(sb.from('caja_producto_grupos').select('*').order('orden')),
-      q(sb.from('caja_impresoras').select('id,codigo,nombre,activa,orden').order('orden'))
+      q(sb.from('caja_impresoras').select('id,codigo,nombre,activa,orden').order('orden')),
+      q(sb.from('caja_producto_opcion_excluida').select('*'))
     ]);
-    D = { cats: r[0], prods: r[1], grupos: r[2], opts: r[3], links: r[4], prns: r[5] };
+    D = { cats: r[0], prods: r[1], grupos: r[2], opts: r[3], links: r[4], prns: r[5], excl: r[6] };
     by = { cat: idx(D.cats), prod: idx(D.prods), grupo: idx(D.grupos), prn: idx(D.prns) };
   }
 
@@ -69,21 +75,24 @@
       '<div class="pills"><button class="pill" data-v="productos" type="button">Productos</button><button class="pill" data-v="opciones" type="button">Opciones y extras</button></div></div>' +
       '<div class="card" style="margin-top:16px;display:flex;flex-direction:column;gap:12px">' +
       '<div class="row"><input id="ca-q" type="search" placeholder="Buscar producto u opción…" style="flex:1 1 240px">' +
-      '<label class="chk"><input type="checkbox" id="ca-todo"> Ver también inactivos y archivados</label>' +
+      '<select id="ca-ver"><option value="venta">Solo en venta</option><option value="no">Solo no disponibles</option><option value="todo">Todo (también archivados)</option></select>' +
       '<button class="btn s" id="ca-new" type="button">+ Nuevo</button></div>' +
       '<div class="pills cat-pills" id="ca-cats"></div></div>' +
       '<div id="ca-body" style="margin-top:16px;display:flex;flex-direction:column;gap:16px"></div>' +
-      '<p class="muted">Los cambios se guardan al momento y quedan en el historial. Los tickets ya cobrados no cambian: cada ticket guarda su propio nombre, precio e IVA. La caja nueva recoge la carta cuando esté en marcha; hasta entonces Tiller sigue igual.</p>';
+      '<p class="muted">Los productos nunca se borran: si algo deja de venderse, ponlo en «No disponible» y actívalo de nuevo cuando vuelva. Los cambios se guardan al momento y quedan en el historial. Los tickets ya cobrados no cambian: cada ticket guarda su propio nombre, precio e IVA. La caja nueva recoge la carta cuando esté en marcha; hasta entonces Tiller sigue igual.</p>';
     each('#t-carta [data-v]', function (b) { b.addEventListener('click', function () { st.vista = b.dataset.v; pintar(); }); });
     $('ca-q').addEventListener('input', function () { st.buscar = this.value; pintar(); });
-    $('ca-todo').addEventListener('change', function () { st.todo = this.checked; pintar(); });
+    $('ca-ver').addEventListener('change', function () { st.ver = this.value; st.cat = null; pintar(); });
     $('ca-new').addEventListener('click', function () { st.vista === 'productos' ? dlgProducto(null) : dlgGrupo(null); });
   }
 
-  function catVisible(c) { return st.todo || (c.activa && !c.archivada); }
+  function catVisible(c) { return st.ver === 'todo' || !c.archivada; }
+  function enVenta(p) { var c = by.cat[p.categoria_id] || {}; return p.activo && c.activa && !c.archivada; }
   function prodVisible(p) {
     var c = by.cat[p.categoria_id] || {};
-    if (!st.todo && (!p.activo || !catVisible(c))) return false;
+    if (!catVisible(c)) return false;
+    if (st.ver === 'venta' && !enVenta(p)) return false;
+    if (st.ver === 'no' && enVenta(p)) return false;
     if (st.buscar && norm([p.nombre_es, p.nombre_en, p.nombre_nl, p.nombre_ticket, p.sku].join(' ')).indexOf(norm(st.buscar)) < 0) return false;
     return true;
   }
@@ -104,7 +113,7 @@
     var n = {}; visibles.forEach(function (p) { n[p.categoria_id] = (n[p.categoria_id] || 0) + 1; });
     $('ca-cats').classList.remove('hidden');
     $('ca-cats').innerHTML = '<button class="pill' + (st.cat ? '' : ' on') + '" data-c="" type="button">Todas<small>' + visibles.length + '</small></button>' +
-      cats.map(function (c) {
+      cats.filter(function (c) { return n[c.id] || st.cat === c.id; }).map(function (c) {
         var tag = c.archivada ? ' · archivada' : !c.activa ? ' · inactiva' : c.temporada ? ' · temporada' : '';
         return '<button class="pill' + (st.cat === c.id ? ' on' : '') + '" data-c="' + c.id + '" type="button">' + esc(c.nombre_es) + '<small>' + (n[c.id] || 0) + tag + '</small></button>';
       }).join('');
@@ -123,21 +132,30 @@
         (ps.map(function (p) {
           var gs = D.links.filter(function (l) { return l.producto_id === p.id; });
           var sub = p.nombre_ticket && p.nombre_ticket !== p.nombre_es ? '<div class="sub">Ticket: ' + esc(p.nombre_ticket) + '</div>' : '';
+          var nEx = D.excl.filter(function (x) { return x.producto_id === p.id; }).length;
+          var opTxt = gs.length ? gs.map(function (l) { return esc((by.grupo[l.grupo_id] || {}).nombre || '?'); }).join(', ') + (nEx ? '<div class="sub">' + nEx + ' opciones quitadas</div>' : '') : '<span class="muted">—</span>';
           return '<tr class="click' + (p.activo ? '' : ' off') + '" data-p="' + p.id + '"><td><b>' + esc(p.nombre_es) + '</b>' + sub + '</td><td class="num">' + (p.precio_variable ? 'Variable' : eur(p.precio_cent)) +
-            '</td><td class="num">' + ivaTxt(p.iva) + '</td><td>' + prnTags(p) + '</td><td>' + (gs.length ? gs.map(function (l) { return esc((by.grupo[l.grupo_id] || {}).nombre || '?'); }).join(', ') : '<span class="muted">—</span>') +
-            '</td><td>' + (p.activo ? '<span class="tag ok">En venta</span>' : '<span class="tag off">No disponible</span>') + '</td></tr>';
+            '</td><td class="num">' + ivaTxt(p.iva) + '</td><td>' + prnTags(p) + '</td><td>' + opTxt +
+            '</td><td><button class="sw' + (p.activo ? ' on' : '') + '" data-sw="' + p.id + '" type="button" title="Cambiar">' + (p.activo ? 'En venta' : 'No disponible') + '</button></td></tr>';
         }).join('') || '<tr><td colspan="6" class="muted">Sin productos.</td></tr>') + '</tbody></table></div>';
     }).join('');
     $('ca-body').innerHTML = html || '<div class="card muted">Nada encontrado.</div>';
     each('#ca-body [data-p]', function (tr) { tr.addEventListener('click', function () { dlgProducto(by.prod[tr.dataset.p]); }); });
+    each('#ca-body [data-sw]', function (b) {
+      b.addEventListener('click', async function (ev) {
+        ev.stopPropagation(); var p = by.prod[b.dataset.sw]; b.disabled = true;
+        try { await q(sb.from('caja_productos').update({ activo: !p.activo, actualizado_en: new Date().toISOString() }).eq('id', p.id)); p.activo = !p.activo; pintar(); }
+        catch (e) { b.disabled = false; A.fail(e); }
+      });
+    });
     each('#ca-body [data-ec]', function (b) { b.addEventListener('click', function () { dlgCategoria(by.cat[b.dataset.ec]); }); });
   }
 
   function pintarOpciones() {
     $('ca-cats').classList.add('hidden');
     var bq = norm(st.buscar);
-    var html = D.grupos.filter(function (g) { return st.todo || g.activo; }).map(function (g) {
-      var os = D.opts.filter(function (o) { return o.grupo_id === g.id && (st.todo || o.activa); });
+    var html = D.grupos.filter(function (g) { return st.ver !== 'venta' || g.activo; }).map(function (g) {
+      var os = D.opts.filter(function (o) { return o.grupo_id === g.id && (st.ver === 'todo' || (st.ver === 'venta' ? o.activa : !o.activa)); });
       if (bq && norm(g.nombre).indexOf(bq) < 0) os = os.filter(function (o) { return norm(o.nombre).indexOf(bq) >= 0; });
       if (bq && !os.length && norm(g.nombre).indexOf(bq) < 0) return '';
       var nprod = D.links.filter(function (l) { return l.grupo_id === g.id; }).length;
@@ -188,8 +206,8 @@
       '<label>Orden<input id="x-ord" type="number" value="' + (p.orden != null ? p.orden : '') + '"></label>' +
       '</div>' +
       '<label class="chk"><input type="checkbox" id="x-var"' + (p.precio_variable ? ' checked' : '') + '> Precio variable (se pide en la caja)</label>' +
-      '<label class="chk"><input type="checkbox" id="x-act"' + (p.activo ? ' checked' : '') + '> En venta</label>' +
-      (nuevo ? '' : '<div><h3 class="f" style="margin:8px 0 4px">Opciones de este producto</h3><ul class="lst grp-l" id="x-gl"></ul>' +
+      '<label class="chk"><input type="checkbox" id="x-act"' + (p.activo ? ' checked' : '') + '> En venta (quita el visto para guardarlo sin venderlo; vuelve a activarlo cuando quieras)</label>' +
+      (nuevo ? '' : '<div><h3 class="f" style="margin:8px 0 4px">Opciones de este producto</h3><p class="muted" style="margin:0 0 6px">Quita el visto de lo que no va con este producto (p. ej. «extra huevo» en un café). Se guarda al momento.</p><ul class="lst grp-l" id="x-gl"></ul>' +
         '<div class="row" style="margin-top:8px"><select id="x-gadd" style="flex:1 1 200px"><option value="">Añadir grupo de opciones…</option>' + D.grupos.map(function (g) { return '<option value="' + g.id + '">' + esc(g.nombre) + '</option>'; }).join('') + '</select>' +
         '<select id="x-gtipo"><option value="multiple">Varias</option><option value="una">Elegir 1</option><option value="max">Máx. 3</option></select>' +
         '<select id="x-gap"><option value="auto">Se abre solo</option><option value="boton">Con botón</option></select>' +
@@ -207,12 +225,32 @@
     if (!nuevo) {
       var pintaLinks = function () {
         $('x-gl').innerHTML = links.map(function (l) {
+          var os = D.opts.filter(function (o) { return o.grupo_id === l.grupo_id; });
+          var cb = os.map(function (o) {
+            var on = !D.excl.some(function (x) { return x.producto_id === p.id && x.opcion_id === o.id; });
+            return '<label><input type="checkbox" data-ox="' + o.id + '"' + (on ? ' checked' : '') + '>' + esc(o.nombre) + (o.suplemento_cent ? ' <span class="sub">+' + eur(o.suplemento_cent) + '</span>' : '') + (o.activa ? '' : ' <span class="sub">(no disponible)</span>') + '</label>';
+          }).join('');
           return '<li><span><b>' + esc((by.grupo[l.grupo_id] || {}).nombre || '?') + '</b> <span class="sub">· ' + tipoTxt(l) + ' · ' + (l.apertura === 'auto' ? 'se abre solo' : 'con botón') + '</span></span>' +
-            '<button class="btn o s" data-rm="' + l.grupo_id + '" type="button">Quitar</button></li>';
+            '<button class="btn o s" data-rm="' + l.grupo_id + '" type="button">Quitar grupo</button>' +
+            '<div class="opt-l" style="flex-basis:100%">' + (cb || '<span class="muted">Este grupo no tiene opciones.</span>') + '</div></li>';
         }).join('') || '<li class="muted">Sin opciones.</li>';
+        each('#x-gl [data-ox]', function (c) {
+          c.addEventListener('change', async function () {
+            var oid = c.dataset.ox; c.disabled = true;
+            try {
+              if (c.checked) { await q(sb.from('caja_producto_opcion_excluida').delete().eq('producto_id', p.id).eq('opcion_id', oid)); D.excl = D.excl.filter(function (x) { return !(x.producto_id === p.id && x.opcion_id === oid); }); }
+              else { await q(sb.from('caja_producto_opcion_excluida').insert({ producto_id: p.id, opcion_id: oid })); D.excl.push({ producto_id: p.id, opcion_id: oid }); }
+            } catch (e) { c.checked = !c.checked; $('x-e').textContent = e.message; }
+            c.disabled = false;
+          });
+        });
         each('#x-gl [data-rm]', function (b) {
           b.addEventListener('click', async function () {
-            try { await q(sb.from('caja_producto_grupos').delete().eq('producto_id', p.id).eq('grupo_id', b.dataset.rm)); links = links.filter(function (l) { return l.grupo_id !== b.dataset.rm; }); D.links = D.links.filter(function (l) { return !(l.producto_id === p.id && l.grupo_id === b.dataset.rm); }); pintaLinks(); }
+            try {
+              var oids = D.opts.filter(function (o) { return o.grupo_id === b.dataset.rm; }).map(function (o) { return o.id; });
+              if (oids.length) await q(sb.from('caja_producto_opcion_excluida').delete().eq('producto_id', p.id).in('opcion_id', oids));
+              D.excl = D.excl.filter(function (x) { return !(x.producto_id === p.id && oids.indexOf(x.opcion_id) >= 0); });
+              await q(sb.from('caja_producto_grupos').delete().eq('producto_id', p.id).eq('grupo_id', b.dataset.rm)); links = links.filter(function (l) { return l.grupo_id !== b.dataset.rm; }); D.links = D.links.filter(function (l) { return !(l.producto_id === p.id && l.grupo_id === b.dataset.rm); }); pintaLinks(); }
             catch (e) { $('x-e').textContent = e.message; }
           });
         });
