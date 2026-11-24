@@ -101,9 +101,7 @@
     each('#t-carta [data-v]', function (b) { b.classList.toggle('on', b.dataset.v === st.vista); });
     $('ca-new').textContent = st.vista === 'productos' ? '+ Nuevo producto' : '+ Nuevo grupo de opciones';
     var act = D.prods.filter(function (p) { var c = by.cat[p.categoria_id] || {}; return p.activo && c.activa && !c.archivada; }).length;
-    var sinTrad = D.prods.filter(function (p) { return p.activo && (!p.nombre_en || !p.nombre_nl); }).length;
-    $('ca-res').textContent = D.cats.filter(function (c) { return c.activa && !c.archivada; }).length + ' categorías activas · ' + act + ' productos activos (' + D.prods.length + ' en total) · ' + D.opts.length + ' opciones' +
-      (sinTrad ? ' · ' + sinTrad + ' productos sin nombre en inglés o neerlandés' : '');
+    $('ca-res').textContent = D.cats.filter(function (c) { return c.activa && !c.archivada; }).length + ' categorías activas · ' + act + ' productos activos (' + D.prods.length + ' en total) · ' + D.opts.length + ' opciones';
     if (st.vista === 'productos') pintarProductos(); else pintarOpciones();
   }
 
@@ -193,9 +191,7 @@
     var links = p.id ? D.links.filter(function (l) { return l.producto_id === p.id; }) : [];
     dlg('<h2 class="f">' + (nuevo ? 'Nuevo producto' : esc(p.nombre_es)) + '</h2>' +
       '<div class="form">' +
-      '<label>Nombre (ES)<input id="x-es" value="' + esc(p.nombre_es) + '"></label>' +
-      '<label>Nombre (EN)<input id="x-en" value="' + esc(p.nombre_en) + '"></label>' +
-      '<label>Nombre (NL)<input id="x-nl" value="' + esc(p.nombre_nl) + '"></label>' +
+      '<label>Nombre<input id="x-es" value="' + esc(p.nombre_es) + '"></label>' +
       '<label>Nombre corto en el ticket<input id="x-tk" maxlength="32" value="' + esc(p.nombre_ticket) + '" placeholder="igual que ES"></label>' +
       '<label>Categoría<select id="x-cat">' + D.cats.map(function (k) { return '<option value="' + k.id + '"' + (k.id === p.categoria_id ? ' selected' : '') + '>' + esc(k.nombre_es) + (k.archivada ? ' (archivada)' : '') + '</option>'; }).join('') + '</select></label>' +
       '<label>Precio con IVA (€)<input id="x-pr" inputmode="decimal" value="' + (p.precio_cent != null ? (p.precio_cent / 100).toFixed(2).replace('.', ',') : '') + '"></label>' +
@@ -272,7 +268,7 @@
       if (isNaN(co)) { $('x-e').textContent = 'El coste no es un número válido.'; return false; }
       var ord = $('x-ord').value;
       var row = {
-        nombre_es: es, nombre_en: $('x-en').value.trim() || null, nombre_nl: $('x-nl').value.trim() || null,
+        nombre_es: es,
         nombre_ticket: $('x-tk').value.trim() || es, categoria_id: $('x-cat').value,
         precio_cent: pr == null || isNaN(pr) ? 0 : pr, coste_cent: co, iva: Number($('x-iva').value),
         impresora1_id: $('x-p1').value || null, impresora2_id: $('x-p2').value || null,
@@ -290,9 +286,7 @@
   function dlgCategoria(c) {
     dlg('<h2 class="f">Categoría · ' + esc(c.nombre_es) + '</h2>' +
       '<div class="form">' +
-      '<label>Nombre (ES)<input id="x-es" value="' + esc(c.nombre_es) + '"></label>' +
-      '<label>Nombre (EN)<input id="x-en" value="' + esc(c.nombre_en) + '"></label>' +
-      '<label>Nombre (NL)<input id="x-nl" value="' + esc(c.nombre_nl) + '"></label>' +
+      '<label>Nombre<input id="x-es" value="' + esc(c.nombre_es) + '"></label>' +
       '<label>IVA de la categoría' + ivaSel('x-iva', c.iva) + '</label>' +
       '<label>Imprime en' + prnSel('x-p1', c.impresora1_id || '', '— ninguno —') + '</label>' +
       '<label>Y también en' + prnSel('x-p2', c.impresora2_id || '', '— nada más —') + '</label>' +
@@ -306,7 +300,7 @@
     wide();
     guardar(async function () {
       var es = $('x-es').value.trim(); if (!es) { $('x-e').textContent = 'Falta el nombre.'; return false; }
-      var row = { nombre_es: es, nombre_en: $('x-en').value.trim() || null, nombre_nl: $('x-nl').value.trim() || null, iva: Number($('x-iva').value),
+      var row = { nombre_es: es, iva: Number($('x-iva').value),
         impresora1_id: $('x-p1').value || null, impresora2_id: $('x-p2').value || null, orden: Number($('x-ord').value || 0),
         activa: $('x-act').checked && !$('x-arc').checked, temporada: $('x-tem').checked, archivada: $('x-arc').checked };
       if (row.impresora2_id && row.impresora2_id === row.impresora1_id) row.impresora2_id = null;
