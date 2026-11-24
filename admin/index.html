@@ -107,6 +107,7 @@
   <nav aria-label="Menú">
     <img src="../home-assets/luma-badge.webp" alt="Luma Brunch">
     <button data-tab="hoy" class="on">Hoy</button>
+    <button data-tab="horario">Horario</button>
     <button data-tab="semana">Horas</button>
     <button data-tab="vacaciones">Vacaciones</button>
     <button data-tab="personal">Personal</button>
@@ -134,6 +135,9 @@
         <table><thead><tr><th>Nombre</th><th>Turno</th><th>Entrada</th><th>Salida</th><th>Estado</th></tr></thead><tbody id="hoy-b"></tbody></table>
       </div>
     </section>
+
+    <!-- HORARIO (admin/horario.js) -->
+    <section id="t-horario" class="hidden"></section>
 
     <!-- HORAS -->
     <section id="t-semana" class="hidden">
@@ -672,5 +676,6 @@
 </script>
 <script src="caja.js"></script>
 <script src="caja-informes.js"></script>
+<script src="horario.js"></script>
 </body>
 </html>
