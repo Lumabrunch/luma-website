@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#394A32">
-<title>Luma · Personal</title>
+<title>Luma · Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -71,6 +71,8 @@
   .dlg .card{width:min(460px,100%);display:flex;flex-direction:column;gap:12px}
   ul.lst{list-style:none;margin:0;padding:0}
   ul.lst li{padding:9px 0;border-top:1px solid var(--linea)}
+  .navsep{font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.7;padding:16px 14px 4px}
+  @media (max-width:760px){.navsep{padding:0 4px 0 10px}}
 </style>
 </head>
 <body>
@@ -109,6 +111,8 @@
     <button data-tab="vacaciones">Vacaciones</button>
     <button data-tab="personal">Personal</button>
     <button data-tab="tabletas">Tableta</button>
+    <span class="navsep">Caja</span>
+    <button data-tab="carta">Carta</button>
     <div class="bottom">
       <span id="who"></span>
       <button id="b-pass" type="button">Cambiar contraseña</button>
@@ -218,6 +222,9 @@
         <table><thead><tr><th>Nombre</th><th>Conectada</th><th>Último uso</th><th>Estado</th><th></th></tr></thead><tbody id="tb-b"></tbody></table>
       </div>
     </section>
+
+    <!-- CARTA (caja) -->
+    <section id="t-carta" class="hidden"></section>
   </main>
 </div>
 
@@ -247,12 +254,13 @@
   function view(id) { ['v-login', 'v-pass', 'v-app'].forEach(function (v) { $(v).classList.toggle('hidden', v !== id); }); }
   function tab(t) {
     Array.prototype.forEach.call(document.querySelectorAll('nav [data-tab]'), function (b) { b.classList.toggle('on', b.dataset.tab === t); });
-    ['hoy', 'semana', 'vacaciones', 'personal', 'tabletas'].forEach(function (x) { $('t-' + x).classList.toggle('hidden', x !== t); });
+    Array.prototype.forEach.call(document.querySelectorAll('main > section'), function (sec) { sec.classList.toggle('hidden', sec.id !== 't-' + t); });
     if (t === 'hoy') loadHoy();
     if (t === 'semana') loadSemana();
     if (t === 'vacaciones') loadVacaciones();
     if (t === 'personal') renderPersonal();
     if (t === 'tabletas') loadTabletas();
+    if (window.LumaCaja && window.LumaCaja[t]) window.LumaCaja[t]();
   }
   function fail(e) { alert(e && e.message ? e.message : String(e)); }
   function q(p) { return p.then(function (r) { if (r.error) throw r.error; return r.data; }); }
@@ -654,9 +662,12 @@
     try { var c = await q(sb.rpc('admin_codigo_tablet')); $('tb-code').textContent = c; } catch (e) { fail(e); }
   });
 
+  window.LumaAdmin = { sb: sb, q: q, esc: esc, dlg: dlg, closeDlg: closeDlg, fail: fail, $: $ };
+
   sb.auth.onAuthStateChange(function (ev) { if (ev === 'SIGNED_OUT') view('v-login'); });
   start();
 })();
 </script>
+<script src="caja.js"></script>
 </body>
 </html>
