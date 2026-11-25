@@ -319,6 +319,35 @@
   }
   var TIPO_AUS = { vacaciones: 'Vacaciones', no_retribuido: 'Permiso no retribuido', baja: 'Baja', permiso_retribuido: 'Permiso retribuido', festivo: 'Festivo' };
 
+  function retrasoHtml(j) {
+    if (!j.entrada || !(j.minutos_tarde > tol)) return '';
+    var minutos = esc(j.minutos_tarde) + ' min tarde';
+    if (j.retraso_justificado) return ' <span class="tag ok">' + minutos + ' · Justificado</span>';
+    return ' <span class="tag warn">' + minutos + '</span> ' +
+      '<button class="btn o s" type="button" data-justificar="' + esc(j.empleado_id) +
+      '" data-fecha="' + esc(j.fecha) + '">Justificar retraso</button>';
+  }
+
+  function justificarEn(id, recargar) {
+    $(id).addEventListener('click', async function (event) {
+      var b = event.target.closest('button[data-justificar]');
+      if (!b || b.disabled) return;
+      b.disabled = true;
+      try {
+        await q(sb.rpc('admin_justificar_retraso', {
+          p_empleado: b.dataset.justificar, p_fecha: b.dataset.fecha
+        }));
+        await recargar();
+      } catch (e) {
+        fail(e);
+      } finally {
+        b.disabled = false;
+      }
+    });
+  }
+  justificarEn('hoy-b', loadHoy);
+  justificarEn('d-fich', loadDossier);
+
   // ---------- HOY ----------
   async function loadHoy() {
     try {
@@ -345,7 +374,8 @@
         else if (t && hhmm(t[0].hora_inicio) < now) st = '<span class="tag warn">No ha fichado</span>';
         else if (t) st = '<span class="tag">Aún no</span>';
         else st = '<span class="muted">Libre</span>';
-        if (j.minutos_tarde > tol) { nLate++; st += ' <span class="tag warn">' + j.minutos_tarde + ' min tarde</span>'; }
+        if (j.minutos_tarde > tol && !j.retraso_justificado) nLate++;
+        st += retrasoHtml(j);
         return '<tr><td><b>' + esc(e.nombre_corto) + '</b></td><td>' + esc(turno) + '</td><td>' + hm(j.entrada) + '</td><td>' + hm(j.salida) + '</td><td>' + st + '</td></tr>';
       }).join('');
       $('hoy-b').innerHTML = html;
@@ -389,7 +419,7 @@
           trab += j.minutos_trabajados || 0; prev += j.minutos_previstos || 0;
           if (j.entrada) diasTrab++;
           if (j.entrada && !j.salida && j.fecha < hoyISO()) sinSalida++;
-          if (j.minutos_tarde > tol) tarde++;
+          if (j.minutos_tarde > tol && !j.retraso_justificado) tarde++;
         });
         var contrato = e.horas_semana != null ? Math.round(e.horas_semana * 60 * (per.modo === 'semana' ? 1 : dias / 7)) : null;
         var a = aus.filter(function (x) { return x.empleado_id === e.id; });
@@ -416,7 +446,7 @@
       if (dow !== 0 || j.entrada) {
         var nota = [];
         if (j.entrada && !j.salida && f < hoyISO()) nota.push('Sin salida');
-        if (j.minutos_tarde > tol) nota.push(j.minutos_tarde + ' min tarde');
+        if (j.minutos_tarde > tol) nota.push(j.minutos_tarde + ' min tarde' + (j.retraso_justificado ? ' · Justificado' : ''));
         if (j.turno_inicio && !j.entrada && f <= hoyISO()) nota.push('Sin fichaje');
         r.aus.forEach(function (a) { if (a.desde <= f && (!a.hasta || a.hasta >= f)) nota.push(TIPO_AUS[a.tipo] || a.tipo); });
         html += '<tr><td>' + fmtD(f) + '</td><td>' + (j.turno_inicio ? hhmm(j.turno_inicio) + '–' + (hhmm(j.turno_fin) || 'fin') : '—') + '</td><td>' + hm(j.entrada) + '</td><td>' + hm(j.salida) +
@@ -549,11 +579,17 @@
       var res = await Promise.all([
         q(sb.from('fichajes_validos').select('id,tipo,ts,origen,motivo,fecha').eq('empleado_id', e.id).gte('fecha', desde).order('ts', { ascending: false })),
         q(sb.from('ausencias').select('*').eq('empleado_id', e.id).neq('estado', 'anulada').order('desde', { ascending: false })),
-        q(sb.from('notas').select('*').eq('empleado_id', e.id).order('creado', { ascending: false }))
+        q(sb.from('notas').select('*').eq('empleado_id', e.id).order('creado', { ascending: false })),
+        q(sb.from('jornadas').select('*').eq('empleado_id', e.id).gte('fecha', desde))
       ]);
+      if (selEmp !== e.id) return;
+      var jornadas = new Map(res[3].map(function (j) { return [j.fecha, j]; }));
       $('d-fich').innerHTML = res[0].map(function (f) {
+        var j = jornadas.get(f.fecha);
+        var retraso = j && f.tipo === 'entrada' && Date.parse(f.ts) === Date.parse(j.entrada)
+          ? retrasoHtml(j) : '';
         var org = f.origen === 'admin' ? 'Corregido: ' + esc(f.motivo) : 'Tableta';
-        return '<tr><td>' + fmtD(f.fecha) + '</td><td>' + (f.tipo === 'entrada' ? 'Entrada' : 'Salida') + '</td><td>' + hm(f.ts) + '</td><td class="muted">' + org +
+        return '<tr><td>' + fmtD(f.fecha) + '</td><td>' + (f.tipo === 'entrada' ? 'Entrada' : 'Salida') + '</td><td>' + hm(f.ts) + '</td><td class="muted">' + org + retraso +
           '</td><td><button class="btn o s" data-c="' + f.id + '" type="button">Corregir</button> <button class="btn o s" data-a="' + f.id + '" type="button">Anular</button></td></tr>';
       }).join('') || '<tr><td colspan="5" class="muted">Sin fichajes.</td></tr>';
       var byId = {}; res[0].forEach(function (f) { byId[f.id] = f; });
