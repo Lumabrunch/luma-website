@@ -29,6 +29,8 @@
     '.bar-h{display:grid;grid-template-columns:minmax(110px,180px) 1fr auto;gap:6px 10px;align-items:center;font-size:14px}' +
     '.bar-h .tr{height:14px;background:#F2F1EA;border-radius:4px;overflow:hidden}.bar-h .fl{height:100%;background:' + COL.uno + ';border-radius:0 4px 4px 0}' +
     '.heat{display:grid;gap:3px;font-size:12px;color:#6C7161}.heat .c{height:30px;border-radius:5px}' +
+    '#in-personal-tabla{margin-top:12px}#in-personal-tabla th.num,#in-personal-tabla td.num{white-space:nowrap}' +
+    '#in-personal-tabla .tag{margin-left:7px}#in-personal-nota{margin:12px 0 0}' +
     '.empty{padding:30px 10px;text-align:center;color:#6C7161}';
   document.head.appendChild(css);
 
@@ -46,7 +48,11 @@
 
   // ---------- estado ----------
   var st = { per: 'mes', desde: null, hasta: null, vista: 'afluencia', medida: 'pedidos', pruebas: false, orden: 'ventas', asc: false, buscar: '', tabla: {} };
-  var R = null, Rprev = null;
+  var R = null, Rprev = null, errorInforme = null, solicitudInforme = 0;
+  var personal = null;
+  var fmtDiaPersonal = new Intl.DateTimeFormat('es-ES', {
+    timeZone: TZ, weekday: 'long', day: 'numeric', month: 'short', year: 'numeric'
+  });
 
   function periodo(p) {
     var h = hoy(), d = new Date(h + 'T12:00:00Z'), wd = (d.getUTCDay() + 6) % 7;
@@ -162,7 +168,7 @@
   function esqueleto() {
     $('t-informes').innerHTML =
       '<div class="row between"><div><h1 class="f">Informes de caja</h1><div class="muted" id="in-per"></div></div>' +
-      '<div class="pills"><button class="pill" data-iv="afluencia" type="button">Afluencia</button><button class="pill" data-iv="productos" type="button">Productos</button><button class="pill" data-iv="pagos" type="button">Pagos</button></div></div>' +
+      '<div class="pills"><button class="pill" data-iv="afluencia" type="button">Afluencia</button><button class="pill" data-iv="productos" type="button">Productos</button><button class="pill" data-iv="pagos" type="button">Pagos</button><button class="pill" data-iv="personal" type="button">Ventas y horas</button></div></div>' +
       '<div class="card" style="margin-top:16px;display:flex;flex-direction:column;gap:12px">' +
       '<div class="row"><select id="in-p"><option value="hoy">Hoy</option><option value="ayer">Ayer</option><option value="semana">Esta semana</option><option value="7">Últimos 7 días</option><option value="mes" selected>Este mes</option><option value="mesant">Mes anterior</option><option value="30">Últimos 30 días</option><option value="anio">Este año</option><option value="otro">Elegir fechas…</option></select>' +
       '<span id="in-f" class="row hidden"><input type="date" id="in-d"> – <input type="date" id="in-h"><button class="btn s" id="in-ok" type="button">Ver</button></span>' +
@@ -177,7 +183,7 @@
     });
     $('in-ok').addEventListener('click', function () { if (!$('in-d').value || !$('in-h').value || $('in-h').value < $('in-d').value) return; st.desde = $('in-d').value; st.hasta = $('in-h').value; cargar(); });
     $('in-pr').addEventListener('change', function () { st.pruebas = this.checked; cargar(); });
-    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { if (R && !$('t-informes').classList.contains('hidden')) pintar(); }, 150); });
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { if ((R || st.vista === 'personal') && !$('t-informes').classList.contains('hidden')) pintar(); }, 150); });
   }
 
   function barraPruebas() {
@@ -197,17 +203,23 @@
 
   async function cargar() {
     var p = periodo(st.per); st.desde = p[0]; st.hasta = p[1];
+    var solicitud = ++solicitudInforme;
+    R = null; Rprev = null; errorInforme = null; personal = null;
     var len = diff(p[0], p[1]) + 1, pd = addD(p[0], -len), ph = addD(p[0], -1);
-    $('in-per').textContent = (p[0] === p[1] ? fD(p[0]) : fD(p[0]) + ' – ' + fD(p[1])) + ' · comparado con ' + (pd === ph ? fD(pd) : fD(pd) + ' – ' + fD(ph));
     barraPruebas();
-    $('in-body').innerHTML = '<div class="card muted">Cargando…</div>';
+    pintar();
     try {
       var r = await Promise.all([
         q(sb.rpc('caja_informe', { p_desde: p[0], p_hasta: p[1], p_pruebas: st.pruebas })),
         q(sb.rpc('caja_informe', { p_desde: pd, p_hasta: ph, p_pruebas: st.pruebas }))
       ]);
-      R = r[0]; Rprev = r[1]; pintar();
-    } catch (e) { $('in-body').innerHTML = '<div class="card msg err">' + esc(e.message) + '</div>'; }
+      if (solicitud !== solicitudInforme) return;
+      R = r[0]; Rprev = r[1];
+    } catch (e) {
+      if (solicitud !== solicitudInforme) return;
+      errorInforme = e.message;
+    }
+    if (st.vista !== 'personal') pintar();
   }
 
   // ---------- piezas ----------
@@ -244,11 +256,61 @@
 
   // ---------- vistas ----------
   function pintar() {
+    var sd = st.desde, sh = st.hasta;
+    var pd = addD(sd, -diff(sd, sh) - 1), ph = addD(sd, -1);
+    var fechas = function (desde, hasta) { return desde === hasta ? fD(desde) : fD(desde) + ' – ' + fD(hasta); };
+    $('in-per').textContent = fechas(sd, sh) + (st.vista === 'personal' ? '' : ' · comparado con ' + fechas(pd, ph));
     each('#t-informes [data-iv]', function (b) { b.classList.toggle('on', b.dataset.iv === st.vista); });
-    if (!R) return;
+    if (st.vista === 'personal') { vPersonal(); return; }
+    if (!R) {
+      $('in-body').innerHTML = errorInforme ? '<div class="card msg err">' + esc(errorInforme) + '</div>' : '<div class="card muted">Cargando…</div>';
+      return;
+    }
     if (st.vista === 'afluencia') vAfluencia(); else if (st.vista === 'productos') vProductos(); else vPagos();
     segTabs();
     each('#in-body [data-md]', function (b) { b.addEventListener('click', function () { st.medida = b.dataset.md; pintar(); }); });
+  }
+
+  async function cargarPersonal(carga) {
+    try {
+      carga.filas = await q(sb.rpc('caja_informe_ventas_horas', {
+        p_desde: carga.desde, p_hasta: carga.hasta, p_pruebas: carga.pruebas
+      }));
+    } catch (e) { carga.error = e.message; }
+    if (personal === carga && st.vista === 'personal') vPersonal();
+  }
+
+  function vPersonal() {
+    if (!personal) {
+      personal = { desde: st.desde, hasta: st.hasta, pruebas: st.pruebas, filas: null, error: null };
+      cargarPersonal(personal);
+    }
+    var el = $('in-body');
+    if (personal.error) {
+      el.innerHTML = '<div class="card msg err">No se pudo cargar el resumen de ventas y horas. ' + esc(personal.error) + '</div>';
+      return;
+    }
+    if (!personal.filas) { el.innerHTML = '<div class="card muted">Cargando ventas y horas…</div>'; return; }
+
+    var cols = [{ n: 'Día' }, { n: 'Ventas sin IVA', num: 1 }, { n: 'Horas trabajadas del equipo', num: 1 }, { n: 'Ventas por hora trabajada', num: 1 }];
+    var hayProvisional = personal.filas.some(function (x) { return x.provisional; });
+    var faltanVentas = personal.filas.some(function (x) { return x.ventas_sin_iva_cent == null; });
+    var rows = personal.filas.slice().reverse().map(function (x) {
+      var minutos = Number(x.minutos_trabajados);
+      var horas = minutos > 0 ? Math.floor(minutos / 60) + ':' + String(minutos % 60).padStart(2, '0') + ' h' : '—';
+      if (x.provisional) horas += '<span class="tag warn">Provisional</span>';
+      var ratio = minutos > 0 && x.ventas_por_hora_cent != null ? eur(x.ventas_por_hora_cent) : '—';
+      if (x.provisional && ratio !== '—') ratio = '≈ ' + ratio;
+      return [esc(fmtDiaPersonal.format(new Date(x.dia + 'T12:00:00Z'))), x.ventas_sin_iva_cent == null ? '—' : eur(x.ventas_sin_iva_cent),
+        horas, ratio];
+    });
+    el.innerHTML = '<section class="card"><h2 class="f">Ventas y horas por día</h2>' +
+      (personal.pruebas ? '<p class="tag warn">Ventas de prueba · horas reales</p>' : '') +
+      '<div id="in-personal-tabla">' + tabla(cols, rows) + '</div>' +
+      (hayProvisional || faltanVentas ? '<p class="muted" id="in-personal-nota">' +
+        (hayProvisional ? 'Provisional: faltan fichajes de salida. Solo se incluyen las jornadas con entrada y salida. ' : '') +
+        (faltanVentas ? 'Las ventas sin IVA quedan en blanco si faltan datos de IVA para algún cobro.' : '') + '</p>' : '') +
+      '</section>';
   }
 
   function vAfluencia() {
