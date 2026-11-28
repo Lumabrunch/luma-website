@@ -58,6 +58,11 @@
   .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
   .center{flex-grow:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px}
   .check{width:120px;height:120px;border-radius:50%;background:var(--verde);display:flex;align-items:center;justify-content:center}
+  .horas-semana{background:#fff;border-radius:20px;padding:16px 26px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .horas-semana[hidden]{display:none}
+  .horas-semana h2{margin:0 0 4px;font-size:22px}
+  .horas-semana strong{font-size:28px;color:var(--verde)}
+  .horas-semana p{flex-basis:100%;margin:0;font-size:14px}
   .weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
   .week{background:#fff;border-radius:20px;padding:22px 26px}
   .week h2{margin:0 0 8px;font-size:22px}
@@ -158,6 +163,11 @@
     </div>
     <button class="btn-o" data-back>Cerrar</button>
   </div>
+  <section class="horas-semana" id="tur-horas" hidden aria-labelledby="tur-horas-t">
+    <div><h2 class="f" id="tur-horas-t">Horas trabajadas esta semana</h2><div class="sub" id="tur-horas-fecha"></div></div>
+    <strong id="tur-horas-total"></strong>
+    <p id="tur-horas-nota" hidden>Provisional: falta al menos un fichaje de salida. El total incluye las jornadas completas.</p>
+  </section>
   <div class="weeks" id="weeks"></div>
 </section>
 
@@ -203,7 +213,7 @@
     if (id !== 's-home' && id !== 's-setup') idleT = setTimeout(home, IDLE_MS);
   }
 
-  function forget() { try { localStorage.removeItem(LS); } catch (e) {} token = null; show('s-setup'); }
+  function forget() { try { localStorage.removeItem(LS); } catch (e) {} token = null; clearPerson(); show('s-setup'); }
 
   function tick() {
     var d = new Date();
@@ -233,7 +243,13 @@
     }).catch(function (e) { $('home-err').textContent = 'Sin conexión. ' + e.message; });
   }
 
-  function home() { sel = null; pin = ''; show('s-home'); loadPeople(); }
+  function clearPerson() {
+    sel = null; pin = '';
+    ['tur-t', 'tur-sub', 'tur-horas-fecha', 'tur-horas-total', 'weeks'].forEach(function (id) { $(id).textContent = ''; });
+    $('tur-horas').hidden = true;
+  }
+
+  function home() { clearPerson(); show('s-home'); loadPeople(); }
 
   function openPin(p) {
     sel = p; pin = ''; drawDots(); $('pin-err').textContent = '';
@@ -293,10 +309,22 @@
   }
 
   function openTurnos() {
-    rpc('mis_turnos', { p_token: token, p_empleado: sel.id, p_pin: pin }).then(function (r) {
+    var empleado = sel, pinTurnos = pin;
+    if (!empleado) return;
+    rpc('mis_turnos_con_horas', { p_token: token, p_empleado: empleado.id, p_pin: pinTurnos }).then(function (r) {
+      if (sel !== empleado || pin !== pinTurnos || !$('s-act').classList.contains('on')) return;
       if (!r.ok) { $('act-err').textContent = r.error; return; }
       $('tur-t').textContent = r.nombre + ' · mis turnos';
       var w = $('weeks'); w.innerHTML = '';
+      var pd = function (s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2], 12); };
+      var fmt = function (d) { return d.getDate() + ' ' + MES_C[d.getMonth()]; };
+      var horas = r.horas_semana;
+      $('tur-horas').hidden = !horas;
+      if (horas) {
+        $('tur-horas-fecha').textContent = fmt(pd(horas.desde)) + ' – ' + fmt(pd(horas.hasta));
+        $('tur-horas-total').textContent = Math.floor(horas.minutos / 60) + ':' + String(horas.minutos % 60).padStart(2, '0') + ' h';
+        $('tur-horas-nota').hidden = !horas.provisional;
+      }
       if (!r.desde) {
         $('tur-sub').textContent = '';
         var none = document.createElement('div'); none.className = 'week';
@@ -307,8 +335,6 @@
       }
       var byDate = {};
       r.turnos.forEach(function (t) { (byDate[t.fecha] = byDate[t.fecha] || []).push(t); });
-      var pd = function (s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2], 12); };
-      var fmt = function (d) { return d.getDate() + ' ' + MES_C[d.getMonth()]; };
       var start = pd(r.desde), end = pd(r.hasta);
       $('tur-sub').textContent = fmt(start) + ' – ' + fmt(end);
       var nWeeks = Math.ceil((Math.round((end - start) / 86400000) + 1) / 7);
@@ -337,7 +363,7 @@
         w.appendChild(box);
       }
       show('s-turnos');
-    }).catch(function (e) { $('act-err').textContent = e.message; });
+    }).catch(function (e) { if (sel === empleado && pin === pinTurnos) $('act-err').textContent = e.message; });
   }
 
   function saveCode() {
